@@ -34,7 +34,10 @@
         'A clear, reliable mobile app for personal lenders in Cambodia. Keep borrower IDs, repayment schedules, and USD or KHR collections organized—even without internet.',
       heroPrimaryCta: 'Get early access',
       heroSecondaryCta: 'See features',
-      heroNote: 'Free starter plan · Android & iOS · Built for Cambodia',
+      heroNote: 'Free starter plan · Android & iOS',
+      heroQrTitle: 'Scan to download the app',
+      heroQrIos: 'App Store',
+      heroQrAndroid: 'Google Play',
 
       mockupMonth: 'Nov 2026',
       mockupTotalLent: 'Total Principal Lent',
@@ -285,7 +288,10 @@
         'កម្មវិធីទូរស័ព្ទច្បាស់លាស់ និងងាយស្រួលសម្រាប់អ្នកឱ្យខ្ចីប្រាក់នៅកម្ពុជា។ រក្សាទុកអត្តសញ្ញាណអ្នកខ្ចី កាលវិភាគសងប្រាក់ និងបញ្ជីប្រាក់ដុល្លារ ឬប្រាក់រៀលយ៉ាងមានរបៀប ទោះគ្មានអ៊ីនធឺណិតក៏ដោយ។',
       heroPrimaryCta: 'ស្នើសុំប្រើមុនគេ',
       heroSecondaryCta: 'មើលមុខងារ',
-      heroNote: 'គម្រោងឥតគិតថ្លៃ · Android & iOS · បង្កើតសម្រាប់កម្ពុជា',
+      heroNote: 'គម្រោងឥតគិតថ្លៃ · Android & iOS',
+      heroQrTitle: 'ស្កេន QR ដើម្បីទាញយកកម្មវិធី',
+      heroQrIos: 'App Store',
+      heroQrAndroid: 'Google Play',
 
       mockupMonth: 'វិច្ឆិកា ២០២៦',
       mockupTotalLent: 'ប្រាក់ដើមបានឱ្យខ្ចីសរុប',
@@ -887,7 +893,32 @@
   }
 
   /* =========================================================================
-     10. SCROLL REVEAL ANIMATION
+     10. HERO BLURRED BACKGROUND SLIDESHOW
+     ========================================================================= */
+  function initHeroSlideshow() {
+    var slides = document.querySelectorAll('[data-hero-slide]');
+    if (!slides.length) return;
+
+    var activeIdx = 0;
+
+    function showSlide(idx) {
+      activeIdx = (idx + slides.length) % slides.length;
+      for (var i = 0; i < slides.length; i++) {
+        slides[i].classList.toggle('is-active', i === activeIdx);
+      }
+    }
+
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+
+    window.setInterval(function () {
+      showSlide(activeIdx + 1);
+    }, 4500);
+  }
+
+  /* =========================================================================
+     11. SCROLL REVEAL ANIMATION
      ========================================================================= */
   function initScrollReveal() {
     var revealEls = document.querySelectorAll('.reveal');
@@ -924,6 +955,7 @@
     initLanguageToggle();
     initThemeToggle();
     initMobileMenu();
+    initHeroSlideshow();
     initScreenshotTabs();
     initPricing();
     initFaqAccordion();

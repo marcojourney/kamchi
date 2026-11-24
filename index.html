@@ -58,13 +58,12 @@
       }
     </script>
 
-    <!-- Prevent flash of incorrect theme or language on initial paint -->
+    <!-- Prevent flash of incorrect theme or language on initial paint (defaults to light mode) -->
     <script>
       (function () {
         try {
           var savedTheme = localStorage.getItem('kamchi_theme');
-          var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-          if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+          if (savedTheme === 'dark') {
             document.documentElement.classList.add('dark');
           }
           var savedLang = localStorage.getItem('kamchi_lang');
@@ -157,10 +156,136 @@
 
     <main id="main-content">
       <!-- =====================================================================
-           2. HERO SECTION
-           Replace hero copy in script.js under translations.en / translations.km
+           2. HERO SECTION (with blurred 3-slide app backdrop & iPhone 17 Pro Max)
            ===================================================================== -->
       <section class="hero-section">
+        <!-- Blurred Ambient Slideshow Background -->
+        <div class="hero-bg-slideshow" aria-hidden="true">
+          <!-- Slide 1: Loan Report Dashboard -->
+          <div class="hero-bg-slide is-active" data-hero-slide="0">
+            <div class="bg-canvas-sheet bg-sheet-dashboard">
+              <div class="bg-sheet-bar">
+                <span>KamChi · Monthly Loan Report</span>
+                <span>USD &amp; KHR</span>
+              </div>
+              <div class="bg-sheet-kpis">
+                <div class="bg-kpi-card">
+                  <small>Total Disbursed</small>
+                  <strong>$48,900.00</strong>
+                </div>
+                <div class="bg-kpi-card">
+                  <small>Interest Earned</small>
+                  <strong>+$4,320.00</strong>
+                </div>
+                <div class="bg-kpi-card">
+                  <small>On-Time Rate</small>
+                  <strong>96.4%</strong>
+                </div>
+              </div>
+              <svg class="bg-chart-svg" viewBox="0 0 640 200" fill="none">
+                <rect x="28" y="108" width="48" height="72" rx="8" fill="#0F5132" fill-opacity="0.28" />
+                <rect x="112" y="78" width="48" height="102" rx="8" fill="#0F5132" fill-opacity="0.38" />
+                <rect x="196" y="92" width="48" height="88" rx="8" fill="#0F5132" fill-opacity="0.32" />
+                <rect x="280" y="54" width="48" height="126" rx="8" fill="#0F5132" fill-opacity="0.48" />
+                <rect x="364" y="42" width="48" height="138" rx="8" fill="#0F5132" fill-opacity="0.58" />
+                <rect x="448" y="28" width="48" height="152" rx="8" fill="#0F5132" fill-opacity="0.72" />
+                <rect x="532" y="18" width="48" height="162" rx="8" fill="#F2B544" fill-opacity="0.85" />
+                <path d="M52 96 L136 68 L220 80 L304 44 L388 34 L472 20 L556 12" stroke="#0F5132" stroke-width="4" stroke-linecap="round" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- Slide 2: Repayment Schedule Paper in App -->
+          <div class="hero-bg-slide" data-hero-slide="1">
+            <div class="bg-canvas-sheet bg-sheet-schedule">
+              <div class="bg-sheet-bar">
+                <span>Repayment Schedule · #KC-204</span>
+                <span>12 Installments</span>
+              </div>
+              <div class="bg-paper-table">
+                <div class="bg-paper-row is-head">
+                  <span>Period</span>
+                  <span>Due Date</span>
+                  <span>Principal</span>
+                  <span>Interest</span>
+                  <span>Status</span>
+                </div>
+                <div class="bg-paper-row">
+                  <span>01 / 12</span>
+                  <span>15 Sep 2026</span>
+                  <span>$250.00</span>
+                  <span>$37.50</span>
+                  <span class="bg-status-ok">Paid ✓</span>
+                </div>
+                <div class="bg-paper-row">
+                  <span>02 / 12</span>
+                  <span>15 Oct 2026</span>
+                  <span>$250.00</span>
+                  <span>$37.50</span>
+                  <span class="bg-status-ok">Paid ✓</span>
+                </div>
+                <div class="bg-paper-row">
+                  <span>03 / 12</span>
+                  <span>15 Nov 2026</span>
+                  <span>$250.00</span>
+                  <span>$37.50</span>
+                  <span class="bg-status-ok">Paid ✓</span>
+                </div>
+                <div class="bg-paper-row is-highlight">
+                  <span>04 / 12</span>
+                  <span>15 Dec 2026</span>
+                  <span>$250.00</span>
+                  <span>$37.50</span>
+                  <span class="bg-status-due">Upcoming</span>
+                </div>
+                <div class="bg-paper-row">
+                  <span>05 / 12</span>
+                  <span>15 Jan 2027</span>
+                  <span>$250.00</span>
+                  <span>$37.50</span>
+                  <span>Scheduled</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 3: Digital KHQR Receipt & Borrower Ledger -->
+          <div class="hero-bg-slide" data-hero-slide="2">
+            <div class="bg-canvas-sheet bg-sheet-receipt">
+              <div class="bg-sheet-bar">
+                <span>Official Payment Receipt · KHQR</span>
+                <span>Verified</span>
+              </div>
+              <div class="bg-receipt-columns">
+                <div class="bg-receipt-card">
+                  <div class="bg-receipt-badge">✓</div>
+                  <strong>$287.50 Paid</strong>
+                  <small>ABA KHQR · Ref #884120</small>
+                  <div class="bg-receipt-lines">
+                    <div><span>Borrower</span><span>Sokha Chan</span></div>
+                    <div><span>Principal</span><span>$250.00</span></div>
+                    <div><span>Interest</span><span>$37.50</span></div>
+                    <div><span>Remaining</span><span>$2,250.00</span></div>
+                  </div>
+                </div>
+                <div class="bg-receipt-card">
+                  <div class="bg-receipt-badge is-khr">៛</div>
+                  <strong>៛ 1,150,000 Paid</strong>
+                  <small>Cash Collection · Phnom Penh</small>
+                  <div class="bg-receipt-lines">
+                    <div><span>Borrower</span><span>Dara Kim</span></div>
+                    <div><span>Installment</span><span>06 / 10</span></div>
+                    <div><span>Guarantor</span><span>Verified</span></div>
+                    <div><span>Next Due</span><span>22 Dec 2026</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-bg-scrim"></div>
+        </div>
+
         <div class="container hero-grid">
           <div class="hero-copy">
             <p class="hero-kicker" data-i18n="heroKicker">KamChi (កម្ចី) · Personal Loan Ledger</p>
@@ -172,88 +297,179 @@
               <a href="#early-access" class="btn btn-primary btn-lg" data-i18n="heroPrimaryCta">Get early access</a>
               <a href="#features" class="btn btn-outline btn-lg" data-i18n="heroSecondaryCta">See features</a>
             </div>
-            <p class="hero-note" data-i18n="heroNote">Free starter plan · Android &amp; iOS · Built for Cambodia</p>
+            <p class="hero-note" data-i18n="heroNote">Free starter plan · Android &amp; iOS</p>
+
+            <!-- Scan-to-Download QR Codes (Replace href & SVG/img with final App Store / Google Play QR & links) -->
+            <div class="hero-qr-box">
+              <p class="hero-qr-heading" data-i18n="heroQrTitle">Scan to download the app</p>
+              <div class="hero-qr-grid">
+                <a href="#early-access" class="hero-qr-card" aria-label="Scan QR or click for iOS App Store early access">
+                  <div class="hero-qr-frame">
+                    <svg viewBox="0 0 29 29" width="72" height="72" shape-rendering="crispEdges" aria-hidden="true">
+                      <rect width="29" height="29" fill="#FFFFFF" />
+                      <!-- Top-left finder -->
+                      <path fill="#111827" d="M1 1h7v7H1zM2 2v5h5V2z" />
+                      <rect x="3" y="3" width="3" height="3" fill="#111827" />
+                      <!-- Top-right finder -->
+                      <path fill="#111827" d="M21 1h7v7h-7zM22 2v5h5V2z" />
+                      <rect x="23" y="3" width="3" height="3" fill="#111827" />
+                      <!-- Bottom-left finder -->
+                      <path fill="#111827" d="M1 21h7v7H1zM2 22v5h5v-5z" />
+                      <rect x="3" y="23" width="3" height="3" fill="#111827" />
+                      <!-- Data modules -->
+                      <path fill="#0F5132" d="M10 2h2v2h-2zm4 0h2v3h-2zm3 1h2v2h-2zm-7 3h3v2h-3zm5 1h2v2h-2zm3 0h2v3h-2zM2 10h3v2H2zm5 0h2v3H7zm4 0h3v2h-3zm5 0h2v2h-2zm4 0h3v2h-3zm5 0h3v2h-3zM1 14h2v3H1zm4 0h3v2H5zm5 0h2v3h-2zm4 0h3v2h-3zm5 0h2v3h-2zm4 0h2v2h-2zm3 1h2v3h-2zM3 18h2v2H3zm5 0h3v2H8zm5 0h2v2h-2zm4 0h3v2h-3zm5 0h2v2h-2zM10 21h2v3h-2zm4 0h3v2h-3zm5 0h2v3h-2zm4 0h3v2h-3zM11 25h3v2h-3zm5 0h2v3h-2zm4 1h3v2h-3zm5-2h2v4h-2z" />
+                    </svg>
+                  </div>
+                  <div class="hero-qr-meta">
+                    <span class="hero-qr-os">
+                      <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true">
+                        <path d="M16.365 1.43c0 1.14-.493 2.27-1.177 3.08-.744.9-1.99 1.57-2.987 1.57-.12 0-.23-.02-.3-.03-.01-.06-.04-.22-.04-.39 0-1.15.572-2.27 1.206-2.98.804-.94 2.142-1.64 3.248-1.68.03.13.05.28.05.43zm4.565 15.71c-.03.07-.463 1.58-1.518 3.12-.945 1.34-1.94 2.71-3.43 2.71-1.517 0-1.9-.88-3.63-.88-1.698 0-2.302.91-3.67.91-1.377 0-2.332-1.26-3.428-2.8-1.287-1.82-2.323-4.63-2.323-7.28 0-4.28 2.797-6.55 5.552-6.55 1.448 0 2.675.95 3.6.95.865 0 2.222-1.01 3.902-1.01.613 0 2.886.06 4.374 2.19-.13.09-2.383 1.37-2.383 4.19 0 3.26 2.854 4.42 2.955 4.45z" />
+                      </svg>
+                      <span>iOS</span>
+                    </span>
+                    <span class="hero-qr-store" data-i18n="heroQrIos">App Store</span>
+                  </div>
+                </a>
+
+                <a href="#early-access" class="hero-qr-card" aria-label="Scan QR or click for Android Google Play early access">
+                  <div class="hero-qr-frame">
+                    <svg viewBox="0 0 29 29" width="72" height="72" shape-rendering="crispEdges" aria-hidden="true">
+                      <rect width="29" height="29" fill="#FFFFFF" />
+                      <!-- Top-left finder -->
+                      <path fill="#111827" d="M1 1h7v7H1zM2 2v5h5V2z" />
+                      <rect x="3" y="3" width="3" height="3" fill="#111827" />
+                      <!-- Top-right finder -->
+                      <path fill="#111827" d="M21 1h7v7h-7zM22 2v5h5V2z" />
+                      <rect x="23" y="3" width="3" height="3" fill="#111827" />
+                      <!-- Bottom-left finder -->
+                      <path fill="#111827" d="M1 21h7v7H1zM2 22v5h5v-5z" />
+                      <rect x="3" y="23" width="3" height="3" fill="#111827" />
+                      <!-- Data modules (distinct Android pattern) -->
+                      <path fill="#0F5132" d="M10 1h3v2h-3zm5 1h2v3h-2zm3 0h2v2h-2zm-8 4h2v2h-2zm4 0h3v2h-3zm4 1h2v2h-2zM1 10h2v2H1zm4 0h3v2H5zm5 0h2v3h-2zm4 0h3v2h-3zm5 0h2v2h-2zm4 0h4v2h-4zM2 14h3v2H2zm5 0h2v3H7zm4 0h2v2h-2zm4 0h3v3h-3zm5 0h2v2h-2zm4 0h3v2h-3zM1 18h2v2H1zm4 0h2v2H5zm5 0h3v2h-3zm5 0h2v2h-2zm4 0h3v2h-3zm5 0h3v2h-3zM10 22h3v2h-3zm5-1h2v3h-2zm4 1h2v2h-2zm4-1h4v2h-4zM11 26h2v2h-2zm4-1h3v3h-3zm5 0h2v3h-2zm4 0h3v3h-3z" />
+                    </svg>
+                  </div>
+                  <div class="hero-qr-meta">
+                    <span class="hero-qr-os">
+                      <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true">
+                        <path d="M3.609 1.814L13.792 12 3.61 22.186a1.75 1.75 0 0 1-.61-1.335V3.149c0-.517.224-.998.609-1.335zm11.24 11.24l2.444 2.444-10.17 5.792 7.726-8.236zm3.337-1.91l2.893 1.648c.77.439.77 1.547 0 1.986l-2.893 1.648-2.668-2.641 2.668-2.641zM7.123 2.71l10.17 5.792-2.444 2.444L7.123 2.71z" />
+                      </svg>
+                      <span>Android</span>
+                    </span>
+                    <span class="hero-qr-store" data-i18n="heroQrAndroid">Google Play</span>
+                  </div>
+                </a>
+              </div>
+            </div>
           </div>
 
-          <!-- Phone Mockup built with CSS & SVG -->
+          <!-- iPhone 17 Pro Max Mockup built with CSS & SVG -->
           <div class="hero-visual">
-            <div class="phone-frame" aria-label="KamChi mobile app dashboard preview">
-              <div class="phone-notch" aria-hidden="true"></div>
-              <div class="phone-screen">
-                <div class="app-topbar">
-                  <div class="app-brand-mini">
-                    <img src="assets/logo.png" alt="KamChi" width="72" height="24" class="app-brand-logo" />
-                  </div>
-                  <span class="app-month" data-i18n="mockupMonth">Nov 2026</span>
-                </div>
+            <div class="phone-frame phone-17-pro-max" aria-label="KamChi mobile app dashboard preview on iPhone 17 Pro Max">
+              <span class="phone-btn-left-action" aria-hidden="true"></span>
+              <span class="phone-btn-left-vol1" aria-hidden="true"></span>
+              <span class="phone-btn-left-vol2" aria-hidden="true"></span>
+              <span class="phone-btn-right-power" aria-hidden="true"></span>
 
-                <div class="app-balance-card">
-                  <div class="app-balance-label" data-i18n="mockupTotalLent">Total Principal Lent</div>
-                  <div class="app-balance-main tabular-nums">$14,850</div>
-                  <div class="app-balance-khr tabular-nums">៛ 60,885,000 KHR</div>
-                  <div class="app-kpi-row">
-                    <div class="app-kpi-item">
-                      <span class="app-kpi-label" data-i18n="mockupCollected">Collected</span>
-                      <span class="app-kpi-val tabular-nums">$9,420</span>
+              <div class="phone-bezel">
+                <div class="phone-screen">
+                  <!-- iOS Status Bar & Dynamic Island -->
+                  <div class="iphone-status-bar" aria-hidden="true">
+                    <span class="iphone-time tabular-nums">9:41</span>
+                    <div class="phone-dynamic-island">
+                      <span class="island-lens"></span>
                     </div>
-                    <div class="app-kpi-divider" aria-hidden="true"></div>
-                    <div class="app-kpi-item">
-                      <span class="app-kpi-label" data-i18n="mockupOverdue">Overdue</span>
-                      <span class="app-kpi-val is-warn tabular-nums">$640 · 2</span>
+                    <div class="iphone-signals">
+                      <svg viewBox="0 0 18 12" width="15" height="10" fill="currentColor">
+                        <rect x="0" y="8" width="3" height="4" rx="1"></rect>
+                        <rect x="4.5" y="5.5" width="3" height="6.5" rx="1"></rect>
+                        <rect x="9" y="3" width="3" height="9" rx="1"></rect>
+                        <rect x="13.5" y="0" width="3" height="12" rx="1"></rect>
+                      </svg>
+                      <svg viewBox="0 0 24 12" width="21" height="11" fill="none">
+                        <rect x="0.75" y="0.75" width="19.5" height="10.5" rx="2.75" stroke="currentColor" stroke-width="1.3"></rect>
+                        <rect x="2.5" y="2.5" width="15.5" height="7" rx="1.4" fill="currentColor"></rect>
+                        <path d="M22 4.2v3.6a1.4 1.4 0 0 0 0-3.6z" fill="currentColor"></path>
+                      </svg>
                     </div>
                   </div>
-                </div>
 
-                <div class="app-list-header">
-                  <span data-i18n="mockupActiveLoans">Due This Week</span>
-                  <span class="app-list-count tabular-nums" data-i18n="mockupLoanCount">3 active</span>
-                </div>
+                  <div class="app-topbar">
+                    <div class="app-brand-mini">
+                      <img src="assets/logo.png" alt="KamChi" width="72" height="24" class="app-brand-logo" />
+                    </div>
+                    <span class="app-month" data-i18n="mockupMonth">Nov 2026</span>
+                  </div>
 
-                <div class="app-loan-list">
-                  <div class="app-loan-row">
-                    <div class="app-avatar">SC</div>
-                    <div class="app-loan-info">
-                      <div class="app-loan-name" data-i18n="mockupBorrower1">Sokha Chan</div>
-                      <div class="app-loan-meta" data-i18n="mockupMeta1">Monthly · ABA · 8/12 paid</div>
-                      <div class="app-progress-track" aria-hidden="true">
-                        <div class="app-progress-bar" style="width: 67%"></div>
+                  <div class="app-balance-card">
+                    <div class="app-balance-label" data-i18n="mockupTotalLent">Total Principal Lent</div>
+                    <div class="app-balance-main tabular-nums">$14,850</div>
+                    <div class="app-balance-khr tabular-nums">៛ 60,885,000 KHR</div>
+                    <div class="app-kpi-row">
+                      <div class="app-kpi-item">
+                        <span class="app-kpi-label" data-i18n="mockupCollected">Collected</span>
+                        <span class="app-kpi-val tabular-nums">$9,420</span>
+                      </div>
+                      <div class="app-kpi-divider" aria-hidden="true"></div>
+                      <div class="app-kpi-item">
+                        <span class="app-kpi-label" data-i18n="mockupOverdue">Overdue</span>
+                        <span class="app-kpi-val is-warn tabular-nums">$640 · 2</span>
                       </div>
                     </div>
-                    <div class="app-loan-amt tabular-nums">$280</div>
                   </div>
 
-                  <div class="app-loan-row">
-                    <div class="app-avatar is-gold">DK</div>
-                    <div class="app-loan-info">
-                      <div class="app-loan-name" data-i18n="mockupBorrower2">Dara Kim</div>
-                      <div class="app-loan-meta" data-i18n="mockupMeta2">Weekly · KHQR · On time</div>
-                      <div class="app-progress-track" aria-hidden="true">
-                        <div class="app-progress-bar" style="width: 45%"></div>
+                  <div class="app-list-header">
+                    <span data-i18n="mockupActiveLoans">Due This Week</span>
+                    <span class="app-list-count tabular-nums" data-i18n="mockupLoanCount">3 active</span>
+                  </div>
+
+                  <div class="app-loan-list">
+                    <div class="app-loan-row">
+                      <div class="app-avatar">SC</div>
+                      <div class="app-loan-info">
+                        <div class="app-loan-name" data-i18n="mockupBorrower1">Sokha Chan</div>
+                        <div class="app-loan-meta" data-i18n="mockupMeta1">Monthly · ABA · 8/12 paid</div>
+                        <div class="app-progress-track" aria-hidden="true">
+                          <div class="app-progress-bar" style="width: 67%"></div>
+                        </div>
                       </div>
+                      <div class="app-loan-amt tabular-nums">$280</div>
                     </div>
-                    <div class="app-loan-amt tabular-nums">៛420,000</div>
-                  </div>
 
-                  <div class="app-loan-row">
-                    <div class="app-avatar is-alert">VM</div>
-                    <div class="app-loan-info">
-                      <div class="app-loan-name" data-i18n="mockupBorrower3">Vanna Meas</div>
-                      <div class="app-loan-meta is-overdue" data-i18n="mockupMeta3">2 days overdue · Cash</div>
-                      <div class="app-progress-track" aria-hidden="true">
-                        <div class="app-progress-bar is-warn" style="width: 30%"></div>
+                    <div class="app-loan-row">
+                      <div class="app-avatar is-gold">DK</div>
+                      <div class="app-loan-info">
+                        <div class="app-loan-name" data-i18n="mockupBorrower2">Dara Kim</div>
+                        <div class="app-loan-meta" data-i18n="mockupMeta2">Weekly · KHQR · On time</div>
+                        <div class="app-progress-track" aria-hidden="true">
+                          <div class="app-progress-bar" style="width: 45%"></div>
+                        </div>
                       </div>
+                      <div class="app-loan-amt tabular-nums">៛420,000</div>
                     </div>
-                    <div class="app-loan-amt is-overdue tabular-nums">$320</div>
-                  </div>
-                </div>
 
-                <!-- Mini SVG Sparkline -->
-                <div class="app-chart-strip" aria-hidden="true">
-                  <span class="app-chart-label" data-i18n="mockupChartLabel">Collection rate · 94%</span>
-                  <svg viewBox="0 0 120 26" width="120" height="26" fill="none">
-                    <path d="M2 22 L22 17 L42 19 L62 11 L82 13 L102 6 L118 4" stroke="#0F5132" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
-                    <circle cx="118" cy="4" r="3" fill="#F2B544" />
-                  </svg>
+                    <div class="app-loan-row">
+                      <div class="app-avatar is-alert">VM</div>
+                      <div class="app-loan-info">
+                        <div class="app-loan-name" data-i18n="mockupBorrower3">Vanna Meas</div>
+                        <div class="app-loan-meta is-overdue" data-i18n="mockupMeta3">2 days overdue · Cash</div>
+                        <div class="app-progress-track" aria-hidden="true">
+                          <div class="app-progress-bar is-warn" style="width: 30%"></div>
+                        </div>
+                      </div>
+                      <div class="app-loan-amt is-overdue tabular-nums">$320</div>
+                    </div>
+                  </div>
+
+                  <!-- Mini SVG Sparkline -->
+                  <div class="app-chart-strip" aria-hidden="true">
+                    <span class="app-chart-label" data-i18n="mockupChartLabel">Collection rate · 94%</span>
+                    <svg viewBox="0 0 120 26" width="120" height="26" fill="none">
+                      <path d="M2 22 L22 17 L42 19 L62 11 L82 13 L102 6 L118 4" stroke="#0F5132" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+                      <circle cx="118" cy="4" r="3" fill="#F2B544" />
+                    </svg>
+                  </div>
+
+                  <div class="iphone-home-indicator" aria-hidden="true"></div>
                 </div>
               </div>
             </div>
@@ -718,7 +934,7 @@
                 <li data-i18n="planFreeF3">USD &amp; KHR tracking + offline mode</li>
                 <li data-i18n="planFreeF4">PIN lock protection</li>
               </ul>
-              <a href="#early-access" class="btn btn-outline btn-block" data-select-plan="Under $5,000" data-i18n="planFreeCta">Join free beta</a>
+              <a href="#early-access" class="btn btn-outline btn-block btn-pricing" data-select-plan="Under $5,000" data-i18n="planFreeCta">Join free beta</a>
             </article>
 
             <article class="price-card is-featured">
@@ -737,7 +953,7 @@
                 <li data-i18n="planProF3">Encrypted cloud backup &amp; restore</li>
                 <li data-i18n="planProF4">Monthly profit &amp; collection reports</li>
               </ul>
-              <a href="#early-access" class="btn btn-primary btn-block" data-select-plan="$5,000 – $25,000" data-i18n="planProCta">Reserve Pro access</a>
+              <a href="#early-access" class="btn btn-primary btn-block btn-pricing" data-select-plan="$5,000 – $25,000" data-i18n="planProCta">Reserve Pro access</a>
             </article>
 
             <article class="price-card">
@@ -753,7 +969,7 @@
                 <li data-i18n="planBizF3">Printable Khmer/English contracts</li>
                 <li data-i18n="planBizF4">Priority Telegram &amp; phone support</li>
               </ul>
-              <a href="#early-access" class="btn btn-outline btn-block" data-select-plan="$25,000 – $100,000" data-i18n="planBizCta">Request Business beta</a>
+              <a href="#early-access" class="btn btn-outline btn-block btn-pricing" data-select-plan="$25,000 – $100,000" data-i18n="planBizCta">Request Business beta</a>
             </article>
           </div>
         </div>

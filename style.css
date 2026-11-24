@@ -197,6 +197,13 @@ select {
   font-size: 0.95rem;
 }
 
+.btn-pricing {
+  min-height: 54px;
+  padding: 14px 24px;
+  font-size: 1rem;
+  border-radius: 10px;
+}
+
 .btn-block {
   width: 100%;
 }
@@ -413,13 +420,212 @@ html.dark .icon-moon {
 }
 
 /* ============================================================================
-   2. Hero Section
+   2. Hero Section (with Blurred 3-Slide Backdrop & iPhone 17 Pro Max)
    ============================================================================ */
 .hero-section {
+  position: relative;
+  overflow: hidden;
   padding: 40px 0 56px;
 }
 
+.hero-bg-slideshow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-bg-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  transform: scale(1.04);
+  filter: blur(7px);
+  transition: opacity 750ms ease, transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-bg-slide.is-active {
+  opacity: 0.65;
+  transform: scale(1);
+}
+
+.hero-bg-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    110deg,
+    rgba(248, 250, 247, 0.88) 0%,
+    rgba(248, 250, 247, 0.72) 52%,
+    rgba(248, 250, 247, 0.66) 100%
+  );
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+html.dark .hero-bg-scrim {
+  background: linear-gradient(
+    110deg,
+    rgba(12, 20, 16, 0.9) 0%,
+    rgba(12, 20, 16, 0.76) 52%,
+    rgba(12, 20, 16, 0.72) 100%
+  );
+}
+
+.bg-canvas-sheet {
+  width: min(1040px, 94vw);
+  background-color: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: var(--shadow-md);
+}
+
+.bg-sheet-bar {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--primary-text);
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--border);
+}
+
+.bg-sheet-kpis {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.bg-kpi-card {
+  background-color: var(--surface-subtle);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.bg-kpi-card small {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.bg-kpi-card strong {
+  font-size: 1.45rem;
+  color: var(--text);
+}
+
+.bg-chart-svg {
+  width: 100%;
+  height: auto;
+}
+
+.bg-paper-table {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bg-paper-row {
+  display: grid;
+  grid-template-columns: 0.9fr 1.2fr 1fr 1fr 1fr;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background-color: var(--surface-subtle);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.bg-paper-row.is-head {
+  background-color: transparent;
+  font-weight: 700;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+}
+
+.bg-paper-row.is-highlight {
+  border: 1px solid var(--accent);
+}
+
+.bg-status-ok {
+  color: var(--primary-text);
+  font-weight: 700;
+}
+
+.bg-status-due {
+  color: var(--accent-text);
+  font-weight: 700;
+}
+
+.bg-receipt-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.bg-receipt-card {
+  background-color: var(--surface-subtle);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 20px;
+  text-align: center;
+}
+
+.bg-receipt-badge {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 10px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  color: #FFFFFF;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+}
+
+.bg-receipt-badge.is-khr {
+  background-color: var(--accent);
+  color: var(--accent-ink);
+}
+
+.bg-receipt-card strong {
+  display: block;
+  font-size: 1.35rem;
+}
+
+.bg-receipt-card small {
+  display: block;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.bg-receipt-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+  font-size: 0.85rem;
+}
+
+.bg-receipt-lines > div {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 6px;
+  border-top: 1px solid var(--border);
+}
+
 .hero-grid {
+  position: relative;
+  z-index: 2;
   display: grid;
   grid-template-columns: 1fr;
   gap: 40px;
@@ -457,51 +663,198 @@ html.dark .icon-moon {
 }
 
 .hero-note {
-  margin: 0;
+  margin: 0 0 20px;
   font-size: 0.875rem;
   color: var(--text-muted);
 }
 
-/* CSS/SVG Hero Phone Mockup */
+.hero-qr-box {
+  display: inline-block;
+  max-width: 100%;
+}
+
+.hero-qr-heading {
+  margin: 0 0 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.hero-qr-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.hero-qr-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px 10px 10px;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+
+.hero-qr-card:hover {
+  border-color: var(--primary-text);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.hero-qr-frame {
+  background-color: #FFFFFF;
+  padding: 6px;
+  border-radius: 8px;
+  border: 1px solid #E5E7EB;
+  flex-shrink: 0;
+}
+
+.hero-qr-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.hero-qr-os {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.hero-qr-store {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+/* iPhone 17 Pro Max Mockup */
 .hero-visual {
   display: flex;
   justify-content: center;
 }
 
-.phone-frame {
+.phone-frame.phone-17-pro-max {
+  position: relative;
   width: 100%;
-  max-width: 340px;
-  background-color: #111A15;
-  border-radius: var(--radius-phone);
-  padding: 12px;
-  box-shadow: var(--shadow-phone);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  max-width: 356px;
+  padding: 4px;
+  border-radius: 48px;
+  background: linear-gradient(145deg, #6B727A 0%, #2B2E33 35%, #17191C 70%, #52575E 100%);
+  box-shadow: var(--shadow-phone), inset 0 0 0 1px rgba(255, 255, 255, 0.28);
 }
 
-.phone-notch {
-  width: 96px;
-  height: 18px;
-  background-color: #111A15;
-  border-radius: 0 0 12px 12px;
-  margin: 0 auto 6px;
-  position: relative;
-  z-index: 2;
+.phone-btn-left-action,
+.phone-btn-left-vol1,
+.phone-btn-left-vol2,
+.phone-btn-right-power {
+  position: absolute;
+  background: linear-gradient(180deg, #595F66, #282B30);
+  border-radius: 2px;
+}
+
+.phone-btn-left-action {
+  left: -3px;
+  top: 104px;
+  width: 3px;
+  height: 22px;
+}
+
+.phone-btn-left-vol1 {
+  left: -3px;
+  top: 144px;
+  width: 3px;
+  height: 44px;
+}
+
+.phone-btn-left-vol2 {
+  left: -3px;
+  top: 198px;
+  width: 3px;
+  height: 44px;
+}
+
+.phone-btn-right-power {
+  right: -3px;
+  top: 168px;
+  width: 3px;
+  height: 66px;
+}
+
+.phone-bezel {
+  background-color: #090A0C;
+  border-radius: 44px;
+  padding: 7px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 
 .phone-screen {
   background-color: var(--surface);
   color: var(--text);
-  border-radius: 24px;
-  padding: 16px;
-  margin-top: -14px;
+  border-radius: 38px;
+  padding: 12px 16px 10px;
+}
+
+.iphone-status-bar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 0 6px;
+}
+
+.iphone-time {
+  font-size: 0.78rem;
+  font-weight: 700;
+  justify-self: start;
+}
+
+.phone-dynamic-island {
+  width: 92px;
+  height: 24px;
+  background-color: #090A0C;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 8px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.island-lens {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #2D4A7C 0%, #0D1424 70%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.iphone-signals {
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--text);
+}
+
+.iphone-home-indicator {
+  width: 112px;
+  height: 4px;
+  border-radius: 999px;
+  background-color: var(--text);
+  opacity: 0.25;
+  margin: 12px auto 2px;
 }
 
 .app-topbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 14px;
-  padding-top: 6px;
+  margin-bottom: 12px;
 }
 
 .app-brand-mini {
