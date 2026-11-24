@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="km">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- === CHANGED: New Privacy Policy template page (review marked sections with a lawyer) === -->
+    <title>KamChi (កម្ចី) — Privacy Policy</title>
+    <meta
+      name="description"
+      content="Privacy Policy for KamChi (កម្ចី). Learn what stays on your phone and what limited license data KamChi collects."
+    />
+    <meta name="theme-color" content="#0F5132" />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
+    <!-- Google Fonts: Bricolage Grotesque & Kantumruy Pro -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700&family=Kantumruy+Pro:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Prevent flash of incorrect theme or language on initial paint (defaults to light mode) -->
+    <script>
+      (function () {
+        try {
+          var savedTheme = localStorage.getItem('kamchi_theme');
+          if (savedTheme === 'dark') {
+            document.documentElement.classList.add('dark');
+          }
+          var savedLang = localStorage.getItem('kamchi_lang');
+          if (savedLang === 'en' || savedLang === 'km') {
+            document.documentElement.setAttribute('lang', savedLang);
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body data-page="privacy">
+    <a class="skip-link" href="#main-content" data-i18n="skipToContent">Skip to main content</a>
+
+    <header class="site-header" id="top">
+      <div class="container header-inner">
+        <a href="index.html" class="brand-link" aria-label="KamChi Home">
+          <img src="assets/logo.png" alt="KamChi — Fast. Fair. Clear." width="126" height="42" class="brand-logo-img" />
+        </a>
+
+        <nav class="desktop-nav" aria-label="Primary navigation">
+          <a href="index.html#features" class="nav-link" data-i18n="navFeatures">Features</a>
+          <a href="index.html#privacy" class="nav-link" data-i18n="navPrivacy">Privacy</a>
+          <a href="index.html#how-it-works" class="nav-link" data-i18n="navHowItWorks">How it works</a>
+          <a href="index.html#pricing" class="nav-link" data-i18n="navPricing">Pricing</a>
+          <a href="index.html#faq" class="nav-link" data-i18n="navFaq">FAQ</a>
+        </nav>
+
+        <div class="header-actions">
+          <div class="lang-switch" role="group" aria-label="Language switch">
+            <button type="button" class="lang-btn" data-lang-btn="en" aria-pressed="false">EN</button>
+            <span class="lang-sep" aria-hidden="true">|</span>
+            <button type="button" class="lang-btn is-active" data-lang-btn="km" aria-pressed="true">ភាសាខ្មែរ</button>
+          </div>
+
+          <button
+            type="button"
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Toggle dark mode"
+            aria-pressed="false"
+          >
+            <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+            </svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+
+          <a href="index.html#early-access" class="btn btn-primary btn-sm header-cta" data-i18n="navCta">Get early access</a>
+
+          <button
+            type="button"
+            class="mobile-menu-btn"
+            id="mobileMenuBtn"
+            aria-expanded="false"
+            aria-controls="mobileDrawer"
+            aria-label="Open menu"
+          >
+            <svg class="icon-menu" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+            <svg class="icon-close" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="mobile-drawer" id="mobileDrawer" hidden>
+        <nav class="mobile-nav-list" aria-label="Mobile navigation">
+          <a href="index.html#features" class="mobile-nav-link" data-i18n="navFeatures">Features</a>
+          <a href="index.html#privacy" class="mobile-nav-link" data-i18n="navPrivacy">Privacy</a>
+          <a href="index.html#how-it-works" class="mobile-nav-link" data-i18n="navHowItWorks">How it works</a>
+          <a href="index.html#pricing" class="mobile-nav-link" data-i18n="navPricing">Pricing</a>
+          <a href="index.html#faq" class="mobile-nav-link" data-i18n="navFaq">FAQ</a>
+          <a href="index.html#early-access" class="btn btn-primary mobile-drawer-cta" data-i18n="navCta">Get early access</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content" class="privacy-doc-main">
+      <section class="section">
+        <div class="container privacy-doc-container">
+          <a href="index.html#privacy" class="privacy-back-link" data-i18n="ppBackLink">← Back to KamChi</a>
+
+          <article class="privacy-doc-card">
+            <header class="privacy-doc-head">
+              <p class="section-kicker" data-i18n="ppKicker">Privacy Policy</p>
+              <h1 class="privacy-doc-title" data-i18n="ppTitle">How KamChi handles your data</h1>
+              <!-- OWNER / LAWYER REVIEW REQUIRED: Confirm the effective/last-updated date before publishing. -->
+              <p class="privacy-doc-updated" data-i18n="ppUpdated">Last updated: November 2026</p>
+              <p class="privacy-doc-intro" data-i18n="ppIntro">
+                This policy explains in plain words what information stays on your phone and what limited information KamChi collects to manage your license.
+              </p>
+            </header>
+
+            <!-- OWNER / LAWYER REVIEW REQUIRED: Replace placeholder company/operator name, physical address in Cambodia, and official contact channel after legal review. -->
+            <section class="privacy-doc-block">
+              <h2 data-i18n="ppSec1Title">1. Who operates KamChi</h2>
+              <p data-i18n="ppSec1Body">
+                KamChi is provided by [Your Company or Operator Name], [City/Province, Cambodia]. If you have privacy questions, contact us at [privacy@example.com] or [Telegram @YOUR_USERNAME].
+              </p>
+            </section>
+
+            <section class="privacy-doc-block">
+              <h2 data-i18n="ppSec2Title">2. Data that stays on your phone</h2>
+              <p data-i18n="ppSec2Body">
+                Your borrower records stay on your own phone. KamChi does not upload, view, or store this information on our servers:
+              </p>
+              <ul>
+                <li data-i18n="ppSec2Item1">Borrower and guarantor names, phone numbers, and address notes</li>
+                <li data-i18n="ppSec2Item2">National ID photos and document images</li>
+                <li data-i18n="ppSec2Item3">Loan amounts, interest rates, and repayment schedules</li>
+                <li data-i18n="ppSec2Item4">Payment records, receipts, and notes</li>
+              </ul>
+            </section>
+
+            <!-- OWNER / LAWYER REVIEW REQUIRED: Have a lawyer review data retention duration, server access logs (e.g., IP/timestamp during license checks), and local Cambodian compliance obligations. -->
+            <section class="privacy-doc-block">
+              <h2 data-i18n="ppSec3Title">3. What we do collect and why</h2>
+              <p data-i18n="ppSec3Body">
+                To issue and verify paid license keys, our server only stores:
+              </p>
+              <ul>
+                <li data-i18n="ppSec3Item1">Your license key</li>
+                <li data-i18n="ppSec3Item2">Your plan (Pro or Business) and expiry date</li>
+                <li data-i18n="ppSec3Item3">Your device ID (to enforce the device limit for your plan)</li>
+                <li data-i18n="ppSec3Item4">The email, phone number, or Telegram handle you provide when buying a license or requesting early access</li>
+              </ul>
+              <p data-i18n="ppSec3Note">
+                When you have internet, the app checks your license key about every 7 to 14 days. Nothing else about your borrowers or loans is sent during this check.
+              </p>
+            </section>
+
+            <!-- OWNER / LAWYER REVIEW REQUIRED: Confirm wording about user responsibility for national ID photos and local lending laws in Cambodia. -->
+            <section class="privacy-doc-block">
+              <h2 data-i18n="ppSec4Title">4. Backups and your responsibility</h2>
+              <p data-i18n="ppSec4Body">
+                You choose when and where to save backups. Backups are encrypted and exported to a file on your phone, your own cloud drive, or your Telegram. Because KamChi does not hold your loan data, we cannot recover records if your phone is lost without a backup. You are also responsible for protecting your borrowers' personal information under applicable local laws.
+              </p>
+            </section>
+
+            <!-- OWNER / LAWYER REVIEW REQUIRED: List any third-party providers if added later (e.g., Formspree, App Store, Google Play, Telegram Bot API, crash reporting). -->
+            <section class="privacy-doc-block">
+              <h2 data-i18n="ppSec5Title">5. Data sharing</h2>
+              <p data-i18n="ppSec5Body">
+                We do not sell, rent, or trade your license or contact details with advertisers, data brokers, or credit bureaus. We only share data if required by a valid legal order under applicable law.
+              </p>
+            </section>
+
+            <!-- OWNER / LAWYER REVIEW REQUIRED: Confirm deletion timeframe (e.g. 30 days) and verification process with legal counsel. -->
+            <section class="privacy-doc-block">
+              <h2 data-i18n="ppSec6Title">6. Managing or deleting your data</h2>
+              <p data-i18n="ppSec6Body">
+                You can export or delete your local loan data inside the app at any time. To remove your purchase contact details or deactivate a lost device from your license key, message us via Telegram or email and we will update or remove your server license record.
+              </p>
+            </section>
+
+            <!-- OWNER / LAWYER REVIEW REQUIRED: Verify minimum age requirement and policy update notification procedure with a lawyer. -->
+            <section class="privacy-doc-block">
+              <h2 data-i18n="ppSec7Title">7. Age requirement and policy updates</h2>
+              <p data-i18n="ppSec7Body">
+                KamChi is intended for adults aged 18 and older managing personal or business loans. If we update this policy, we will change the date at the top of this page and share major updates on our website.
+              </p>
+            </section>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <a href="index.html" class="brand-link" aria-label="KamChi Home">
+              <img src="assets/logo.png" alt="KamChi — Fast. Fair. Clear." width="126" height="42" class="brand-logo-img" />
+            </a>
+            <p class="footer-tagline" data-i18n="footerTagline">Lend with confidence. Track every riel.</p>
+          </div>
+
+          <nav class="footer-links" aria-label="Footer navigation">
+            <a href="index.html#features" data-i18n="navFeatures">Features</a>
+            <a href="index.html#privacy" data-i18n="navPrivacy">Privacy</a>
+            <a href="index.html#how-it-works" data-i18n="navHowItWorks">How it works</a>
+            <a href="index.html#pricing" data-i18n="navPricing">Pricing</a>
+            <a href="index.html#faq" data-i18n="navFaq">FAQ</a>
+            <a href="privacy.html" data-i18n="navPrivacyPolicy">Privacy Policy</a>
+          </nav>
+
+          <div class="footer-right">
+            <div class="lang-switch" role="group" aria-label="Footer language switch">
+              <button type="button" class="lang-btn" data-lang-btn="en" aria-pressed="false">EN</button>
+              <span class="lang-sep" aria-hidden="true">|</span>
+              <button type="button" class="lang-btn is-active" data-lang-btn="km" aria-pressed="true">ភាសាខ្មែរ</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <span data-i18n="footerCopy">© 2026 KamChi. All rights reserved.</span>
+          <span data-i18n="footerMadeIn">Made in Cambodia</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

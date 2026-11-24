@@ -14,18 +14,24 @@
 (function () {
   'use strict';
 
+  /* === CHANGED: Exchange rate constant for KHR display === */
+  var KHR_PER_USD = 4100;
+
   /* =========================================================================
      1. TRANSLATIONS OBJECT (EN / KM)
      Replace or adjust copy here. Every [data-i18n] element swaps automatically.
      ========================================================================= */
-  var translations = {
+  var T = {
     en: {
       pageTitle: 'KamChi (កម្ចី) — Lend with confidence. Track every riel.',
       skipToContent: 'Skip to main content',
       navFeatures: 'Features',
+      /* === CHANGED: Privacy navigation & footer policy link === */
+      navPrivacy: 'Privacy',
       navHowItWorks: 'How it works',
       navPricing: 'Pricing',
       navFaq: 'FAQ',
+      navPrivacyPolicy: 'Privacy Policy',
       navCta: 'Get early access',
 
       heroKicker: 'KamChi (កម្ចី) · Personal Loan Ledger',
@@ -35,9 +41,21 @@
       heroPrimaryCta: 'Get early access',
       heroSecondaryCta: 'See features',
       heroNote: 'Free starter plan · Android & iOS',
-      heroQrTitle: 'Scan to download the app',
+      heroQrTitle: 'Download the mobile app',
+      heroQrCompat: 'iOS 15+ · Android 10+',
+      heroQrScanIos: 'Scan for iPhone',
+      heroQrScanAndroid: 'Scan for Android',
+      heroQrEnlarge: 'Tap a QR code to enlarge for scanning',
+      heroQrIosSub: 'Download on the',
       heroQrIos: 'App Store',
+      heroQrAndroidSub: 'Get it on',
       heroQrAndroid: 'Google Play',
+      qrModalTitle: 'Scan to download KamChi',
+      qrModalTabIos: 'iOS · App Store',
+      qrModalTabAndroid: 'Android · Google Play',
+      qrModalHintIos: 'Point your iPhone or iPad camera at the QR code to open the App Store.',
+      qrModalHintAndroid: 'Point your Android phone camera at the QR code to open Google Play.',
+      qrModalNote: 'Beta testing open · Free starter plan included',
 
       mockupMonth: 'Nov 2026',
       mockupTotalLent: 'Total Principal Lent',
@@ -97,6 +115,61 @@
       f8Desc: 'Log repayments anywhere in the province with zero signal. Your ledger syncs once you reconnect.',
       f9Title: 'PIN lock and encrypted backup',
       f9Desc: 'Protect private borrower records with a 6-digit PIN and restore your data safely if you switch phones.',
+
+      /* === CHANGED: Privacy and Security Section (EN) === */
+      privKicker: 'Privacy and security',
+      privTitle: "Your borrowers' data stays on your phone. KamChi never sees it.",
+      privLead:
+        'As a lender, you handle sensitive names, ID photos, and payment records. KamChi is built so your borrower records stay on your phone—not on our servers.',
+
+      privDevKicker: 'Stored locally',
+      privDevTitle: 'On your device',
+      privDevItem1: 'Borrower names and phone numbers',
+      privDevItem2: 'National ID photos',
+      privDevItem3: 'Loan amounts and repayment schedules',
+      privDevItem4: 'Payment records and receipts',
+
+      privBoundaryLabel: 'Never uploaded',
+
+      privSrvKicker: 'License check only',
+      privSrvTitle: "On KamChi's server",
+      privSrvItem1: 'Your license key',
+      privSrvItem2: 'Your plan',
+      privSrvItem3: 'Expiry date',
+      privSrvItem4: 'Device ID',
+
+      privT1Title: 'We never hold borrower data',
+      privT1Desc: 'Names, ID photos, and loan amounts stay on your phone and are never uploaded to KamChi.',
+      privT2Title: 'Lock it down',
+      privT2Desc: "Protect the app with a PIN or your phone's fingerprint or face lock before anyone can open it.",
+      privT3Title: 'Works offline',
+      privT3Desc: 'After activating your license once, you do not need internet to add loans or record payments.',
+      privT4Title: 'You stay in control',
+      privT4Desc: 'Export your records any time, even if your license expires and the app is in read-only mode.',
+
+      privBackupTitle: 'You are in charge of your backups',
+      privBackupDesc:
+        'Backups are encrypted and saved where you choose—as a file on your device, in your own cloud drive, or in your Telegram. A lost phone without a backup means lost records, so back up often.',
+
+      privCollectTitle: 'What we do collect',
+      privCollect1: 'Your license key',
+      privCollect2: 'Your plan and expiry date',
+      privCollect3: 'Your device ID',
+      privCollect4: 'The email, phone number, or Telegram handle you give us when you buy',
+      privCollectNone: 'Nothing else.',
+
+      privFaqHeading: 'Common privacy questions',
+      privFaq1Q: 'Can KamChi see my borrowers?',
+      privFaq1A:
+        'No. Borrower names, phone numbers, ID photos, loan amounts, and payment records stay on your phone. KamChi only sees your license key, plan, expiry date, and device ID.',
+      privFaq2Q: 'What happens to my data if I uninstall?',
+      privFaq2A:
+        'Because your records stay on your phone, uninstalling the app removes local data from that device. Always save an encrypted backup before uninstalling or switching phones so you can restore your records.',
+      privFaq3Q: 'Do you share data with anyone?',
+      privFaq3A:
+        'No. We do not sell, rent, or share your license or contact details with advertisers, credit agencies, or third parties. And because borrower records stay on your phone, we never have them to share.',
+      privPolicyPrompt: 'Want the full details?',
+      privPolicyLink: 'Read Privacy Policy',
 
       howKicker: 'Simple workflow',
       howTitle: 'Start tracking in three steps',
@@ -187,63 +260,132 @@
       roadP3Item2: 'Staff & collector accounts with role permissions',
       roadP3Item3: 'Smart AI assistant for payment reminder drafts',
 
-      priceKicker: 'Transparent pricing',
-      priceTitle: 'Start free, upgrade as your book grows',
-      priceLead: 'Placeholder launch pricing. Early access members lock in founding rates.',
+      /* === CHANGED: Pricing (License Key Model) === */
+      priceKicker: 'Simple license pricing',
+      priceTitle: 'Start free. Unlock full power with a license key.',
+      priceLead:
+        'Pay via ABA, KHQR, or cash and receive your key on Telegram. Activate once online, then work offline.',
       billMonthly: 'Monthly',
-      billYearly: 'Yearly · Save 20%',
+      billYearlyLabel: 'Yearly',
+      billSaveBadge: 'Save 20%',
+      billLifetime: 'Lifetime',
+      billingNameMonthly: 'Monthly',
+      billingNameYearly: 'Yearly',
+      billingNameLifetime: 'Lifetime',
+      periodFree: 'Forever free',
       perMonth: '/ month',
+      perYear: '/ year',
+      oneTime: 'one-time',
+      khrApproxPrefix: '≈ ',
+      khrUnit: 'KHR',
       planPopular: 'Most popular',
+      buyLicenseBtn: 'Buy license',
+      comingSoonTag: '(Coming soon)',
+      pricePlaceholderNote: 'Prices are placeholders and may adjust at public launch.',
+      tgMsgTemplate:
+        'Hello KamChi team! I would like to buy a {plan} license ({billing} - {price}). Please share ABA/KHQR payment details.',
 
       planFreeName: 'Free',
-      planFreeDesc: 'For individuals lending to a few trusted contacts.',
+      planFreeDesc: 'Start immediately with core tools—no license key needed.',
       planFreeF1: 'Up to 10 active loans',
-      planFreeF2: 'Borrower ID & guarantor profiles',
-      planFreeF3: 'USD & KHR tracking + offline mode',
-      planFreeF4: 'PIN lock protection',
-      planFreeCta: 'Join free beta',
+      planFreeF2: '1 device',
+      planFreeF3: 'Core borrower & repayment ledger',
+      planFreeF4: 'No key needed',
+      planFreeCta: 'Start free',
 
       planProName: 'Pro',
-      planProDesc: 'For active personal lenders managing regular collections.',
-      planProF1: 'Unlimited borrowers & loans',
-      planProF2: 'Digital receipts & overdue alerts',
-      planProF3: 'Encrypted cloud backup & restore',
-      planProF4: 'Monthly profit & collection reports',
-      planProCta: 'Reserve Pro access',
+      planProDesc: 'Full license for individual lenders managing active collections.',
+      planProF1: 'Unlimited loans & borrowers',
+      planProF2: '2 devices per license key',
+      planProF3: 'Reports & CSV/PDF export',
+      planProF4: 'Backup & restore',
+      planProF5: 'Telegram reminders',
+      planProF6: 'USD and KHR support',
 
       planBizName: 'Business',
-      planBizDesc: 'For family offices and small lending teams with collectors.',
+      planBizDesc: 'For family lending offices and teams expanding operations.',
       planBizF1: 'Everything in Pro',
-      planBizF2: 'Up to 5 staff collector accounts',
-      planBizF3: 'Printable Khmer/English contracts',
-      planBizF4: 'Priority Telegram & phone support',
-      planBizCta: 'Request Business beta',
+      planBizF2: '5 devices per license key',
+      planBizF3: 'Staff accounts',
+      planBizF4: 'Printable loan contracts',
 
+      compTitle: 'Compare plans',
+      compFeatureCol: 'Feature',
+      compRowLoans: 'Active loans',
+      compVal10Loans: 'Up to 10',
+      compValUnlimited: 'Unlimited',
+      compRowDevices: 'Devices per key',
+      compVal1Dev: '1 device',
+      compVal2Dev: '2 devices',
+      compVal5Dev: '5 devices',
+      compRowCore: 'Core ledger, schedules & receipts',
+      compRowCurrency: 'USD & KHR support',
+      compRowOffline: 'Offline mode after activation',
+      compRowReports: 'Reports & data export',
+      compRowBackup: 'Backup & restore',
+      compRowTelegram: 'Telegram payment reminders',
+      compRowStaff: 'Staff accounts',
+      compRowContracts: 'Printable loan contracts',
+      srIncluded: 'Included',
+      srNotIncluded: 'Not included',
+
+      howLicTitle: 'How to get your license',
+      licStep1Title: 'Choose a plan',
+      licStep1Desc: 'Pick Pro or Business and select Monthly, Yearly, or Lifetime.',
+      licStep2Title: 'Pay with ABA, KHQR, or cash',
+      licStep2Desc: 'Complete your simple transfer via ABA, KHQR, or local cash.',
+      licStep3Title: 'Receive your key on Telegram',
+      licStep3Desc: 'We send your personal KAMCHI license key directly in Telegram.',
+      licStep4Title: 'Enter it in KamChi',
+      licStep4Desc: 'Activate once while online—then use KamChi offline anywhere.',
+
+      haveKeyTitle: 'Have a key?',
+      haveKeyDesc: 'Preview how a KamChi license key looks. Enter yours in the mobile app under Settings > License.',
+      haveKeyLabel: 'License key format preview',
+      haveKeyPlaceholder: 'KAMCHI-PRO-XXXX-XXXX-XXXX',
+      haveKeyBtn: 'Check format',
+      keyMsgEmpty: 'Enter a sample key like KAMCHI-PRO-4A9F-8C2D-11B7 to check the format.',
+      keyMsgValid: 'Valid format preview. Paste your active key inside the KamChi app under Settings > License to activate.',
+      keyMsgInvalid: 'Invalid format. Expected pattern: KAMCHI-PRO-XXXX-XXXX-XXXX (letters and numbers).',
+
+      licTrustTitle: 'Built for peace of mind',
+      licTrust1Title: 'Your data stays on your device',
+      licTrust1Desc: 'Loan records live locally on your phone. Back up regularly so nothing is lost.',
+      licTrust2Title: 'Works offline after activation',
+      licTrust2Desc: 'Activates once online and checks in every 7–14 days. Full offline use in between.',
+      licTrust3Title: 'Your records are never locked if a license expires',
+      licTrust3Desc: 'The app switches to read-only mode so every record stays visible and exportable.',
+
+      /* === CHANGED: FAQ (License Key Questions) === */
       faqKicker: 'Questions & answers',
       faqTitle: 'Frequently asked questions',
-      faq1Q: 'Is KamChi free to use?',
+      faq1Q: 'How do I get a key?',
       faq1A:
-        'Yes. KamChi includes a Free plan for up to 10 active loans with full USD and KHR tracking, offline access, and PIN lock. Paid plans unlock unlimited loans, cloud backup, and team accounts.',
-      faq2Q: 'Is my borrower and loan data safe?',
+        'Choose Pro or Business above, pay by ABA, KHQR, or cash, and message us on Telegram. You will receive a personal license key (such as KAMCHI-PRO-XXXX-XXXX-XXXX) to paste into the app.',
+      faq2Q: 'How many devices can I use?',
       faq2A:
-        'Your records stay private on your device behind a 6-digit PIN lock. When cloud backup is enabled, data is encrypted so only your account can read or restore it.',
-      faq3Q: 'Does it work offline without internet?',
+        'Free works on 1 device with no key needed. A Pro license activates on up to 2 devices, and a Business license activates on up to 5 devices.',
+      faq3Q: 'What happens when my license expires?',
       faq3A:
-        'Yes. You can add borrowers, create loans, and record payments with zero mobile data. Everything saves locally first and syncs automatically once you are back online.',
-      faq4Q: 'Can I use the app completely in Khmer?',
+        'KamChi switches to read-only mode. Your borrower profiles, payment history, and balances remain visible and exportable—your existing data is never locked or deleted.',
+      faq4Q: 'What if I lose my phone?',
       faq4A:
-        'Yes. Every screen, receipt, and report works in clear, natural Khmer or English, and you can switch languages anytime with one tap.',
-      faq5Q: 'Can my staff or collectors use it too?',
+        'You can restore your loan records from your latest backup file, and we can remove the lost device from your license so you can activate your key on a new phone.',
+      faq5Q: 'Does it work offline without internet?',
       faq5A:
-        'Multi-staff accounts with collector permissions are part of the Business plan in Phase 3, letting team members log daily collections while you keep full control over settings and reports.',
+        'Yes. Your license activates once online and then works completely offline. KamChi only checks your license status online about every 7 to 14 days.',
+      faq6Q: 'Can I use the app completely in Khmer?',
+      faq6A:
+        'Yes. Every screen, receipt, and report works in clear, natural Khmer or English, and you can switch languages anytime with one tap.',
 
-      formKicker: 'Early access',
-      formTitle: 'Get invited to the KamChi beta',
+      /* === CHANGED: Early Access Copy (Discounted License) === */
+      formKicker: 'Early supporters',
+      formTitle: 'Get early access & a discounted license',
       formLead:
-        'Join Cambodian personal lenders testing KamChi ahead of public launch. Early members get priority onboarding and founding pricing.',
-      formPerk1: 'Direct setup help via Telegram',
-      formPerk2: 'Shape Phase 2 & Phase 3 features',
-      formPerk3: 'No spam—only your invite link',
+        'Join Cambodian lenders testing KamChi ahead of public launch. Early supporters qualify for a discounted Pro or Business license key (placeholder offer).',
+      formPerk1: 'Discounted founding license key delivered via Telegram',
+      formPerk2: 'Direct onboarding & backup setup help',
+      formPerk3: 'No spam—only your invite and license offer',
 
       fieldName: 'Full name',
       phName: 'e.g. Sokha Vann',
@@ -270,16 +412,59 @@
 
       footerTagline: 'Lend with confidence. Track every riel.',
       footerCopy: '© 2026 KamChi. All rights reserved.',
-      footerMadeIn: 'Made in Cambodia'
+      footerMadeIn: 'Made in Cambodia',
+
+      /* === CHANGED: Privacy Policy Page (privacy.html - EN) === */
+      ppPageTitle: 'KamChi (កម្ចី) — Privacy Policy',
+      ppBackLink: '← Back to KamChi',
+      ppKicker: 'Privacy Policy',
+      ppTitle: 'How KamChi handles your data',
+      ppUpdated: 'Last updated: November 2026',
+      ppIntro:
+        'This policy explains in plain words what information stays on your phone and what limited information KamChi collects to manage your license.',
+      ppSec1Title: '1. Who operates KamChi',
+      ppSec1Body:
+        'KamChi is provided by [Your Company or Operator Name], [City/Province, Cambodia]. If you have privacy questions, contact us at [privacy@example.com] or [Telegram @YOUR_USERNAME].',
+      ppSec2Title: '2. Data that stays on your phone',
+      ppSec2Body:
+        'Your borrower records stay on your own phone. KamChi does not upload, view, or store this information on our servers:',
+      ppSec2Item1: 'Borrower and guarantor names, phone numbers, and address notes',
+      ppSec2Item2: 'National ID photos and document images',
+      ppSec2Item3: 'Loan amounts, interest rates, and repayment schedules',
+      ppSec2Item4: 'Payment records, receipts, and notes',
+      ppSec3Title: '3. What we do collect and why',
+      ppSec3Body: 'To issue and verify paid license keys, our server only stores:',
+      ppSec3Item1: 'Your license key',
+      ppSec3Item2: 'Your plan (Pro or Business) and expiry date',
+      ppSec3Item3: 'Your device ID (to enforce the device limit for your plan)',
+      ppSec3Item4:
+        'The email, phone number, or Telegram handle you provide when buying a license or requesting early access',
+      ppSec3Note:
+        'When you have internet, the app checks your license key about every 7 to 14 days. Nothing else about your borrowers or loans is sent during this check.',
+      ppSec4Title: '4. Backups and your responsibility',
+      ppSec4Body:
+        "You choose when and where to save backups. Backups are encrypted and exported to a file on your phone, your own cloud drive, or your Telegram. Because KamChi does not hold your loan data, we cannot recover records if your phone is lost without a backup. You are also responsible for protecting your borrowers' personal information under applicable local laws.",
+      ppSec5Title: '5. Data sharing',
+      ppSec5Body:
+        'We do not sell, rent, or trade your license or contact details with advertisers, data brokers, or credit bureaus. We only share data if required by a valid legal order under applicable law.',
+      ppSec6Title: '6. Managing or deleting your data',
+      ppSec6Body:
+        'You can export or delete your local loan data inside the app at any time. To remove your purchase contact details or deactivate a lost device from your license key, message us via Telegram or email and we will update or remove your server license record.',
+      ppSec7Title: '7. Age requirement and policy updates',
+      ppSec7Body:
+        'KamChi is intended for adults aged 18 and older managing personal or business loans. If we update this policy, we will change the date at the top of this page and share major updates on our website.'
     },
 
     km: {
       pageTitle: 'KamChi (កម្ចី) — ឱ្យខ្ចីដោយទំនុកចិត្ត តាមដានគ្រប់រៀល',
       skipToContent: 'រំលងទៅខ្លឹមសារសំខាន់',
       navFeatures: 'មុខងារ',
+      /* === CHANGED: Privacy navigation & footer policy link (KM) === */
+      navPrivacy: 'ភាពឯកជន',
       navHowItWorks: 'របៀបប្រើ',
       navPricing: 'តម្លៃ',
       navFaq: 'សំណួរញឹកញាប់',
+      navPrivacyPolicy: 'គោលការណ៍ភាពឯកជន',
       navCta: 'ស្នើសុំប្រើមុនគេ',
 
       heroKicker: 'KamChi (កម្ចី) · កម្មវិធីគ្រប់គ្រងកម្ចីផ្ទាល់ខ្លួន',
@@ -289,9 +474,21 @@
       heroPrimaryCta: 'ស្នើសុំប្រើមុនគេ',
       heroSecondaryCta: 'មើលមុខងារ',
       heroNote: 'គម្រោងឥតគិតថ្លៃ · Android & iOS',
-      heroQrTitle: 'ស្កេន QR ដើម្បីទាញយកកម្មវិធី',
+      heroQrTitle: 'ទាញយកកម្មវិធីទូរស័ព្ទ',
+      heroQrCompat: 'iOS 15+ · Android 10+',
+      heroQrScanIos: 'ស្កេនសម្រាប់ iPhone',
+      heroQrScanAndroid: 'ស្កេនសម្រាប់ Android',
+      heroQrEnlarge: 'ចុចលើ QR ដើម្បីពង្រីកឱ្យងាយស្រួលស្កេន',
+      heroQrIosSub: 'ទាញយកនៅលើ',
       heroQrIos: 'App Store',
+      heroQrAndroidSub: 'ទទួលបាននៅលើ',
       heroQrAndroid: 'Google Play',
+      qrModalTitle: 'ស្កេនដើម្បីទាញយក KamChi',
+      qrModalTabIos: 'iOS · App Store',
+      qrModalTabAndroid: 'Android · Google Play',
+      qrModalHintIos: 'បើកកាមេរ៉ា iPhone ឬ iPad របស់អ្នកស្កេនកូដ QR ដើម្បីបើក App Store។',
+      qrModalHintAndroid: 'បើកកាមេរ៉ាទូរស័ព្ទ Android របស់អ្នកស្កេនកូដ QR ដើម្បីបើក Google Play។',
+      qrModalNote: 'កំពុងបើកសាកល្បង · មានគម្រោងឥតគិតថ្លៃ',
 
       mockupMonth: 'វិច្ឆិកា ២០២៦',
       mockupTotalLent: 'ប្រាក់ដើមបានឱ្យខ្ចីសរុប',
@@ -351,6 +548,61 @@
       f8Desc: 'កត់ត្រាការបង់ប្រាក់នៅតាមខេត្តទោះគ្មានសេវាអ៊ីនធឺណិត។ ទិន្នន័យនឹងធ្វើសមកាលកម្មពេលភ្ជាប់អ៊ីនធឺណិតវិញ។',
       f9Title: 'ចាក់សោលេខកូដ PIN និងបម្រុងទុក',
       f9Desc: 'ការពារឯកជនភាពទិន្នន័យដោយលេខកូដ ៦ ខ្ទង់ និងអាចស្តារទិន្នន័យមកវិញពេលប្តូរទូរស័ព្ទ។',
+
+      /* === CHANGED: Privacy and Security Section (KM) === */
+      privKicker: 'ភាពឯកជន និងសុវត្ថិភាព',
+      privTitle: 'ទិន្នន័យអ្នកខ្ចីរបស់អ្នក នៅលើទូរស័ព្ទរបស់អ្នក។ KamChi មិនឃើញវាទេ។',
+      privLead:
+        'ក្នុងនាមជាអ្នកឱ្យខ្ចីប្រាក់ អ្នកត្រូវគ្រប់គ្រងព័ត៌មានសំខាន់ៗដូចជាឈ្មោះ រូបថតអត្តសញ្ញាណប័ណ្ណ និងកំណត់ត្រាបង់ប្រាក់។ KamChi ត្រូវបានបង្កើតឡើងដើម្បីឱ្យទិន្នន័យអ្នកខ្ចីនៅតែលើទូរស័ព្ទរបស់អ្នក មិនមែននៅលើម៉ាស៊ីនមេរបស់យើងទេ។',
+
+      privDevKicker: 'រក្សាទុកក្នុងទូរស័ព្ទ',
+      privDevTitle: 'នៅលើទូរស័ព្ទរបស់អ្នក',
+      privDevItem1: 'ឈ្មោះ និងលេខទូរស័ព្ទអ្នកខ្ចី',
+      privDevItem2: 'រូបថតអត្តសញ្ញាណប័ណ្ណ',
+      privDevItem3: 'ចំនួនប្រាក់កម្ចី និងកាលវិភាគសងប្រាក់',
+      privDevItem4: 'កំណត់ត្រាបង់ប្រាក់ និងបង្កាន់ដៃ',
+
+      privBoundaryLabel: 'មិនត្រូវបានបង្ហោះឡើងទេ',
+
+      privSrvKicker: 'សម្រាប់ពិនិត្យអាជ្ញាប័ណ្ណប៉ុណ្ណោះ',
+      privSrvTitle: 'នៅលើម៉ាស៊ីនមេរបស់ KamChi',
+      privSrvItem1: 'កូដអាជ្ញាប័ណ្ណរបស់អ្នក',
+      privSrvItem2: 'ប្រភេទគម្រោងរបស់អ្នក',
+      privSrvItem3: 'ថ្ងៃផុតកំណត់',
+      privSrvItem4: 'លេខសម្គាល់ឧបករណ៍ (Device ID)',
+
+      privT1Title: 'យើងមិនកាន់កាប់ទិន្នន័យអ្នកខ្ចីឡើយ',
+      privT1Desc: 'ឈ្មោះ រូបថតអត្តសញ្ញាណប័ណ្ណ និងចំនួនប្រាក់កម្ចី នៅលើទូរស័ព្ទរបស់អ្នក ហើយមិនត្រូវបានបង្ហោះទៅ KamChi ទេ។',
+      privT2Title: 'ចាក់សោការពារកម្មវិធី',
+      privT2Desc: 'ការពារកម្មវិធីដោយលេខកូដ PIN ឬស្កេនម្រាមដៃ ឬផ្ទៃមុខនៅលើទូរស័ព្ទ មុនពេលអ្នកណាម្នាក់អាចបើកមើលបាន។',
+      privT3Title: 'ប្រើបានពេលគ្មានអ៊ីនធឺណិត',
+      privT3Desc: 'បន្ទាប់ពីបើកដំណើរការកូដអាជ្ញាប័ណ្ណម្តងរួចហើយ អ្នកមិនត្រូវការអ៊ីនធឺណិតដើម្បីបន្ថែមកម្ចី ឬកត់ត្រាការបង់ប្រាក់ទេ។',
+      privT4Title: 'អ្នកជាអ្នកគ្រប់គ្រងទាំងស្រុង',
+      privT4Desc: 'អ្នកអាចនាំចេញកំណត់ត្រារបស់អ្នកបានគ្រប់ពេល ទោះបីជាកូដអាជ្ញាប័ណ្ណផុតកំណត់ និងកម្មវិធីស្ថិតក្នុងរបៀបអានតែប៉ុណ្ណោះក៏ដោយ។',
+
+      privBackupTitle: 'អ្នកជាអ្នកទទួលខុសត្រូវលើការបម្រុងទុក',
+      privBackupDesc:
+        'ឯកសារបម្រុងទុកត្រូវបានបម្លែងជាលេខសម្ងាត់ (encrypted) និងរក្សាទុកនៅកន្លែងដែលអ្នកជ្រើសរើស—ជាឯកសារលើទូរស័ព្ទ ក្នុង Cloud Drive ផ្ទាល់ខ្លួន ឬក្នុង Telegram របស់អ្នក។ ការបាត់ទូរស័ព្ទដោយគ្មានឯកសារបម្រុងទុក មានន័យថាបាត់បង់កំណត់ត្រា ដូច្នេះសូមបម្រុងទុកឱ្យបានញឹកញាប់។',
+
+      privCollectTitle: 'អ្វីដែលយើងប្រមូលពិតប្រាកដ',
+      privCollect1: 'កូដអាជ្ញាប័ណ្ណរបស់អ្នក',
+      privCollect2: 'ប្រភេទគម្រោង និងថ្ងៃផុតកំណត់',
+      privCollect3: 'លេខសម្គាល់ឧបករណ៍ (Device ID)',
+      privCollect4: 'អ៊ីមែល លេខទូរស័ព្ទ ឬឈ្មោះ Telegram ដែលអ្នកផ្តល់ឱ្យយើងពេលទិញ',
+      privCollectNone: 'គ្មានអ្វីផ្សេងទៀតទេ។',
+
+      privFaqHeading: 'សំណួរញឹកញាប់អំពីភាពឯកជន',
+      privFaq1Q: 'តើ KamChi អាចមើលឃើញអ្នកខ្ចីរបស់ខ្ញុំទេ?',
+      privFaq1A:
+        'មិនអាចទេ។ ឈ្មោះ លេខទូរស័ព្ទ រូបថតអត្តសញ្ញាណប័ណ្ណ ចំនួនប្រាក់កម្ចី និងកំណត់ត្រាបង់ប្រាក់របស់អ្នកខ្ចី នៅលើទូរស័ព្ទរបស់អ្នក។ KamChi ឃើញតែកូដអាជ្ញាប័ណ្ណ គម្រោង ថ្ងៃផុតកំណត់ និងលេខសម្គាល់ឧបករណ៍ប៉ុណ្ណោះ។',
+      privFaq2Q: 'តើមានអ្វីកើតឡើងចំពោះទិន្នន័យ ប្រសិនបើខ្ញុំលុបកម្មវិធី (Uninstall)?',
+      privFaq2A:
+        'ដោយសារកំណត់ត្រារបស់អ្នកនៅលើទូរស័ព្ទ ការលុបកម្មវិធីចេញនឹងលុបទិន្នន័យក្នុងម៉ាស៊ីននោះ។ សូមរក្សាទុកឯកសារបម្រុងទុកជានិច្ចមុនពេលលុបកម្មវិធី ឬប្តូរទូរស័ព្ទ ដើម្បីអាចស្តារទិន្នន័យមកវិញបាន។',
+      privFaq3Q: 'តើអ្នកចែករំលែកទិន្នន័យជាមួយអ្នកដទៃទេ?',
+      privFaq3A:
+        'មិនទេ។ យើងមិនលក់ ជួល ឬចែករំលែកព័ត៌មានអាជ្ញាប័ណ្ណ ឬព័ត៌មានទំនាក់ទំនងរបស់អ្នកទៅឱ្យអ្នកផ្សាយពាណិជ្ជកម្ម ឬភាគីទីបីឡើយ។ ហើយដោយសារទិន្នន័យអ្នកខ្ចីនៅលើទូរស័ព្ទរបស់អ្នក យើងក៏គ្មានទិន្នន័យនោះសម្រាប់ចែករំលែកដែរ។',
+      privPolicyPrompt: 'ចង់អានព័ត៌មានលម្អិតបន្ថែម?',
+      privPolicyLink: 'អានគោលការណ៍ភាពឯកជន',
 
       howKicker: 'ដំណើរការងាយស្រួល',
       howTitle: 'ចាប់ផ្តើមតាមដានក្នុង ៣ ជំហាន',
@@ -441,63 +693,132 @@
       roadP3Item2: 'គណនីបុគ្គលិកប្រមូលប្រាក់ដោយមានសិទ្ធិកំណត់',
       roadP3Item3: 'ជំនួយការ AI សម្រាប់ព្រាងសាររំលឹកការសងប្រាក់',
 
-      priceKicker: 'តម្លៃច្បាស់លាស់',
-      priceTitle: 'ចាប់ផ្តើមដោយឥតគិតថ្លៃ ដំឡើងកម្រិតពេលអាជីវកម្មរីកចម្រើន',
-      priceLead: 'តម្លៃសាកល្បងបឋម។ សមាជិកចុះឈ្មោះមុនគេនឹងទទួលបានអត្រាពិសេស។',
+      /* === CHANGED: Pricing (License Key Model - Khmer) === */
+      priceKicker: 'តម្លៃអាជ្ញាប័ណ្ណច្បាស់លាស់',
+      priceTitle: 'ចាប់ផ្តើមដោយឥតគិតថ្លៃ។ ដោះសោមុខងារពេញលេញដោយប្រើកូដអាជ្ញាប័ណ្ណ។',
+      priceLead:
+        'ទូទាត់តាម ABA, KHQR ឬសាច់ប្រាក់ រួចទទួលកូដតាម Telegram។ បើកដំណើរការម្តងពេលមានអ៊ីនធឺណិត រួចប្រើបានពេលគ្មានអ៊ីនធឺណិត។',
       billMonthly: 'ប្រចាំខែ',
-      billYearly: 'ប្រចាំឆ្នាំ · សន្សំ 20%',
+      billYearlyLabel: 'ប្រចាំឆ្នាំ',
+      billSaveBadge: 'សន្សំ 20%',
+      billLifetime: 'ប្រើអស់មួយជីវិត',
+      billingNameMonthly: 'ប្រចាំខែ',
+      billingNameYearly: 'ប្រចាំឆ្នាំ',
+      billingNameLifetime: 'ប្រើអស់មួយជីវិត',
+      periodFree: 'ឥតគិតថ្លៃរហូត',
       perMonth: '/ ខែ',
+      perYear: '/ ឆ្នាំ',
+      oneTime: 'បង់តែម្តង',
+      khrApproxPrefix: 'ប្រហែល ',
+      khrUnit: '៛',
       planPopular: 'ពេញនិយមបំផុត',
+      buyLicenseBtn: 'ទិញកូដអាជ្ញាប័ណ្ណ',
+      comingSoonTag: '(ឆាប់ៗនេះ)',
+      pricePlaceholderNote: 'តម្លៃខាងលើជាតម្លៃសាកល្បងបឋម និងអាចកែសម្រួលពេលដាក់ឱ្យប្រើជាផ្លូវការ។',
+      tgMsgTemplate:
+        'សួស្តីក្រុមការងារ KamChi! ខ្ញុំចង់ទិញកូដអាជ្ញាប័ណ្ណគម្រោង {plan} ({billing} - {price})។ សូមផ្ញើព័ត៌មានបង់ប្រាក់ ABA/KHQR។',
 
       planFreeName: 'ឥតគិតថ្លៃ (Free)',
-      planFreeDesc: 'សម្រាប់អ្នកឱ្យខ្ចីផ្ទាល់ខ្លួនដែលមានកម្ចីតិចតួច។',
+      planFreeDesc: 'ចាប់ផ្តើមប្រើភ្លាមៗជាមួយមុខងារស្នូល ដោយមិនចាំបាច់មានកូដអាជ្ញាប័ណ្ណ។',
       planFreeF1: 'កម្ចីសកម្មរហូតដល់ ១០',
-      planFreeF2: 'ប្រវត្តិអ្នកខ្ចី អត្តសញ្ញាណ និងអ្នកធានា',
-      planFreeF3: 'ប្រាក់ដុល្លារ/រៀល និងប្រើគ្មានអ៊ីនធឺណិត',
-      planFreeF4: 'ការពារដោយលេខកូដ PIN',
-      planFreeCta: 'ចូលរួមសាកល្បងឥតគិតថ្លៃ',
+      planFreeF2: 'ឧបករណ៍ ១ គ្រឿង',
+      planFreeF3: 'មុខងារស្នូលកត់ត្រាអ្នកខ្ចី និងការសងប្រាក់',
+      planFreeF4: 'មិនចាំបាច់មានកូដអាជ្ញាប័ណ្ណ',
+      planFreeCta: 'ចាប់ផ្តើមដោយឥតគិតថ្លៃ',
 
       planProName: 'Pro',
-      planProDesc: 'សម្រាប់អ្នកឱ្យខ្ចីសកម្មដែលត្រូវតាមដានការប្រមូលប្រាក់ជាប្រចាំ។',
-      planProF1: 'មិនកំណត់ចំនួនអ្នកខ្ចី និងកម្ចី',
-      planProF2: 'បង្កាន់ដៃឌីជីថល និងដាស់តឿនយឺតពេល',
-      planProF3: 'បម្រុងទុកលើ Cloud ដោយសុវត្ថិភាព',
-      planProF4: 'របាយការណ៍ប្រាក់ចំណេញ និងការប្រមូលប្រចាំខែ',
-      planProCta: 'កក់សិទ្ធិប្រើ Pro',
+      planProDesc: 'អាជ្ញាប័ណ្ណពេញលេញសម្រាប់អ្នកឱ្យខ្ចីផ្ទាល់ខ្លួនដែលប្រមូលប្រាក់ជាប្រចាំ។',
+      planProF1: 'កម្ចី និងអ្នកខ្ចីមិនកំណត់',
+      planProF2: 'ប្រើបាន ២ ឧបករណ៍ក្នុង ១ កូដ',
+      planProF3: 'របាយការណ៍ និងនាំចេញ CSV/PDF',
+      planProF4: 'បម្រុងទុក និងស្តារទិន្នន័យ',
+      planProF5: 'សាររំលឹកតាម Telegram',
+      planProF6: 'គាំទ្រប្រាក់ដុល្លារ និងរៀល',
 
       planBizName: 'Business',
-      planBizDesc: 'សម្រាប់ក្រុមគ្រួសារ ឬក្រុមការងារដែលមានអ្នកប្រមូលប្រាក់។',
+      planBizDesc: 'សម្រាប់ការិយាល័យគ្រួសារ និងក្រុមការងារដែលកំពុងពង្រីកអាជីវកម្ម។',
       planBizF1: 'មុខងារទាំងអស់ក្នុងគម្រោង Pro',
-      planBizF2: 'គណនីបុគ្គលិកប្រមូលប្រាក់រហូតដល់ ៥ នាក់',
-      planBizF3: 'កិច្ចសន្យាខ្ចីប្រាក់ភាសាខ្មែរ/អង់គ្លេស',
-      planBizF4: 'ជំនួយពិសេសតាម Telegram និងទូរស័ព្ទ',
-      planBizCta: 'ស្នើសុំគម្រោង Business',
+      planBizF2: 'ប្រើបាន ៥ ឧបករណ៍ក្នុង ១ កូដ',
+      planBizF3: 'គណនីបុគ្គលិក',
+      planBizF4: 'កិច្ចសន្យាខ្ចីប្រាក់សម្រាប់បោះពុម្ព',
 
+      compTitle: 'ប្រៀបធៀបគម្រោង',
+      compFeatureCol: 'មុខងារ',
+      compRowLoans: 'កម្ចីសកម្ម',
+      compVal10Loans: 'រហូតដល់ ១០',
+      compValUnlimited: 'មិនកំណត់',
+      compRowDevices: 'ចំនួនឧបករណ៍ក្នុង ១ កូដ',
+      compVal1Dev: '១ ឧបករណ៍',
+      compVal2Dev: '២ ឧបករណ៍',
+      compVal5Dev: '៥ ឧបករណ៍',
+      compRowCore: 'បញ្ជីស្នូល តារាងសង និងបង្កាន់ដៃ',
+      compRowCurrency: 'គាំទ្រប្រាក់ដុល្លារ និងរៀល',
+      compRowOffline: 'ប្រើគ្មានអ៊ីនធឺណិតក្រោយបើកដំណើរការ',
+      compRowReports: 'របាយការណ៍ និងនាំចេញទិន្នន័យ',
+      compRowBackup: 'បម្រុងទុក និងស្តារទិន្នន័យ',
+      compRowTelegram: 'សាររំលឹកការសងតាម Telegram',
+      compRowStaff: 'គណនីបុគ្គលិក',
+      compRowContracts: 'កិច្ចសន្យាខ្ចីប្រាក់សម្រាប់បោះពុម្ព',
+      srIncluded: 'រួមបញ្ចូល',
+      srNotIncluded: 'មិនរួមបញ្ចូល',
+
+      howLicTitle: 'របៀបទទួលបានកូដអាជ្ញាប័ណ្ណ',
+      licStep1Title: 'ជ្រើសរើសគម្រោង',
+      licStep1Desc: 'ជ្រើស Pro ឬ Business និងរយៈពេលប្រចាំខែ ប្រចាំឆ្នាំ ឬអស់មួយជីវិត។',
+      licStep2Title: 'ទូទាត់តាម ABA, KHQR ឬសាច់ប្រាក់',
+      licStep2Desc: 'ផ្ទេរប្រាក់យ៉ាងងាយស្រួលតាម ABA, KHQR ឬសាច់ប្រាក់ផ្ទាល់។',
+      licStep3Title: 'ទទួលកូដតាម Telegram',
+      licStep3Desc: 'យើងផ្ញើកូដអាជ្ញាប័ណ្ណ KAMCHI ផ្ទាល់ខ្លួនជូនអ្នកតាម Telegram។',
+      licStep4Title: 'បញ្ចូលកូដក្នុង KamChi',
+      licStep4Desc: 'បើកដំណើរការម្តងពេលមានអ៊ីនធឺណិត រួចប្រើ KamChi គ្មានអ៊ីនធឺណិតបានគ្រប់ទីកន្លែង។',
+
+      haveKeyTitle: 'មានកូដអាជ្ញាប័ណ្ណរួចហើយឬ?',
+      haveKeyDesc: 'សាកល្បងពិនិត្យទម្រង់កូដអាជ្ញាប័ណ្ណ KamChi។ សូមបញ្ចូលកូដពិតរបស់អ្នកក្នុងកម្មវិធីនៅ Settings > License។',
+      haveKeyLabel: 'ពិនិត្យទម្រង់កូដអាជ្ញាប័ណ្ណ',
+      haveKeyPlaceholder: 'KAMCHI-PRO-XXXX-XXXX-XXXX',
+      haveKeyBtn: 'ពិនិត្យទម្រង់',
+      keyMsgEmpty: 'សូមបញ្ចូលកូដគំរូដូចជា KAMCHI-PRO-4A9F-8C2D-11B7 ដើម្បីពិនិត្យទម្រង់។',
+      keyMsgValid: 'ទម្រង់ត្រឹមត្រូវ។ សូមបញ្ចូលកូដសកម្មរបស់អ្នកក្នុងកម្មវិធី KamChi នៅ Settings > License ដើម្បីបើកដំណើរការ។',
+      keyMsgInvalid: 'ទម្រង់មិនត្រឹមត្រូវ។ គំរូត្រឹមត្រូវគឺ KAMCHI-PRO-XXXX-XXXX-XXXX (អក្សរ និងលេខ)។',
+
+      licTrustTitle: 'បង្កើតឡើងដើម្បីភាពទុកចិត្ត',
+      licTrust1Title: 'ទិន្នន័យរក្សាទុកនៅលើឧបករណ៍របស់អ្នក',
+      licTrust1Desc: 'កំណត់ត្រាកម្ចីស្ថិតនៅលើទូរស័ព្ទរបស់អ្នកផ្ទាល់។ សូមបម្រុងទុកជាប្រចាំដើម្បីកុំឱ្យបាត់បង់។',
+      licTrust2Title: 'ប្រើបានពេលគ្មានអ៊ីនធឺណិតក្រោយបើកដំណើរការ',
+      licTrust2Desc: 'បើកដំណើរការម្តងពេលមានអ៊ីនធឺណិត ហើយពិនិត្យសិទ្ធិរៀងរាល់ ៧–១៤ ថ្ងៃម្តង។',
+      licTrust3Title: 'ទិន្នន័យមិនត្រូវបានចាក់សោឡើយពេលផុតសុពលភាព',
+      licTrust3Desc: 'កម្មវិធីប្តូរទៅជាមើលបានតែប៉ុណ្ណោះ ដូច្នេះគ្រប់កំណត់ត្រានៅតែមើលឃើញ និងនាំចេញបាន។',
+
+      /* === CHANGED: FAQ (License Key Questions - Khmer) === */
       faqKicker: 'សំណួរ និងចម្លើយ',
       faqTitle: 'សំណួរដែលសួរញឹកញាប់',
-      faq1Q: 'តើ KamChi ឥតគិតថ្លៃឬទេ?',
+      faq1Q: 'តើខ្ញុំទទួលបានកូដអាជ្ញាប័ណ្ណដោយរបៀបណា?',
       faq1A:
-        'បាទ/ចាស។ KamChi មានគម្រោងឥតគិតថ្លៃសម្រាប់កម្ចីសកម្មរហូតដល់ ១០ ជាមួយប្រាក់ដុល្លារ និងរៀល ប្រើបានពេលគ្មានអ៊ីនធឺណិត និងចាក់សោ PIN។ គម្រោងបង់ប្រាក់បន្ថែមកម្ចីមិនកំណត់ និងការបម្រុងទុកលើ Cloud។',
-      faq2Q: 'តើទិន្នន័យអ្នកខ្ចី និងកម្ចីរបស់ខ្ញុំមានសុវត្ថិភាពទេ?',
+        'ជ្រើសរើសគម្រោង Pro ឬ Business ខាងលើ បង់ប្រាក់តាម ABA, KHQR ឬសាច់ប្រាក់ រួចផ្ញើសារមកយើងតាម Telegram។ អ្នកនឹងទទួលបានកូដអាជ្ញាប័ណ្ណផ្ទាល់ខ្លួន (ឧ. KAMCHI-PRO-XXXX-XXXX-XXXX) សម្រាប់បញ្ចូលក្នុងកម្មវិធី។',
+      faq2Q: 'តើខ្ញុំអាចប្រើលើឧបករណ៍ប៉ុន្មានគ្រឿង?',
       faq2A:
-        'ទិន្នន័យរបស់អ្នករក្សាទុកជាឯកជនលើទូរស័ព្ទដោយចាក់សោ PIN ៦ ខ្ទង់។ ពេលបើកការបម្រុងទុកលើ Cloud ទិន្នន័យត្រូវបានអ៊ិនគ្រីប មានតែគណនីរបស់អ្នកប៉ុណ្ណោះដែលអាចបើកមើលបាន។',
-      faq3Q: 'តើវាប្រើបានពេលគ្មានអ៊ីនធឺណិតទេ?',
+        'គម្រោង Free ប្រើបាន ១ ឧបករណ៍ដោយមិនចាំបាច់មានកូដ។ កូដ Pro ប្រើបានរហូតដល់ ២ ឧបករណ៍ និងកូដ Business ប្រើបានរហូតដល់ ៥ ឧបករណ៍។',
+      faq3Q: 'តើមានអ្វីកើតឡើងពេលអាជ្ញាប័ណ្ណផុតកំណត់?',
       faq3A:
-        'ប្រើបាន។ អ្នកអាចបន្ថែមអ្នកខ្ចី បង្កើតកម្ចី និងកត់ត្រាការបង់ប្រាក់ដោយមិនចាំបាច់មានអ៊ីនធឺណិត។ ទិន្នន័យរក្សាទុកក្នុងទូរស័ព្ទជាមុន ហើយធ្វើសមកាលកម្មដោយស្វ័យប្រវត្តិពេលភ្ជាប់អ៊ីនធឺណិតវិញ។',
-      faq4Q: 'តើខ្ញុំអាចប្រើកម្មវិធីនេះជាភាសាខ្មែរទាំងស្រុងបានទេ?',
+        'កម្មវិធី KamChi នឹងប្តូរទៅជាមុខងារមើលបានតែប៉ុណ្ណោះ (read-only)។ ប្រវត្តិអ្នកខ្ចី ការសងប្រាក់ និងសមតុល្យរបស់អ្នកនៅតែមើលឃើញ និងនាំចេញបាន ហើយទិន្នន័យចាស់មិនត្រូវបានចាក់សោ ឬលុបចោលឡើយ។',
+      faq4Q: 'ចុះបើខ្ញុំបាត់ទូរស័ព្ទវិញ?',
       faq4A:
-        'បាន។ រាល់អេក្រង់ បង្កាន់ដៃ និងរបាយការណ៍ទាំងអស់ដំណើរការជាភាសាខ្មែរច្បាស់លាស់ ឬអង់គ្លេស ហើយអ្នកអាចប្តូរភាសាបានគ្រប់ពេល។',
-      faq5Q: 'តើបុគ្គលិក ឬអ្នកប្រមូលប្រាក់អាចប្រើជាមួយគ្នាបានទេ?',
+        'អ្នកអាចស្តារកំណត់ត្រាកម្ចីពីឯកសារបម្រុងទុកចុងក្រោយរបស់អ្នក ហើយយើងអាចដកឧបករណ៍ដែលបាត់ចេញពីអាជ្ញាប័ណ្ណ ដើម្បីឱ្យអ្នកប្រើកូដលើទូរស័ព្ទថ្មីបាន។',
+      faq5Q: 'តើវាប្រើបានពេលគ្មានអ៊ីនធឺណិតទេ?',
       faq5A:
-        'គណនីបុគ្គលិកច្រើននាក់ដែលមានការកំណត់សិទ្ធិមាននៅក្នុងគម្រោង Business នៃដំណាក់កាលទី ៣ ដែលអនុញ្ញាតឱ្យក្រុមការងារកត់ត្រាការប្រមូលប្រចាំថ្ងៃ ខណៈអ្នកគ្រប់គ្រងរក្សាសិទ្ធិពេញលេញ។',
+        'ប្រើបាន។ កូដអាជ្ញាប័ណ្ណបើកដំណើរការម្តងពេលមានអ៊ីនធឺណិត រួចអាចប្រើពេលគ្មានអ៊ីនធឺណិតបានពេញលេញ។ KamChi គ្រាន់តែពិនិត្យស្ថានភាពអាជ្ញាប័ណ្ណតាមអ៊ីនធឺណិតរៀងរាល់ ៧ ទៅ ១៤ ថ្ងៃម្តងប៉ុណ្ណោះ។',
+      faq6Q: 'តើខ្ញុំអាចប្រើកម្មវិធីនេះជាភាសាខ្មែរទាំងស្រុងបានទេ?',
+      faq6A:
+        'បាន។ រាល់អេក្រង់ បង្កាន់ដៃ និងរបាយការណ៍ទាំងអស់ដំណើរការជាភាសាខ្មែរច្បាស់លាស់ ឬអង់គ្លេស ហើយអ្នកអាចប្តូរភាសាបានគ្រប់ពេល។',
 
-      formKicker: 'ចុះឈ្មោះប្រើមុនគេ',
-      formTitle: 'ទទួលការអញ្ជើញចូលរួមសាកល្បង KamChi',
+      /* === CHANGED: Early Access Copy (Discounted License - Khmer) === */
+      formKicker: 'អ្នកគាំទ្រដំបូង',
+      formTitle: 'ចុះឈ្មោះប្រើមុនគេ និងទទួលបានកូដអាជ្ញាប័ណ្ណបញ្ចុះតម្លៃ',
       formLead:
-        'ចូលរួមជាមួយអ្នកឱ្យខ្ចីប្រាក់នៅកម្ពុជាដែលកំពុងសាកល្បង KamChi មុនពេលដាក់ឱ្យប្រើជាផ្លូវការ។',
-      formPerk1: 'ជួយរៀបចំការប្រើប្រាស់ផ្ទាល់តាម Telegram',
-      formPerk2: 'រួមចំណែកផ្តល់យោបល់សម្រាប់ដំណាក់កាលទី ២ និងទី ៣',
-      formPerk3: 'គ្មានសាររំខាន—ផ្ញើតែតំណអញ្ជើញប៉ុណ្ណោះ',
+        'ចូលរួមជាមួយអ្នកឱ្យខ្ចីប្រាក់នៅកម្ពុជាដែលសាកល្បង KamChi មុនពេលដាក់ឱ្យប្រើផ្លូវការ។ អ្នកគាំទ្រដំបូងនឹងទទួលបានកូដអាជ្ញាប័ណ្ណ Pro ឬ Business ក្នុងតម្លៃពិសេស។',
+      formPerk1: 'កូដអាជ្ញាប័ណ្ណតម្លៃពិសេសសម្រាប់សមាជិកដំបូងផ្ញើតាម Telegram',
+      formPerk2: 'ជួយណែនាំការតំឡើង និងការបម្រុងទុកទិន្នន័យដោយផ្ទាល់',
+      formPerk3: 'គ្មានសាររំខាន—ផ្ញើតែតំណអញ្ជើញ និងតម្លៃពិសេសប៉ុណ្ណោះ',
 
       fieldName: 'ឈ្មោះពេញ',
       phName: 'ឧ. សុខា វណ្ណ',
@@ -524,7 +845,47 @@
 
       footerTagline: 'ឱ្យខ្ចីដោយទំនុកចិត្ត តាមដានគ្រប់រៀល។',
       footerCopy: '© 2026 KamChi. រក្សាសិទ្ធិគ្រប់យ៉ាង។',
-      footerMadeIn: 'ផលិតនៅកម្ពុជា'
+      footerMadeIn: 'ផលិតនៅកម្ពុជា',
+
+      /* === CHANGED: Privacy Policy Page (privacy.html - KM) === */
+      ppPageTitle: 'KamChi (កម្ចី) — គោលការណ៍ភាពឯកជន',
+      ppBackLink: '← ត្រឡប់ទៅទំព័រដើម KamChi',
+      ppKicker: 'គោលការណ៍ភាពឯកជន',
+      ppTitle: 'របៀបដែល KamChi គ្រប់គ្រងទិន្នន័យរបស់អ្នក',
+      ppUpdated: 'កែប្រែចុងក្រោយ៖ វិច្ឆិកា ២០២៦',
+      ppIntro:
+        'គោលការណ៍នេះពន្យល់ដោយសាមញ្ញអំពីព័ត៌មានដែលនៅលើទូរស័ព្ទរបស់អ្នក និងព័ត៌មានតិចតួចដែល KamChi ប្រមូលសម្រាប់គ្រប់គ្រងកូដអាជ្ញាប័ណ្ណរបស់អ្នក។',
+      ppSec1Title: '១. អ្នកផ្តល់សេវា KamChi',
+      ppSec1Body:
+        'KamChi ត្រូវបានផ្តល់ជូនដោយ [ឈ្មោះក្រុមហ៊ុន ឬម្ចាស់ប្រតិបត្តិការ] [ទីក្រុង/ខេត្ត ប្រទេសកម្ពុជា]។ ប្រសិនបើអ្នកមានសំណួរអំពីភាពឯកជន សូមទាក់ទងមក [privacy@example.com] ឬ [Telegram @YOUR_USERNAME]។',
+      ppSec2Title: '២. ទិន្នន័យដែលនៅលើទូរស័ព្ទរបស់អ្នក',
+      ppSec2Body:
+        'កំណត់ត្រាអ្នកខ្ចីរបស់អ្នកនៅលើទូរស័ព្ទផ្ទាល់ខ្លួនរបស់អ្នក។ KamChi មិនបង្ហោះ មើល ឬរក្សាទុកព័ត៌មានទាំងនេះនៅលើម៉ាស៊ីនមេរបស់យើងទេ៖',
+      ppSec2Item1: 'ឈ្មោះ លេខទូរស័ព្ទ និងកំណត់ចំណាំអាសយដ្ឋានរបស់អ្នកខ្ចី និងអ្នកធានា',
+      ppSec2Item2: 'រូបថតអត្តសញ្ញាណប័ណ្ណ និងរូបភាពឯកសារនានា',
+      ppSec2Item3: 'ចំនួនប្រាក់កម្ចី អត្រាការប្រាក់ និងកាលវិភាគសងប្រាក់',
+      ppSec2Item4: 'កំណត់ត្រាការបង់ប្រាក់ បង្កាន់ដៃ និងកំណត់ចំណាំ',
+      ppSec3Title: '៣. អ្វីដែលយើងប្រមូល និងមូលហេតុ',
+      ppSec3Body: 'ដើម្បីចេញ និងផ្ទៀងផ្ទាត់កូដអាជ្ញាប័ណ្ណបង់ប្រាក់ ម៉ាស៊ីនមេរបស់យើងរក្សាទុកតែ៖',
+      ppSec3Item1: 'កូដអាជ្ញាប័ណ្ណរបស់អ្នក',
+      ppSec3Item2: 'គម្រោងរបស់អ្នក (Pro ឬ Business) និងថ្ងៃផុតកំណត់',
+      ppSec3Item3: 'លេខសម្គាល់ឧបករណ៍ (Device ID) ដើម្បីកំណត់ចំនួនឧបករណ៍តាមគម្រោង',
+      ppSec3Item4:
+        'អ៊ីមែល លេខទូរស័ព្ទ ឬឈ្មោះ Telegram ដែលអ្នកផ្តល់ឱ្យពេលទិញកូដអាជ្ញាប័ណ្ណ ឬចុះឈ្មោះប្រើមុនគេ',
+      ppSec3Note:
+        'ពេលអ្នកមានអ៊ីនធឺណិត កម្មវិធីនឹងពិនិត្យកូដអាជ្ញាប័ណ្ណរៀងរាល់ ៧ ទៅ ១៤ ថ្ងៃម្តង។ គ្មានព័ត៌មានណាមួយអំពីអ្នកខ្ចី ឬប្រាក់កម្ចីត្រូវបានផ្ញើក្នុងពេលពិនិត្យនោះឡើយ។',
+      ppSec4Title: '៤. ការបម្រុងទុក និងការទទួលខុសត្រូវរបស់អ្នក',
+      ppSec4Body:
+        'អ្នកជាអ្នកជ្រើសរើសពេលវេលា និងទីតាំងរក្សាទុកឯកសារបម្រុងទុក។ ឯកសារបម្រុងទុកត្រូវបានបម្លែងជាលេខសម្ងាត់ និងនាំចេញទៅឯកសារលើទូរស័ព្ទ ក្នុង Cloud Drive ផ្ទាល់ខ្លួន ឬក្នុង Telegram របស់អ្នក។ ដោយសារ KamChi មិនកាន់ទិន្នន័យកម្ចីរបស់អ្នក យើងមិនអាចស្តារកំណត់ត្រាវិញបានទេប្រសិនបើទូរស័ព្ទបាត់ដោយគ្មានឯកសារបម្រុងទុក។ អ្នកក៏មានភារកិច្ចថែរក្សាព័ត៌មានផ្ទាល់ខ្លួនរបស់អ្នកខ្ចីស្របតាមច្បាប់ជាធរមានផងដែរ។',
+      ppSec5Title: '៥. ការចែករំលែកទិន្នន័យ',
+      ppSec5Body:
+        'យើងមិនលក់ ជួល ឬដោះដូរព័ត៌មានអាជ្ញាប័ណ្ណ ឬព័ត៌មានទំនាក់ទំនងរបស់អ្នកទៅឱ្យអ្នកផ្សាយពាណិជ្ជកម្ម ឈ្មួញទិន្នន័យ ឬស្ថាប័នឥណទានណាមួយឡើយ។ យើងនឹងផ្តល់ទិន្នន័យតែក្នុងករណីមានដីកា ឬបង្គាប់ផ្លូវច្បាប់ត្រឹមត្រូវតាមច្បាប់ជាធរមានប៉ុណ្ណោះ។',
+      ppSec6Title: '៦. ការគ្រប់គ្រង ឬលុបទិន្នន័យរបស់អ្នក',
+      ppSec6Body:
+        'អ្នកអាចនាំចេញ ឬលុបទិន្នន័យកម្ចីក្នុងទូរស័ព្ទនៅក្នុងកម្មវិធីបានគ្រប់ពេល។ ដើម្បីលុបព័ត៌មានទំនាក់ទំនងពេលទិញ ឬដកឧបករណ៍ដែលបាត់ចេញពីកូដអាជ្ញាប័ណ្ណរបស់អ្នក សូមផ្ញើសារមកយើងតាម Telegram ឬអ៊ីមែល ដើម្បីឱ្យយើងកែប្រែ ឬលុបកំណត់ត្រាអាជ្ញាប័ណ្ណលើម៉ាស៊ីនមេ។',
+      ppSec7Title: '៧. លក្ខខណ្ឌអាយុ និងការកែប្រែគោលការណ៍',
+      ppSec7Body:
+        'KamChi ត្រូវបានបង្កើតសម្រាប់មនុស្សពេញវ័យអាយុចាប់ពី ១៨ ឆ្នាំឡើងទៅ ដែលគ្រប់គ្រងកម្ចីផ្ទាល់ខ្លួន ឬអាជីវកម្ម។ ប្រសិនបើយើងកែប្រែគោលការណ៍នេះ យើងនឹងផ្លាស់ប្តូរកាលបរិច្ឆេទនៅផ្នែកខាងលើនៃទំព័រនេះ និងជូនដំណឹងលើគេហទំព័ររបស់យើង។'
     }
   };
 
@@ -534,6 +895,8 @@
   var currentLang = 'km';
   var currentScreen = 'dashboard';
   var currentBilling = 'monthly';
+  var currentQrPlatform = 'ios';
+  var lastKeyStatus = '';
 
   function detectInitialLang() {
     try {
@@ -548,10 +911,12 @@
      ========================================================================= */
   function applyLanguage(lang) {
     currentLang = lang === 'km' ? 'km' : 'en';
-    var dict = translations[currentLang];
+    var dict = T[currentLang];
 
     document.documentElement.setAttribute('lang', currentLang);
-    if (dict.pageTitle) {
+    if (document.body && document.body.getAttribute('data-page') === 'privacy' && dict.ppPageTitle) {
+      document.title = dict.ppPageTitle;
+    } else if (dict.pageTitle) {
       document.title = dict.pageTitle;
     }
 
@@ -588,8 +953,13 @@
       btn.setAttribute('aria-pressed', isTarget ? 'true' : 'false');
     }
 
-    // Re-sync dynamic screenshot description text in the selected language
+    // Re-sync dynamic screenshot, pricing/Telegram links, QR modal copy, and key feedback in the selected language
     updateScreenDetails(currentScreen);
+    updatePricingDisplay();
+    refreshKeyFeedback();
+    if (typeof window.__syncQrModal === 'function') {
+      window.__syncQrModal();
+    }
   }
 
   function initLanguageToggle() {
@@ -670,7 +1040,7 @@
 
   function updateScreenDetails(screenId) {
     currentScreen = screenKeyMap[screenId] ? screenId : 'dashboard';
-    var dict = translations[currentLang];
+    var dict = T[currentLang];
     var keys = screenKeyMap[currentScreen];
 
     var titleEl = document.getElementById('screenDetailTitle');
@@ -722,46 +1092,212 @@
   }
 
   /* =========================================================================
-     7. PRICING BILLING TOGGLE & PLAN PRE-FILL
+     === CHANGED: 7. LICENSE PRICING TOGGLE, KHR FORMATTER & TELEGRAM LINKS ===
      ========================================================================= */
-  function initPricing() {
-    var billingBtns = document.querySelectorAll('[data-billing]');
-    var figures = document.querySelectorAll('.price-figure');
+  var PLAN_PRICES_USD = {
+    free: { monthly: 0, yearly: 0, lifetime: 0 },
+    pro: { monthly: 5, yearly: 48, lifetime: 120 },
+    business: { monthly: 15, yearly: 144, lifetime: 360 }
+  };
 
-    function setBilling(mode) {
-      currentBilling = mode === 'yearly' ? 'yearly' : 'monthly';
+  function formatUsd(amount) {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      maximumFractionDigits: 0
+    }).format(amount);
+  }
+
+  function formatKhr(usdAmount) {
+    var khrAmount = usdAmount * KHR_PER_USD;
+    var locale = currentLang === 'km' ? 'km-KH' : 'en-US';
+    return new Intl.NumberFormat(locale, {
+      maximumFractionDigits: 0
+    }).format(khrAmount);
+  }
+
+  function updatePricingDisplay() {
+    var dict = T[currentLang];
+    var periodKey =
+      currentBilling === 'yearly'
+        ? 'perYear'
+        : currentBilling === 'lifetime'
+          ? 'oneTime'
+          : 'perMonth';
+    var billingNameKey =
+      currentBilling === 'yearly'
+        ? 'billingNameYearly'
+        : currentBilling === 'lifetime'
+          ? 'billingNameLifetime'
+          : 'billingNameMonthly';
+
+    var plans = ['free', 'pro', 'business'];
+    for (var i = 0; i < plans.length; i++) {
+      var plan = plans[i];
+      var usdAmount = PLAN_PRICES_USD[plan][currentBilling];
+      var usdEl = document.querySelector('[data-plan-usd="' + plan + '"]');
+      var periodEl = document.querySelector('[data-plan-period="' + plan + '"]');
+      var khrEl = document.querySelector('[data-plan-khr="' + plan + '"]');
+
+      if (usdEl) {
+        usdEl.textContent = formatUsd(usdAmount);
+      }
+
+      if (periodEl) {
+        periodEl.textContent = plan === 'free' ? dict.periodFree : dict[periodKey];
+      }
+
+      if (khrEl) {
+        khrEl.textContent =
+          plan === 'free'
+            ? '0 ' + dict.khrUnit
+            : dict.khrApproxPrefix + formatKhr(usdAmount) + ' ' + dict.khrUnit;
+      }
+    }
+
+    // Build prefilled Telegram purchase links with selected plan & billing cycle
+    var buyLinks = document.querySelectorAll('[data-buy-plan]');
+    for (var j = 0; j < buyLinks.length; j++) {
+      var link = buyLinks[j];
+      var buyPlan = link.getAttribute('data-buy-plan');
+      if (!PLAN_PRICES_USD[buyPlan]) continue;
+
+      var planLabel = buyPlan === 'business' ? dict.planBizName : dict.planProName;
+      var priceStr = formatUsd(PLAN_PRICES_USD[buyPlan][currentBilling]);
+      var billingLabel = dict[billingNameKey];
+      var message = dict.tgMsgTemplate
+        .replace('{plan}', planLabel)
+        .replace('{billing}', billingLabel)
+        .replace('{price}', priceStr);
+
+      link.setAttribute('href', 'https://t.me/YOUR_USERNAME?text=' + encodeURIComponent(message));
+    }
+  }
+
+  function initPricing() {
+    var tablist = document.getElementById('billingTablist');
+    var billingBtns = document.querySelectorAll('[data-billing]');
+    var pricingGrid = document.getElementById('pricingGrid');
+
+    function setBilling(mode, shouldFocus) {
+      currentBilling = mode === 'yearly' || mode === 'lifetime' ? mode : 'monthly';
+      var activeId = 'tab-' + currentBilling;
+
       for (var i = 0; i < billingBtns.length; i++) {
         var btn = billingBtns[i];
         var isMatch = btn.getAttribute('data-billing') === currentBilling;
         btn.classList.toggle('is-active', isMatch);
-        btn.setAttribute('aria-pressed', isMatch ? 'true' : 'false');
+        btn.setAttribute('aria-selected', isMatch ? 'true' : 'false');
+        btn.setAttribute('tabindex', isMatch ? '0' : '-1');
+        if (isMatch && shouldFocus) {
+          btn.focus();
+        }
       }
 
-      for (var j = 0; j < figures.length; j++) {
-        var fig = figures[j];
-        var attr = currentBilling === 'yearly' ? 'data-price-yearly' : 'data-price-monthly';
-        var val = fig.getAttribute(attr);
-        if (val) fig.textContent = val;
+      if (pricingGrid) {
+        pricingGrid.setAttribute('aria-labelledby', activeId);
       }
+
+      updatePricingDisplay();
     }
 
     for (var i = 0; i < billingBtns.length; i++) {
       billingBtns[i].addEventListener('click', function () {
-        setBilling(this.getAttribute('data-billing'));
+        setBilling(this.getAttribute('data-billing'), false);
       });
     }
 
-    // Pre-select loan volume in Early Access form when clicking a plan CTA
+    // Keyboard navigation for role="tablist" (ArrowLeft, ArrowRight, Home, End)
+    if (tablist && billingBtns.length) {
+      tablist.addEventListener('keydown', function (event) {
+        var idx = -1;
+        for (var k = 0; k < billingBtns.length; k++) {
+          if (billingBtns[k] === document.activeElement) {
+            idx = k;
+            break;
+          }
+        }
+        if (idx === -1) return;
+
+        var nextIdx = idx;
+        if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+          nextIdx = (idx + 1) % billingBtns.length;
+        } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+          nextIdx = (idx - 1 + billingBtns.length) % billingBtns.length;
+        } else if (event.key === 'Home') {
+          nextIdx = 0;
+        } else if (event.key === 'End') {
+          nextIdx = billingBtns.length - 1;
+        } else {
+          return;
+        }
+
+        event.preventDefault();
+        setBilling(billingBtns[nextIdx].getAttribute('data-billing'), true);
+      });
+    }
+
+    // Pre-select loan volume in Early Access form when clicking Free plan CTA
     var planButtons = document.querySelectorAll('[data-select-plan]');
     var volumeSelect = document.getElementById('leadVolume');
-    for (var k = 0; k < planButtons.length; k++) {
-      planButtons[k].addEventListener('click', function () {
+    for (var m = 0; m < planButtons.length; m++) {
+      planButtons[m].addEventListener('click', function () {
         var preset = this.getAttribute('data-select-plan');
         if (volumeSelect && preset) {
           volumeSelect.value = preset;
         }
       });
     }
+
+    setBilling('monthly', false);
+  }
+
+  /* =========================================================================
+     === CHANGED: 7b. LICENSE KEY FORMAT CHECKER (DEMO ONLY) ===
+     NOTE: Format check only for demo UX. Real license verification & activation
+     happens inside the KamChi mobile app, never on this static page.
+     ========================================================================= */
+  function refreshKeyFeedback() {
+    var feedbackEl = document.getElementById('keyFormatFeedback');
+    if (!feedbackEl || !lastKeyStatus) return;
+
+    var dict = T[currentLang];
+    feedbackEl.classList.remove('is-valid', 'is-invalid');
+    if (lastKeyStatus === 'valid') {
+      feedbackEl.textContent = dict.keyMsgValid;
+      feedbackEl.classList.add('is-valid');
+    } else if (lastKeyStatus === 'invalid') {
+      feedbackEl.textContent = dict.keyMsgInvalid;
+      feedbackEl.classList.add('is-invalid');
+    } else if (lastKeyStatus === 'empty') {
+      feedbackEl.textContent = dict.keyMsgEmpty;
+      feedbackEl.classList.add('is-invalid');
+    }
+  }
+
+  function initKeyFormatChecker() {
+    var form = document.getElementById('keyFormatForm');
+    var input = document.getElementById('licenseKeyInput');
+    if (!form || !input) return;
+
+    // Matches KAMCHI-PRO-XXXX-XXXX-XXXX (or BIZ/BUSINESS/FREE tier segment)
+    var keyFormatRegex = /^KAMCHI-(?:PRO|BIZ|BUSINESS|FREE)-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$/i;
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      var raw = input.value.trim().toUpperCase();
+      input.value = raw;
+
+      if (!raw) {
+        lastKeyStatus = 'empty';
+      } else if (keyFormatRegex.test(raw)) {
+        lastKeyStatus = 'valid';
+      } else {
+        lastKeyStatus = 'invalid';
+      }
+
+      refreshKeyFeedback();
+    });
   }
 
   /* =========================================================================
@@ -816,7 +1352,7 @@
     }
 
     function validateForm() {
-      var dict = translations[currentLang];
+      var dict = T[currentLang];
       var valid = true;
       clearAllErrors();
 
@@ -918,6 +1454,119 @@
   }
 
   /* =========================================================================
+     10b. HERO QR ENLARGE MODAL (iOS & ANDROID)
+     ========================================================================= */
+  function initQrModal() {
+    var modal = document.getElementById('qrModal');
+    if (!modal) return;
+
+    var openButtons = document.querySelectorAll('[data-qr-open]');
+    var closeTriggers = modal.querySelectorAll('[data-qr-close]');
+    var tabs = modal.querySelectorAll('[data-qr-platform]');
+    var closeBtn = document.getElementById('qrModalClose');
+    var canvas = document.getElementById('qrModalCanvas');
+    var hint = document.getElementById('qrModalHint');
+    var storeIconSlot = document.getElementById('qrModalStoreIcon');
+    var storeSub = document.getElementById('qrModalStoreSub');
+    var storeName = document.getElementById('qrModalStoreName');
+    var lastFocused = null;
+
+    function renderQrPlatform(platform) {
+      currentQrPlatform = platform === 'android' ? 'android' : 'ios';
+      var dict = T[currentLang];
+
+      for (var i = 0; i < tabs.length; i++) {
+        var isTarget = tabs[i].getAttribute('data-qr-platform') === currentQrPlatform;
+        tabs[i].classList.toggle('is-active', isTarget);
+        tabs[i].setAttribute('aria-selected', isTarget ? 'true' : 'false');
+        tabs[i].setAttribute('tabindex', isTarget ? '0' : '-1');
+      }
+
+      var sourceTrigger = document.querySelector('[data-qr-open="' + currentQrPlatform + '"]');
+      if (sourceTrigger && canvas) {
+        var sourceSvg = sourceTrigger.querySelector('.qr-matrix');
+        if (sourceSvg) {
+          var clonedSvg = sourceSvg.cloneNode(true);
+          clonedSvg.setAttribute('width', '196');
+          clonedSvg.setAttribute('height', '196');
+          canvas.replaceChildren(clonedSvg);
+        }
+
+        var sourceCol = sourceTrigger.closest('.hero-qr-col');
+        var sourceBadgeIcon = sourceCol ? sourceCol.querySelector('.store-badge-icon') : null;
+        if (sourceBadgeIcon && storeIconSlot) {
+          var clonedIcon = sourceBadgeIcon.cloneNode(true);
+          storeIconSlot.replaceChildren(clonedIcon);
+        }
+      }
+
+      if (hint) {
+        hint.textContent = currentQrPlatform === 'android' ? dict.qrModalHintAndroid : dict.qrModalHintIos;
+      }
+      if (storeSub) {
+        storeSub.textContent = currentQrPlatform === 'android' ? dict.heroQrAndroidSub : dict.heroQrIosSub;
+      }
+      if (storeName) {
+        storeName.textContent = currentQrPlatform === 'android' ? dict.heroQrAndroid : dict.heroQrIos;
+      }
+    }
+
+    window.__syncQrModal = function () {
+      if (!modal.hidden) {
+        renderQrPlatform(currentQrPlatform);
+      }
+    };
+
+    function openModal(platform, triggerEl) {
+      lastFocused = triggerEl || document.activeElement;
+      renderQrPlatform(platform);
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      if (closeBtn) closeBtn.focus();
+    }
+
+    function closeModal() {
+      if (modal.hidden) return;
+      modal.hidden = true;
+      document.body.style.overflow = '';
+      if (lastFocused && typeof lastFocused.focus === 'function') {
+        lastFocused.focus();
+      }
+    }
+
+    for (var i = 0; i < openButtons.length; i++) {
+      openButtons[i].addEventListener('click', function () {
+        openModal(this.getAttribute('data-qr-open'), this);
+      });
+    }
+
+    for (var j = 0; j < tabs.length; j++) {
+      tabs[j].addEventListener('click', function () {
+        renderQrPlatform(this.getAttribute('data-qr-platform'));
+      });
+      tabs[j].addEventListener('keydown', function (event) {
+        if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+          event.preventDefault();
+          var nextPlatform = currentQrPlatform === 'ios' ? 'android' : 'ios';
+          renderQrPlatform(nextPlatform);
+          var nextTab = modal.querySelector('[data-qr-platform="' + nextPlatform + '"]');
+          if (nextTab) nextTab.focus();
+        }
+      });
+    }
+
+    for (var k = 0; k < closeTriggers.length; k++) {
+      closeTriggers[k].addEventListener('click', closeModal);
+    }
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && !modal.hidden) {
+        closeModal();
+      }
+    });
+  }
+
+  /* =========================================================================
      11. SCROLL REVEAL ANIMATION
      ========================================================================= */
   function initScrollReveal() {
@@ -956,8 +1605,10 @@
     initThemeToggle();
     initMobileMenu();
     initHeroSlideshow();
+    initQrModal();
     initScreenshotTabs();
     initPricing();
+    initKeyFormatChecker();
     initFaqAccordion();
     initEarlyAccessForm();
     initScrollReveal();

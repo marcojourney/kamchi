@@ -32,11 +32,11 @@
     <!-- Favicon (Replace assets/favicon.svg with your custom icon) -->
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
 
-    <!-- Google Fonts: Inter (English) & Kantumruy Pro (Khmer) -->
+    <!-- Google Fonts: Bricolage Grotesque (Display/Headings) & Kantumruy Pro (Khmer) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Kantumruy+Pro:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700&family=Kantumruy+Pro:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
@@ -91,6 +91,8 @@
 
         <nav class="desktop-nav" aria-label="Primary navigation">
           <a href="#features" class="nav-link" data-i18n="navFeatures">Features</a>
+          <!-- === CHANGED: Added Privacy link to navbar === -->
+          <a href="#privacy" class="nav-link" data-i18n="navPrivacy">Privacy</a>
           <a href="#how-it-works" class="nav-link" data-i18n="navHowItWorks">How it works</a>
           <a href="#pricing" class="nav-link" data-i18n="navPricing">Pricing</a>
           <a href="#faq" class="nav-link" data-i18n="navFaq">FAQ</a>
@@ -146,6 +148,8 @@
       <div class="mobile-drawer" id="mobileDrawer" hidden>
         <nav class="mobile-nav-list" aria-label="Mobile navigation">
           <a href="#features" class="mobile-nav-link" data-i18n="navFeatures">Features</a>
+          <!-- === CHANGED: Added Privacy link to mobile drawer === -->
+          <a href="#privacy" class="mobile-nav-link" data-i18n="navPrivacy">Privacy</a>
           <a href="#how-it-works" class="mobile-nav-link" data-i18n="navHowItWorks">How it works</a>
           <a href="#pricing" class="mobile-nav-link" data-i18n="navPricing">Pricing</a>
           <a href="#faq" class="mobile-nav-link" data-i18n="navFaq">FAQ</a>
@@ -299,65 +303,137 @@
             </div>
             <p class="hero-note" data-i18n="heroNote">Free starter plan · Android &amp; iOS</p>
 
-            <!-- Scan-to-Download QR Codes (Replace href & SVG/img with final App Store / Google Play QR & links) -->
-            <div class="hero-qr-box">
-              <p class="hero-qr-heading" data-i18n="heroQrTitle">Scan to download the app</p>
-              <div class="hero-qr-grid">
-                <a href="#early-access" class="hero-qr-card" aria-label="Scan QR or click for iOS App Store early access">
-                  <div class="hero-qr-frame">
-                    <svg viewBox="0 0 29 29" width="72" height="72" shape-rendering="crispEdges" aria-hidden="true">
-                      <rect width="29" height="29" fill="#FFFFFF" />
-                      <!-- Top-left finder -->
-                      <path fill="#111827" d="M1 1h7v7H1zM2 2v5h5V2z" />
-                      <rect x="3" y="3" width="3" height="3" fill="#111827" />
-                      <!-- Top-right finder -->
-                      <path fill="#111827" d="M21 1h7v7h-7zM22 2v5h5V2z" />
-                      <rect x="23" y="3" width="3" height="3" fill="#111827" />
-                      <!-- Bottom-left finder -->
-                      <path fill="#111827" d="M1 21h7v7H1zM2 22v5h5v-5z" />
-                      <rect x="3" y="23" width="3" height="3" fill="#111827" />
-                      <!-- Data modules -->
-                      <path fill="#0F5132" d="M10 2h2v2h-2zm4 0h2v3h-2zm3 1h2v2h-2zm-7 3h3v2h-3zm5 1h2v2h-2zm3 0h2v3h-2zM2 10h3v2H2zm5 0h2v3H7zm4 0h3v2h-3zm5 0h2v2h-2zm4 0h3v2h-3zm5 0h3v2h-3zM1 14h2v3H1zm4 0h3v2H5zm5 0h2v3h-2zm4 0h3v2h-3zm5 0h2v3h-2zm4 0h2v2h-2zm3 1h2v3h-2zM3 18h2v2H3zm5 0h3v2H8zm5 0h2v2h-2zm4 0h3v2h-3zm5 0h2v2h-2zM10 21h2v3h-2zm4 0h3v2h-3zm5 0h2v3h-2zm4 0h3v2h-3zM11 25h3v2h-3zm5 0h2v3h-2zm4 1h3v2h-3zm5-2h2v4h-2z" />
-                    </svg>
-                  </div>
-                  <div class="hero-qr-meta">
-                    <span class="hero-qr-os">
-                      <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true">
+            <!-- Dual-Platform App Download & QR Dock (Replace href & QR SVGs with final App Store / Google Play URLs) -->
+            <div class="hero-qr-dock">
+              <div class="hero-qr-dock-head">
+                <p class="hero-qr-heading" data-i18n="heroQrTitle">Download the mobile app</p>
+                <span class="hero-qr-compat" data-i18n="heroQrCompat">iOS 15+ · Android 10+</span>
+              </div>
+
+              <div class="hero-qr-columns">
+                <!-- iOS Column -->
+                <div class="hero-qr-col">
+                  <button
+                    type="button"
+                    class="hero-qr-trigger"
+                    data-qr-open="ios"
+                    aria-label="Enlarge iOS App Store QR code"
+                  >
+                    <span class="qr-viewfinder" aria-hidden="true">
+                      <span class="qr-corner qr-tl"></span>
+                      <span class="qr-corner qr-tr"></span>
+                      <span class="qr-corner qr-bl"></span>
+                      <span class="qr-corner qr-br"></span>
+                      <svg class="qr-matrix" viewBox="0 0 33 33" width="92" height="92" aria-hidden="true">
+                        <rect width="33" height="33" fill="#FFFFFF" />
+                        <g shape-rendering="crispEdges">
+                          <!-- Finder patterns -->
+                          <path fill="#111827" d="M1 1h7v7H1zM2 2v5h5V2zM3 3h3v3H3z" />
+                          <path fill="#111827" d="M25 1h7v7h-7zM26 2v5h5V2zM27 3h3v3h-3z" />
+                          <path fill="#111827" d="M1 25h7v7H1zM2 26v5h5v-5zM3 27h3v3H3z" />
+                          <!-- Alignment pattern -->
+                          <path fill="#111827" d="M23 23h5v5h-5zM24 24v3h3v-3z" />
+                          <rect x="25" y="25" width="1" height="1" fill="#111827" />
+                          <!-- Timing patterns -->
+                          <path fill="#0F5132" d="M9 7h1v1H9zm2 0h1v1h-1zm2 0h1v1h-1zm2 0h1v1h-1zm2 0h1v1h-1zm2 0h1v1h-1zm2 0h1v1h-1zm2 0h1v1h-1zM7 9h1v1H7zm0 2h1v1H7zm0 2h1v1H7zm0 2h1v1H7zm0 2h1v1H7zm0 2h1v1H7zm0 2h1v1H7zm0 2h1v1H7z" />
+                          <!-- High-density data modules around clean center emblem zone (12..20) -->
+                          <path fill="#0F5132" d="M9 1h2v2H9zm3 1h2v1h-2zm3-1h1v2h-1zm2 1h2v1h-2zm3-1h3v1h-3zm-9 3h2v2h-2zm3 0h1v2h-1zm3 1h2v1h-2zm3-1h2v2h-2zm-12 3h1v1H9zm4 1h2v1h-2zm4-1h2v2h-2zm4 0h2v1h-2zM1 9h2v2H1zm3 0h2v1H4zm5 0h2v2H9zm4 0h2v1h-2zm4 0h3v1h-3zm5 0h2v2h-2zm3 0h2v1h-2zm3 0h3v2h-3zM2 12h1v2H2zm3-1h1v3H5zm4 0h2v2H9zm13 0h2v2h-2zm3 1h2v1h-2zm3-1h2v2h-2zm3 1h1v2h-1zM1 15h3v1H1zm4-1h1v2H5zm4 1h2v2H9zm13-1h2v2h-2zm4 1h2v2h-2zm3-1h2v1h-2zM2 18h2v2H2zm3-1h1v2H5zm4 1h2v2H9zm13-1h2v2h-2zm3 1h1v2h-1zm3-1h3v2h-3zM1 21h2v2H1zm4 0h1v2H5zm4 1h2v1H9zm3 0h2v1h-2zm4 0h2v1h-2zm4 0h2v1h-2zm3-1h1v2h-1zm3 1h2v1h-2zm3-1h2v2h-2zM9 24h2v2H9zm3-1h2v2h-2zm3 1h2v1h-2zm3-1h2v2h-2zm3 0h1v2h-1zm8 1h2v2h-2zM10 27h2v2h-2zm3-1h1v2h-1zm3 1h2v2h-2zm3-1h2v2h-2zm3 1h1v2h-1zm7 0h2v2h-2zM9 30h2v2H9zm3 0h2v1h-2zm3 0h2v2h-2zm3 0h1v2h-1zm2 0h2v1h-2zm3-1h2v2h-2zm4 1h2v2h-2zm3-1h2v2h-2z" />
+                        </g>
+                        <!-- Center emblem -->
+                        <rect x="11.5" y="11.5" width="10" height="10" rx="2.4" fill="#FFFFFF" />
+                        <rect x="12.2" y="12.2" width="8.6" height="8.6" rx="1.8" fill="#F3F7F0" stroke="#DCE5D8" stroke-width="0.4" />
+                        <svg x="13.5" y="13.3" width="6" height="6" viewBox="0 0 24 24">
+                          <path fill="#111827" d="M16.365 1.43c0 1.14-.493 2.27-1.177 3.08-.744.9-1.99 1.57-2.987 1.57-.12 0-.23-.02-.3-.03-.01-.06-.04-.22-.04-.39 0-1.15.572-2.27 1.206-2.98.804-.94 2.142-1.64 3.248-1.68.03.13.05.28.05.43zm4.565 15.71c-.03.07-.463 1.58-1.518 3.12-.945 1.34-1.94 2.71-3.43 2.71-1.517 0-1.9-.88-3.63-.88-1.698 0-2.302.91-3.67.91-1.377 0-2.332-1.26-3.428-2.8-1.287-1.82-2.323-4.63-2.323-7.28 0-4.28 2.797-6.55 5.552-6.55 1.448 0 2.675.95 3.6.95.865 0 2.222-1.01 3.902-1.01.613 0 2.886.06 4.374 2.19-.13.09-2.383 1.37-2.383 4.19 0 3.26 2.854 4.42 2.955 4.45z" />
+                        </svg>
+                      </svg>
+                    </span>
+                    <span class="qr-zoom-badge" aria-hidden="true">
+                      <svg viewBox="0 0 20 20" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 3h5v5M8 17H3v-5M17 3l-6 6M3 17l6-6" />
+                      </svg>
+                    </span>
+                  </button>
+
+                  <div class="hero-qr-info">
+                    <span class="hero-qr-caption" data-i18n="heroQrScanIos">Scan for iPhone</span>
+                    <a href="#early-access" class="store-badge" aria-label="Download KamChi on the App Store">
+                      <svg class="store-badge-icon" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
                         <path d="M16.365 1.43c0 1.14-.493 2.27-1.177 3.08-.744.9-1.99 1.57-2.987 1.57-.12 0-.23-.02-.3-.03-.01-.06-.04-.22-.04-.39 0-1.15.572-2.27 1.206-2.98.804-.94 2.142-1.64 3.248-1.68.03.13.05.28.05.43zm4.565 15.71c-.03.07-.463 1.58-1.518 3.12-.945 1.34-1.94 2.71-3.43 2.71-1.517 0-1.9-.88-3.63-.88-1.698 0-2.302.91-3.67.91-1.377 0-2.332-1.26-3.428-2.8-1.287-1.82-2.323-4.63-2.323-7.28 0-4.28 2.797-6.55 5.552-6.55 1.448 0 2.675.95 3.6.95.865 0 2.222-1.01 3.902-1.01.613 0 2.886.06 4.374 2.19-.13.09-2.383 1.37-2.383 4.19 0 3.26 2.854 4.42 2.955 4.45z" />
                       </svg>
-                      <span>iOS</span>
-                    </span>
-                    <span class="hero-qr-store" data-i18n="heroQrIos">App Store</span>
+                      <span class="store-badge-text">
+                        <span class="store-badge-sub" data-i18n="heroQrIosSub">Download on the</span>
+                        <span class="store-badge-name" data-i18n="heroQrIos">App Store</span>
+                      </span>
+                    </a>
                   </div>
-                </a>
+                </div>
 
-                <a href="#early-access" class="hero-qr-card" aria-label="Scan QR or click for Android Google Play early access">
-                  <div class="hero-qr-frame">
-                    <svg viewBox="0 0 29 29" width="72" height="72" shape-rendering="crispEdges" aria-hidden="true">
-                      <rect width="29" height="29" fill="#FFFFFF" />
-                      <!-- Top-left finder -->
-                      <path fill="#111827" d="M1 1h7v7H1zM2 2v5h5V2z" />
-                      <rect x="3" y="3" width="3" height="3" fill="#111827" />
-                      <!-- Top-right finder -->
-                      <path fill="#111827" d="M21 1h7v7h-7zM22 2v5h5V2z" />
-                      <rect x="23" y="3" width="3" height="3" fill="#111827" />
-                      <!-- Bottom-left finder -->
-                      <path fill="#111827" d="M1 21h7v7H1zM2 22v5h5v-5z" />
-                      <rect x="3" y="23" width="3" height="3" fill="#111827" />
-                      <!-- Data modules (distinct Android pattern) -->
-                      <path fill="#0F5132" d="M10 1h3v2h-3zm5 1h2v3h-2zm3 0h2v2h-2zm-8 4h2v2h-2zm4 0h3v2h-3zm4 1h2v2h-2zM1 10h2v2H1zm4 0h3v2H5zm5 0h2v3h-2zm4 0h3v2h-3zm5 0h2v2h-2zm4 0h4v2h-4zM2 14h3v2H2zm5 0h2v3H7zm4 0h2v2h-2zm4 0h3v3h-3zm5 0h2v2h-2zm4 0h3v2h-3zM1 18h2v2H1zm4 0h2v2H5zm5 0h3v2h-3zm5 0h2v2h-2zm4 0h3v2h-3zm5 0h3v2h-3zM10 22h3v2h-3zm5-1h2v3h-2zm4 1h2v2h-2zm4-1h4v2h-4zM11 26h2v2h-2zm4-1h3v3h-3zm5 0h2v3h-2zm4 0h3v3h-3z" />
-                    </svg>
-                  </div>
-                  <div class="hero-qr-meta">
-                    <span class="hero-qr-os">
-                      <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true">
-                        <path d="M3.609 1.814L13.792 12 3.61 22.186a1.75 1.75 0 0 1-.61-1.335V3.149c0-.517.224-.998.609-1.335zm11.24 11.24l2.444 2.444-10.17 5.792 7.726-8.236zm3.337-1.91l2.893 1.648c.77.439.77 1.547 0 1.986l-2.893 1.648-2.668-2.641 2.668-2.641zM7.123 2.71l10.17 5.792-2.444 2.444L7.123 2.71z" />
+                <!-- Android Column -->
+                <div class="hero-qr-col">
+                  <button
+                    type="button"
+                    class="hero-qr-trigger"
+                    data-qr-open="android"
+                    aria-label="Enlarge Android Google Play QR code"
+                  >
+                    <span class="qr-viewfinder" aria-hidden="true">
+                      <span class="qr-corner qr-tl"></span>
+                      <span class="qr-corner qr-tr"></span>
+                      <span class="qr-corner qr-bl"></span>
+                      <span class="qr-corner qr-br"></span>
+                      <svg class="qr-matrix" viewBox="0 0 33 33" width="92" height="92" aria-hidden="true">
+                        <rect width="33" height="33" fill="#FFFFFF" />
+                        <g shape-rendering="crispEdges">
+                          <!-- Finder patterns -->
+                          <path fill="#111827" d="M1 1h7v7H1zM2 2v5h5V2zM3 3h3v3H3z" />
+                          <path fill="#111827" d="M25 1h7v7h-7zM26 2v5h5V2zM27 3h3v3h-3z" />
+                          <path fill="#111827" d="M1 25h7v7H1zM2 26v5h5v-5zM3 27h3v3H3z" />
+                          <!-- Alignment pattern -->
+                          <path fill="#111827" d="M23 23h5v5h-5zM24 24v3h3v-3z" />
+                          <rect x="25" y="25" width="1" height="1" fill="#111827" />
+                          <!-- Timing patterns -->
+                          <path fill="#0F5132" d="M9 7h1v1H9zm2 0h1v1h-1zm2 0h1v1h-1zm2 0h1v1h-1zm2 0h1v1h-1zm2 0h1v1h-1zm2 0h1v1h-1zm2 0h1v1h-1zM7 9h1v1H7zm0 2h1v1H7zm0 2h1v1H7zm0 2h1v1H7zm0 2h1v1H7zm0 2h1v1H7zm0 2h1v1H7zm0 2h1v1H7z" />
+                          <!-- Distinct high-density Android data pattern -->
+                          <path fill="#0F5132" d="M9 2h3v1H9zm4-1h2v2h-2zm3 1h2v2h-2zm3-1h2v1h-2zm3 1h2v2h-2zm-12 2h2v2h-2zm3 1h3v1h-3zm4-1h2v2h-2zm4 1h2v1h-2zm-11 2h2v1h-2zm4 0h2v2h-2zm3 0h2v1h-2zm4 0h2v2h-2zM1 10h2v1H1zm3-1h2v2H4zm5 1h2v2H9zm3-1h3v1h-3zm4 0h2v1h-2zm4 0h2v2h-2zm3 0h2v1h-2zm3 0h2v2h-2zm3 0h2v1h-2zM1 13h2v2H1zm4-1h1v2H5zm4 1h2v2H9zm13-1h2v2h-2zm3 1h2v2h-2zm4-1h2v2h-2zM2 16h2v2H2zm3-1h1v2H5zm4 1h2v1H9zm13-1h2v2h-2zm3 1h1v2h-1zm3-1h3v1h-3zM1 19h2v2H1zm3 0h2v1H4zm5 0h2v2H9zm13 0h2v1h-2zm3-1h2v2h-2zm3 1h3v2h-3zM2 22h2v1H2zm3 0h1v2H5zm4 0h3v1H9zm4 0h2v1h-2zm3 0h3v1h-3zm4 0h2v1h-2zm3 0h2v1h-2zm4 0h3v2h-3zM9 25h2v2H9zm3-1h2v2h-2zm3 1h2v2h-2zm3-1h2v2h-2zm3 1h1v2h-1zm8-1h2v2h-2zM10 28h2v2h-2zm4-1h2v2h-2zm3 1h2v1h-2zm3-1h2v2h-2zm8 1h2v2h-2zM9 31h2v1H9zm3-1h2v2h-2zm3 1h2v1h-2zm3-1h2v2h-2zm3 1h2v1h-2zm3-1h2v2h-2zm4 0h2v2h-2z" />
+                        </g>
+                        <!-- Center emblem -->
+                        <rect x="11.5" y="11.5" width="10" height="10" rx="2.4" fill="#FFFFFF" />
+                        <rect x="12.2" y="12.2" width="8.6" height="8.6" rx="1.8" fill="#F3F7F0" stroke="#DCE5D8" stroke-width="0.4" />
+                        <svg x="13.7" y="13.5" width="5.8" height="5.8" viewBox="0 0 24 24">
+                          <path fill="#00C853" d="M3.61 1.814L13.79 12 3.61 22.186a1.75 1.75 0 0 1-.61-1.335V3.149c0-.517.224-.998.61-1.335z" />
+                          <path fill="#00B0FF" d="M13.79 12l2.74-2.74-9.41-5.36A1.7 1.7 0 0 0 3.61 1.814L13.79 12z" />
+                          <path fill="#FF3D00" d="M16.53 14.74L13.79 12 3.61 22.186a1.7 1.7 0 0 0 3.51-2.086l9.41-5.36z" />
+                          <path fill="#FFC400" d="M21.08 10.99l-4.55-2.59L13.79 12l2.74 2.74 4.55-2.59c.77-.44.77-1.72 0-1.16z" />
+                        </svg>
                       </svg>
-                      <span>Android</span>
                     </span>
-                    <span class="hero-qr-store" data-i18n="heroQrAndroid">Google Play</span>
+                    <span class="qr-zoom-badge" aria-hidden="true">
+                      <svg viewBox="0 0 20 20" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 3h5v5M8 17H3v-5M17 3l-6 6M3 17l6-6" />
+                      </svg>
+                    </span>
+                  </button>
+
+                  <div class="hero-qr-info">
+                    <span class="hero-qr-caption" data-i18n="heroQrScanAndroid">Scan for Android</span>
+                    <a href="#early-access" class="store-badge" aria-label="Get KamChi on Google Play">
+                      <svg class="store-badge-icon" viewBox="0 0 24 24" width="21" height="21" aria-hidden="true">
+                        <path fill="#00E676" d="M3.61 1.814L13.79 12 3.61 22.186a1.75 1.75 0 0 1-.61-1.335V3.149c0-.517.224-.998.61-1.335z" />
+                        <path fill="#00B0FF" d="M13.79 12l2.74-2.74-9.41-5.36A1.7 1.7 0 0 0 3.61 1.814L13.79 12z" />
+                        <path fill="#FF3D00" d="M16.53 14.74L13.79 12 3.61 22.186a1.7 1.7 0 0 0 3.51-2.086l9.41-5.36z" />
+                        <path fill="#FFC400" d="M21.08 11.01l-4.55-2.61L13.79 12l2.74 2.74 4.55-2.59c.77-.44.77-.7 0-1.14z" />
+                      </svg>
+                      <span class="store-badge-text">
+                        <span class="store-badge-sub" data-i18n="heroQrAndroidSub">Get it on</span>
+                        <span class="store-badge-name" data-i18n="heroQrAndroid">Google Play</span>
+                      </span>
+                    </a>
                   </div>
-                </a>
+                </div>
+              </div>
+
+              <div class="hero-qr-foot">
+                <span class="hero-qr-hint" data-i18n="heroQrEnlarge">Tap a QR code to enlarge for scanning</span>
               </div>
             </div>
           </div>
@@ -682,6 +758,279 @@
       </section>
 
       <!-- =====================================================================
+           === CHANGED: 5b. PRIVACY AND SECURITY SECTION ===
+           ===================================================================== -->
+      <section class="section reveal" id="privacy" aria-labelledby="privacyTitle">
+        <div class="container">
+          <div class="section-head">
+            <p class="section-kicker" data-i18n="privKicker">Privacy and security</p>
+            <h2 class="section-title" id="privacyTitle" data-i18n="privTitle">
+              Your borrowers' data stays on your phone. KamChi never sees it.
+            </h2>
+            <p class="section-lead" data-i18n="privLead">
+              As a lender, you handle sensitive names, ID photos, and payment records. KamChi is built so your borrower records stay on your phone—not on our servers.
+            </p>
+          </div>
+
+          <!-- 1. Visual Split Diagram: On Your Device vs. On KamChi's Server -->
+          <div class="privacy-split-diagram">
+            <div class="privacy-split-side is-device">
+              <div class="privacy-side-head">
+                <div class="privacy-side-icon is-device" role="img" aria-label="Phone storage icon">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="6" y="2" width="12" height="20" rx="2.5"></rect>
+                    <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                  </svg>
+                </div>
+                <div>
+                  <span class="privacy-side-kicker" data-i18n="privDevKicker">Stored locally</span>
+                  <h3 class="privacy-side-title" data-i18n="privDevTitle">On your device</h3>
+                </div>
+              </div>
+
+              <ul class="privacy-diagram-list">
+                <li>
+                  <svg class="privacy-check-icon" viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="4 10.5 8 14.5 16 6.5"></polyline>
+                  </svg>
+                  <span data-i18n="privDevItem1">Borrower names and phone numbers</span>
+                </li>
+                <li>
+                  <svg class="privacy-check-icon" viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="4 10.5 8 14.5 16 6.5"></polyline>
+                  </svg>
+                  <span data-i18n="privDevItem2">National ID photos</span>
+                </li>
+                <li>
+                  <svg class="privacy-check-icon" viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="4 10.5 8 14.5 16 6.5"></polyline>
+                  </svg>
+                  <span data-i18n="privDevItem3">Loan amounts and repayment schedules</span>
+                </li>
+                <li>
+                  <svg class="privacy-check-icon" viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="4 10.5 8 14.5 16 6.5"></polyline>
+                  </svg>
+                  <span data-i18n="privDevItem4">Payment records and receipts</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="privacy-split-divider">
+              <div class="privacy-boundary-mark">
+                <span class="privacy-boundary-icon" role="img" aria-label="Separation boundary icon">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="3" y="11" width="18" height="10" rx="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                  </svg>
+                </span>
+                <span class="privacy-boundary-text" data-i18n="privBoundaryLabel">Never uploaded</span>
+              </div>
+            </div>
+
+            <div class="privacy-split-side is-server">
+              <div class="privacy-side-head">
+                <div class="privacy-side-icon is-server" role="img" aria-label="Server icon">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="3" y="4" width="18" height="6" rx="1.5"></rect>
+                    <rect x="3" y="14" width="18" height="6" rx="1.5"></rect>
+                    <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                    <line x1="7" y1="17" x2="7.01" y2="17"></line>
+                  </svg>
+                </div>
+                <div>
+                  <span class="privacy-side-kicker" data-i18n="privSrvKicker">License check only</span>
+                  <h3 class="privacy-side-title" data-i18n="privSrvTitle">On KamChi's server</h3>
+                </div>
+              </div>
+
+              <ul class="privacy-diagram-list">
+                <li>
+                  <svg class="privacy-server-dot" viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                    <circle cx="10" cy="10" r="3"></circle>
+                  </svg>
+                  <span data-i18n="privSrvItem1">Your license key</span>
+                </li>
+                <li>
+                  <svg class="privacy-server-dot" viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                    <circle cx="10" cy="10" r="3"></circle>
+                  </svg>
+                  <span data-i18n="privSrvItem2">Your plan</span>
+                </li>
+                <li>
+                  <svg class="privacy-server-dot" viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                    <circle cx="10" cy="10" r="3"></circle>
+                  </svg>
+                  <span data-i18n="privSrvItem3">Expiry date</span>
+                </li>
+                <li>
+                  <svg class="privacy-server-dot" viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                    <circle cx="10" cy="10" r="3"></circle>
+                  </svg>
+                  <span data-i18n="privSrvItem4">Device ID</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 2. Four Trust Points -->
+          <div class="privacy-trust-grid">
+            <article class="privacy-trust-card">
+              <div class="feature-icon" role="img" aria-label="Local storage protection icon">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+              </div>
+              <h3 class="feature-title" data-i18n="privT1Title">We never hold borrower data</h3>
+              <p class="feature-desc" data-i18n="privT1Desc">
+                Names, ID photos, and loan amounts stay on your phone and are never uploaded to KamChi.
+              </p>
+            </article>
+
+            <article class="privacy-trust-card">
+              <div class="feature-icon" role="img" aria-label="PIN and biometric lock icon">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+              </div>
+              <h3 class="feature-title" data-i18n="privT2Title">Lock it down</h3>
+              <p class="feature-desc" data-i18n="privT2Desc">
+                Protect the app with a PIN or your phone's fingerprint or face lock before anyone can open it.
+              </p>
+            </article>
+
+            <article class="privacy-trust-card">
+              <div class="feature-icon" role="img" aria-label="Offline mode icon">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M2 8.82a15 15 0 0 1 20 0"></path>
+                  <path d="M5 12.859a10 10 0 0 1 14 0"></path>
+                  <path d="M8.5 16.429a5 5 0 0 1 7 0"></path>
+                  <line x1="2" y1="2" x2="22" y2="22"></line>
+                </svg>
+              </div>
+              <h3 class="feature-title" data-i18n="privT3Title">Works offline</h3>
+              <p class="feature-desc" data-i18n="privT3Desc">
+                After activating your license once, you do not need internet to add loans or record payments.
+              </p>
+            </article>
+
+            <article class="privacy-trust-card">
+              <div class="feature-icon" role="img" aria-label="Export control icon">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+              </div>
+              <h3 class="feature-title" data-i18n="privT4Title">You stay in control</h3>
+              <p class="feature-desc" data-i18n="privT4Desc">
+                Export your records any time, even if your license expires and the app is in read-only mode.
+              </p>
+            </article>
+          </div>
+
+          <!-- 3. Backups Responsibility & Honest Collection List -->
+          <div class="privacy-notes-grid">
+            <div class="privacy-note-card">
+              <div class="privacy-note-head">
+                <span class="privacy-note-icon" role="img" aria-label="Encrypted backup file icon">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <path d="M12 18v-5"></path>
+                    <path d="M9.5 15.5 12 13l2.5 2.5"></path>
+                  </svg>
+                </span>
+                <h3 class="privacy-note-title" data-i18n="privBackupTitle">You are in charge of your backups</h3>
+              </div>
+              <p class="privacy-note-desc" data-i18n="privBackupDesc">
+                Backups are encrypted and saved where you choose—as a file on your device, in your own cloud drive, or in your Telegram. A lost phone without a backup means lost records, so back up often.
+              </p>
+            </div>
+
+            <div class="privacy-note-card">
+              <div class="privacy-note-head">
+                <span class="privacy-note-icon" role="img" aria-label="Minimal collection list icon">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="8" y1="6" x2="21" y2="6"></line>
+                    <line x1="8" y1="12" x2="21" y2="12"></line>
+                    <line x1="8" y1="18" x2="21" y2="18"></line>
+                    <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                    <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                    <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                  </svg>
+                </span>
+                <h3 class="privacy-note-title" data-i18n="privCollectTitle">What we do collect</h3>
+              </div>
+              <ul class="privacy-collect-list">
+                <li data-i18n="privCollect1">Your license key</li>
+                <li data-i18n="privCollect2">Your plan and expiry date</li>
+                <li data-i18n="privCollect3">Your device ID</li>
+                <li data-i18n="privCollect4">The email, phone number, or Telegram handle you give us when you buy</li>
+              </ul>
+              <p class="privacy-collect-none" data-i18n="privCollectNone">Nothing else.</p>
+            </div>
+          </div>
+
+          <!-- 4. Short Privacy FAQ (3 Questions) + Policy Page Link -->
+          <div class="privacy-faq-wrap">
+            <h3 class="privacy-faq-heading" data-i18n="privFaqHeading">Common privacy questions</h3>
+
+            <div class="faq-list">
+              <div class="faq-item">
+                <button type="button" class="faq-question" aria-expanded="false" aria-controls="priv-faq-a1" id="priv-faq-q1">
+                  <span data-i18n="privFaq1Q">Can KamChi see my borrowers?</span>
+                  <svg class="faq-chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="faq-answer" id="priv-faq-a1" role="region" aria-labelledby="priv-faq-q1" hidden>
+                  <p data-i18n="privFaq1A">
+                    No. Borrower names, phone numbers, ID photos, loan amounts, and payment records stay on your phone. KamChi only sees your license key, plan, expiry date, and device ID.
+                  </p>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button type="button" class="faq-question" aria-expanded="false" aria-controls="priv-faq-a2" id="priv-faq-q2">
+                  <span data-i18n="privFaq2Q">What happens to my data if I uninstall?</span>
+                  <svg class="faq-chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="faq-answer" id="priv-faq-a2" role="region" aria-labelledby="priv-faq-q2" hidden>
+                  <p data-i18n="privFaq2A">
+                    Because your records stay on your phone, uninstalling the app removes local data from that device. Always save an encrypted backup before uninstalling or switching phones so you can restore your records.
+                  </p>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button type="button" class="faq-question" aria-expanded="false" aria-controls="priv-faq-a3" id="priv-faq-q3">
+                  <span data-i18n="privFaq3Q">Do you share data with anyone?</span>
+                  <svg class="faq-chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="faq-answer" id="priv-faq-a3" role="region" aria-labelledby="priv-faq-q3" hidden>
+                  <p data-i18n="privFaq3A">
+                    No. We do not sell, rent, or share your license or contact details with advertisers, credit agencies, or third parties. And because borrower records stay on your phone, we never have them to share.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="privacy-policy-bar">
+              <span class="privacy-policy-prompt" data-i18n="privPolicyPrompt">Want the full details?</span>
+              <a href="privacy.html" class="btn btn-outline btn-sm" data-i18n="privPolicyLink">Read Privacy Policy</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
            6. HOW IT WORKS (3 STEPS)
            ===================================================================== -->
       <section class="section reveal" id="how-it-works">
@@ -903,80 +1252,377 @@
       </section>
 
       <!-- =====================================================================
-           9. PRICING
+           === CHANGED: 9. PRICING SECTION (LICENSE KEY MODEL) ===
            ===================================================================== -->
       <section class="section section-alt reveal" id="pricing">
         <div class="container">
           <div class="section-head pricing-head">
             <div>
-              <p class="section-kicker" data-i18n="priceKicker">Transparent pricing</p>
-              <h2 class="section-title" data-i18n="priceTitle">Start free, upgrade as your book grows</h2>
-              <p class="section-lead" data-i18n="priceLead">Placeholder launch pricing. Early access members lock in founding rates.</p>
+              <p class="section-kicker" data-i18n="priceKicker">Simple license pricing</p>
+              <h2 class="section-title" data-i18n="priceTitle">Start free. Unlock full power with a license key.</h2>
+              <p class="section-lead" data-i18n="priceLead">
+                Pay via ABA, KHQR, or cash and receive your key on Telegram. Activate once online, then work offline.
+              </p>
             </div>
 
-            <div class="billing-toggle" role="group" aria-label="Billing period">
-              <button type="button" class="billing-btn is-active" data-billing="monthly" aria-pressed="true" data-i18n="billMonthly">Monthly</button>
-              <button type="button" class="billing-btn" data-billing="yearly" aria-pressed="false" data-i18n="billYearly">Yearly · Save 20%</button>
+            <div class="billing-toggle" role="tablist" aria-label="Billing period" id="billingTablist">
+              <button
+                type="button"
+                class="billing-btn is-active"
+                role="tab"
+                id="tab-monthly"
+                aria-selected="true"
+                tabindex="0"
+                data-billing="monthly"
+                data-i18n="billMonthly"
+              >
+                Monthly
+              </button>
+              <button
+                type="button"
+                class="billing-btn"
+                role="tab"
+                id="tab-yearly"
+                aria-selected="false"
+                tabindex="-1"
+                data-billing="yearly"
+              >
+                <span data-i18n="billYearlyLabel">Yearly</span>
+                <span class="save-badge" data-i18n="billSaveBadge">Save 20%</span>
+              </button>
+              <button
+                type="button"
+                class="billing-btn"
+                role="tab"
+                id="tab-lifetime"
+                aria-selected="false"
+                tabindex="-1"
+                data-billing="lifetime"
+                data-i18n="billLifetime"
+              >
+                Lifetime
+              </button>
             </div>
           </div>
 
-          <div class="pricing-grid">
-            <article class="price-card">
+          <!-- Plan Cards (Pro stacks first on mobile via CSS order) -->
+          <div class="pricing-grid" id="pricingGrid" role="tabpanel" aria-labelledby="tab-monthly">
+            <article class="price-card" data-plan-card="free">
               <div class="price-tier" data-i18n="planFreeName">Free</div>
               <div class="price-amount">
-                <span class="price-figure tabular-nums" data-price-monthly="$0" data-price-yearly="$0">$0</span>
-                <span class="price-period" data-i18n="perMonth">/ month</span>
+                <span class="price-figure tabular-nums" data-plan-usd="free">$0</span>
+                <span class="price-period" data-plan-period="free" data-i18n="periodFree">Forever free</span>
               </div>
-              <p class="price-summary" data-i18n="planFreeDesc">For individuals lending to a few trusted contacts.</p>
+              <div class="price-khr tabular-nums" data-plan-khr="free">៛ 0 KHR</div>
+              <p class="price-summary" data-i18n="planFreeDesc">Start immediately with core tools—no license key needed.</p>
               <ul class="price-features">
                 <li data-i18n="planFreeF1">Up to 10 active loans</li>
-                <li data-i18n="planFreeF2">Borrower ID &amp; guarantor profiles</li>
-                <li data-i18n="planFreeF3">USD &amp; KHR tracking + offline mode</li>
-                <li data-i18n="planFreeF4">PIN lock protection</li>
+                <li data-i18n="planFreeF2">1 device</li>
+                <li data-i18n="planFreeF3">Core borrower &amp; repayment ledger</li>
+                <li data-i18n="planFreeF4">No key needed</li>
               </ul>
-              <a href="#early-access" class="btn btn-outline btn-block btn-pricing" data-select-plan="Under $5,000" data-i18n="planFreeCta">Join free beta</a>
+              <a href="#early-access" class="btn btn-outline btn-block btn-pricing" data-select-plan="Under $5,000" data-i18n="planFreeCta">Start free</a>
             </article>
 
-            <article class="price-card is-featured">
+            <article class="price-card is-featured" data-plan-card="pro">
               <div class="price-tier-row">
                 <span class="price-tier" data-i18n="planProName">Pro</span>
                 <span class="price-note" data-i18n="planPopular">Most popular</span>
               </div>
               <div class="price-amount">
-                <span class="price-figure tabular-nums" data-price-monthly="$7" data-price-yearly="$5.50">$7</span>
-                <span class="price-period" data-i18n="perMonth">/ month</span>
+                <span class="price-figure tabular-nums" data-plan-usd="pro">$5</span>
+                <span class="price-period" data-plan-period="pro" data-i18n="perMonth">/ month</span>
               </div>
-              <p class="price-summary" data-i18n="planProDesc">For active personal lenders managing regular collections.</p>
+              <div class="price-khr tabular-nums" data-plan-khr="pro">≈ 20,500 ៛</div>
+              <p class="price-summary" data-i18n="planProDesc">Full license for individual lenders managing active collections.</p>
               <ul class="price-features">
-                <li data-i18n="planProF1">Unlimited borrowers &amp; loans</li>
-                <li data-i18n="planProF2">Digital receipts &amp; overdue alerts</li>
-                <li data-i18n="planProF3">Encrypted cloud backup &amp; restore</li>
-                <li data-i18n="planProF4">Monthly profit &amp; collection reports</li>
+                <li data-i18n="planProF1">Unlimited loans &amp; borrowers</li>
+                <li data-i18n="planProF2">2 devices per license key</li>
+                <li data-i18n="planProF3">Reports &amp; CSV/PDF export</li>
+                <li data-i18n="planProF4">Backup &amp; restore</li>
+                <li data-i18n="planProF5">Telegram reminders</li>
+                <li data-i18n="planProF6">USD and KHR support</li>
               </ul>
-              <a href="#early-access" class="btn btn-primary btn-block btn-pricing" data-select-plan="$5,000 – $25,000" data-i18n="planProCta">Reserve Pro access</a>
+              <a
+                href="https://t.me/YOUR_USERNAME"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-primary btn-block btn-pricing"
+                data-buy-plan="pro"
+                data-i18n="buyLicenseBtn"
+              >
+                Buy license
+              </a>
             </article>
 
-            <article class="price-card">
+            <article class="price-card" data-plan-card="business">
               <div class="price-tier" data-i18n="planBizName">Business</div>
               <div class="price-amount">
-                <span class="price-figure tabular-nums" data-price-monthly="$19" data-price-yearly="$15">$19</span>
-                <span class="price-period" data-i18n="perMonth">/ month</span>
+                <span class="price-figure tabular-nums" data-plan-usd="business">$15</span>
+                <span class="price-period" data-plan-period="business" data-i18n="perMonth">/ month</span>
               </div>
-              <p class="price-summary" data-i18n="planBizDesc">For family offices and small lending teams with collectors.</p>
+              <div class="price-khr tabular-nums" data-plan-khr="business">≈ 61,500 ៛</div>
+              <p class="price-summary" data-i18n="planBizDesc">For family lending offices and teams expanding operations.</p>
               <ul class="price-features">
                 <li data-i18n="planBizF1">Everything in Pro</li>
-                <li data-i18n="planBizF2">Up to 5 staff collector accounts</li>
-                <li data-i18n="planBizF3">Printable Khmer/English contracts</li>
-                <li data-i18n="planBizF4">Priority Telegram &amp; phone support</li>
+                <li data-i18n="planBizF2">5 devices per license key</li>
+                <li>
+                  <span data-i18n="planBizF3">Staff accounts</span>
+                  <span class="coming-soon-tag" data-i18n="comingSoonTag">(Coming soon)</span>
+                </li>
+                <li>
+                  <span data-i18n="planBizF4">Printable loan contracts</span>
+                  <span class="coming-soon-tag" data-i18n="comingSoonTag">(Coming soon)</span>
+                </li>
               </ul>
-              <a href="#early-access" class="btn btn-outline btn-block btn-pricing" data-select-plan="$25,000 – $100,000" data-i18n="planBizCta">Request Business beta</a>
+              <a
+                href="https://t.me/YOUR_USERNAME"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-outline btn-block btn-pricing"
+                data-buy-plan="business"
+                data-i18n="buyLicenseBtn"
+              >
+                Buy license
+              </a>
             </article>
+          </div>
+
+          <p class="pricing-placeholder-note" data-i18n="pricePlaceholderNote">
+            Prices are placeholders and may adjust at public launch.
+          </p>
+
+          <!-- Feature Comparison Table (Horizontally scrollable on mobile) -->
+          <div class="license-block">
+            <h3 class="license-subtitle" data-i18n="compTitle">Compare plans</h3>
+            <div class="compare-table-wrap" tabindex="0" role="region" aria-label="Plan feature comparison">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th scope="col" data-i18n="compFeatureCol">Feature</th>
+                    <th scope="col" data-i18n="planFreeName">Free</th>
+                    <th scope="col" class="is-pro-col" data-i18n="planProName">Pro</th>
+                    <th scope="col" data-i18n="planBizName">Business</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row" data-i18n="compRowLoans">Active loans</th>
+                    <td class="tabular-nums" data-i18n="compVal10Loans">Up to 10</td>
+                    <td class="is-pro-col" data-i18n="compValUnlimited">Unlimited</td>
+                    <td data-i18n="compValUnlimited">Unlimited</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" data-i18n="compRowDevices">Devices per key</th>
+                    <td class="tabular-nums" data-i18n="compVal1Dev">1 device</td>
+                    <td class="is-pro-col tabular-nums" data-i18n="compVal2Dev">2 devices</td>
+                    <td class="tabular-nums" data-i18n="compVal5Dev">5 devices</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" data-i18n="compRowCore">Core ledger, schedules &amp; receipts</th>
+                    <td>
+                      <span class="table-check" aria-hidden="true">✓</span>
+                      <span class="sr-only" data-i18n="srIncluded">Included</span>
+                    </td>
+                    <td class="is-pro-col">
+                      <span class="table-check" aria-hidden="true">✓</span>
+                      <span class="sr-only" data-i18n="srIncluded">Included</span>
+                    </td>
+                    <td>
+                      <span class="table-check" aria-hidden="true">✓</span>
+                      <span class="sr-only" data-i18n="srIncluded">Included</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row" data-i18n="compRowCurrency">USD &amp; KHR support</th>
+                    <td>
+                      <span class="table-check" aria-hidden="true">✓</span>
+                      <span class="sr-only" data-i18n="srIncluded">Included</span>
+                    </td>
+                    <td class="is-pro-col">
+                      <span class="table-check" aria-hidden="true">✓</span>
+                      <span class="sr-only" data-i18n="srIncluded">Included</span>
+                    </td>
+                    <td>
+                      <span class="table-check" aria-hidden="true">✓</span>
+                      <span class="sr-only" data-i18n="srIncluded">Included</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row" data-i18n="compRowOffline">Offline mode after activation</th>
+                    <td>
+                      <span class="table-check" aria-hidden="true">✓</span>
+                      <span class="sr-only" data-i18n="srIncluded">Included</span>
+                    </td>
+                    <td class="is-pro-col">
+                      <span class="table-check" aria-hidden="true">✓</span>
+                      <span class="sr-only" data-i18n="srIncluded">Included</span>
+                    </td>
+                    <td>
+                      <span class="table-check" aria-hidden="true">✓</span>
+                      <span class="sr-only" data-i18n="srIncluded">Included</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row" data-i18n="compRowReports">Reports &amp; data export</th>
+                    <td>
+                      <span class="table-dash" aria-hidden="true">—</span>
+                      <span class="sr-only" data-i18n="srNotIncluded">Not included</span>
+                    </td>
+                    <td class="is-pro-col">
+                      <span class="table-check" aria-hidden="true">✓</span>
+                      <span class="sr-only" data-i18n="srIncluded">Included</span>
+                    </td>
+                    <td>
+                      <span class="table-check" aria-hidden="true">✓</span>
+                      <span class="sr-only" data-i18n="srIncluded">Included</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row" data-i18n="compRowBackup">Backup &amp; restore</th>
+                    <td>
+                      <span class="table-dash" aria-hidden="true">—</span>
+                      <span class="sr-only" data-i18n="srNotIncluded">Not included</span>
+                    </td>
+                    <td class="is-pro-col">
+                      <span class="table-check" aria-hidden="true">✓</span>
+                      <span class="sr-only" data-i18n="srIncluded">Included</span>
+                    </td>
+                    <td>
+                      <span class="table-check" aria-hidden="true">✓</span>
+                      <span class="sr-only" data-i18n="srIncluded">Included</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row" data-i18n="compRowTelegram">Telegram payment reminders</th>
+                    <td>
+                      <span class="table-dash" aria-hidden="true">—</span>
+                      <span class="sr-only" data-i18n="srNotIncluded">Not included</span>
+                    </td>
+                    <td class="is-pro-col">
+                      <span class="table-check" aria-hidden="true">✓</span>
+                      <span class="sr-only" data-i18n="srIncluded">Included</span>
+                    </td>
+                    <td>
+                      <span class="table-check" aria-hidden="true">✓</span>
+                      <span class="sr-only" data-i18n="srIncluded">Included</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <span data-i18n="compRowStaff">Staff accounts</span>
+                      <span class="coming-soon-tag" data-i18n="comingSoonTag">(Coming soon)</span>
+                    </th>
+                    <td>
+                      <span class="table-dash" aria-hidden="true">—</span>
+                      <span class="sr-only" data-i18n="srNotIncluded">Not included</span>
+                    </td>
+                    <td class="is-pro-col">
+                      <span class="table-dash" aria-hidden="true">—</span>
+                      <span class="sr-only" data-i18n="srNotIncluded">Not included</span>
+                    </td>
+                    <td>
+                      <span class="table-check" aria-hidden="true">✓</span>
+                      <span class="sr-only" data-i18n="srIncluded">Included</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <span data-i18n="compRowContracts">Printable loan contracts</span>
+                      <span class="coming-soon-tag" data-i18n="comingSoonTag">(Coming soon)</span>
+                    </th>
+                    <td>
+                      <span class="table-dash" aria-hidden="true">—</span>
+                      <span class="sr-only" data-i18n="srNotIncluded">Not included</span>
+                    </td>
+                    <td class="is-pro-col">
+                      <span class="table-dash" aria-hidden="true">—</span>
+                      <span class="sr-only" data-i18n="srNotIncluded">Not included</span>
+                    </td>
+                    <td>
+                      <span class="table-check" aria-hidden="true">✓</span>
+                      <span class="sr-only" data-i18n="srIncluded">Included</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- How to Get Your License (4-Step Strip) -->
+          <div class="license-block">
+            <h3 class="license-subtitle" data-i18n="howLicTitle">How to get your license</h3>
+            <div class="license-steps-grid">
+              <article class="license-step-card">
+                <div class="license-step-num tabular-nums">01</div>
+                <h4 class="license-step-title" data-i18n="licStep1Title">Choose a plan</h4>
+                <p class="license-step-desc" data-i18n="licStep1Desc">Pick Pro or Business and select Monthly, Yearly, or Lifetime.</p>
+              </article>
+              <article class="license-step-card">
+                <div class="license-step-num tabular-nums">02</div>
+                <h4 class="license-step-title" data-i18n="licStep2Title">Pay with ABA, KHQR, or cash</h4>
+                <p class="license-step-desc" data-i18n="licStep2Desc">Complete your simple transfer via ABA, KHQR, or local cash.</p>
+              </article>
+              <article class="license-step-card">
+                <div class="license-step-num tabular-nums">03</div>
+                <h4 class="license-step-title" data-i18n="licStep3Title">Receive your key on Telegram</h4>
+                <p class="license-step-desc" data-i18n="licStep3Desc">We send your personal KAMCHI license key directly in Telegram.</p>
+              </article>
+              <article class="license-step-card">
+                <div class="license-step-num tabular-nums">04</div>
+                <h4 class="license-step-title" data-i18n="licStep4Title">Enter it in KamChi</h4>
+                <p class="license-step-desc" data-i18n="licStep4Desc">Activate once while online—then use KamChi offline anywhere.</p>
+              </article>
+            </div>
+          </div>
+
+          <!-- Key Format Demo & 3-Point License Trust Box -->
+          <div class="license-bottom-grid">
+            <!-- NOTE: Format check only for demo UX. Real license validation happens inside the KamChi app, never on this static page. -->
+            <div class="license-key-box">
+              <h3 class="license-box-title" data-i18n="haveKeyTitle">Have a key?</h3>
+              <p class="license-box-desc" data-i18n="haveKeyDesc">
+                Preview how a KamChi license key looks. Enter yours in the mobile app under Settings &gt; License.
+              </p>
+              <form id="keyFormatForm" class="key-format-form" novalidate>
+                <label for="licenseKeyInput" class="sr-only" data-i18n="haveKeyLabel">License key format preview</label>
+                <input
+                  type="text"
+                  id="licenseKeyInput"
+                  class="key-input"
+                  autocomplete="off"
+                  spellcheck="false"
+                  data-i18n-placeholder="haveKeyPlaceholder"
+                  placeholder="KAMCHI-PRO-XXXX-XXXX-XXXX"
+                />
+                <button type="submit" class="btn btn-outline btn-sm" data-i18n="haveKeyBtn">Check format</button>
+              </form>
+              <p class="key-format-feedback" id="keyFormatFeedback" aria-live="polite"></p>
+            </div>
+
+            <div class="license-trust-box">
+              <h3 class="license-box-title" data-i18n="licTrustTitle">Built for peace of mind</h3>
+              <ul class="license-trust-list">
+                <li>
+                  <strong data-i18n="licTrust1Title">Your data stays on your device</strong>
+                  <span data-i18n="licTrust1Desc">Loan records live locally on your phone. Back up regularly so nothing is lost.</span>
+                </li>
+                <li>
+                  <strong data-i18n="licTrust2Title">Works offline after activation</strong>
+                  <span data-i18n="licTrust2Desc">Activates once online and checks in every 7–14 days. Full offline use in between.</span>
+                </li>
+                <li>
+                  <strong data-i18n="licTrust3Title">Your records are never locked if a license expires</strong>
+                  <span data-i18n="licTrust3Desc">The app switches to read-only mode so every record stays visible and exportable.</span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
 
       <!-- =====================================================================
-           10. FAQ ACCORDION
+           === CHANGED: 10. FAQ ACCORDION (LICENSE KEY QUESTIONS) ===
            ===================================================================== -->
       <section class="section reveal" id="faq">
         <div class="container faq-container">
@@ -988,61 +1634,73 @@
           <div class="faq-list">
             <div class="faq-item">
               <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-a1" id="faq-q1">
-                <span data-i18n="faq1Q">Is KamChi free to use?</span>
+                <span data-i18n="faq1Q">How do I get a key?</span>
                 <svg class="faq-chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>
               </button>
               <div class="faq-answer" id="faq-a1" role="region" aria-labelledby="faq-q1" hidden>
-                <p data-i18n="faq1A">Yes. KamChi includes a Free plan for up to 10 active loans with full USD and KHR tracking, offline access, and PIN lock. Paid plans unlock unlimited loans, cloud backup, and team accounts.</p>
+                <p data-i18n="faq1A">Choose Pro or Business above, pay by ABA, KHQR, or cash, and message us on Telegram. You will receive a personal license key (such as KAMCHI-PRO-XXXX-XXXX-XXXX) to paste into the app.</p>
               </div>
             </div>
 
             <div class="faq-item">
               <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-a2" id="faq-q2">
-                <span data-i18n="faq2Q">Is my borrower and loan data safe?</span>
+                <span data-i18n="faq2Q">How many devices can I use?</span>
                 <svg class="faq-chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>
               </button>
               <div class="faq-answer" id="faq-a2" role="region" aria-labelledby="faq-q2" hidden>
-                <p data-i18n="faq2A">Your records stay private on your device behind a 6-digit PIN lock. When cloud backup is enabled, data is encrypted so only your account can read or restore it.</p>
+                <p data-i18n="faq2A">Free works on 1 device with no key needed. A Pro license activates on up to 2 devices, and a Business license activates on up to 5 devices.</p>
               </div>
             </div>
 
             <div class="faq-item">
               <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-a3" id="faq-q3">
-                <span data-i18n="faq3Q">Does it work offline without internet?</span>
+                <span data-i18n="faq3Q">What happens when my license expires?</span>
                 <svg class="faq-chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>
               </button>
               <div class="faq-answer" id="faq-a3" role="region" aria-labelledby="faq-q3" hidden>
-                <p data-i18n="faq3A">Yes. You can add borrowers, create loans, and record payments with zero mobile data. Everything saves locally first and syncs automatically once you are back online.</p>
+                <p data-i18n="faq3A">KamChi switches to read-only mode. Your borrower profiles, payment history, and balances remain visible and exportable—your existing data is never locked or deleted.</p>
               </div>
             </div>
 
             <div class="faq-item">
               <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-a4" id="faq-q4">
-                <span data-i18n="faq4Q">Can I use the app completely in Khmer?</span>
+                <span data-i18n="faq4Q">What if I lose my phone?</span>
                 <svg class="faq-chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>
               </button>
               <div class="faq-answer" id="faq-a4" role="region" aria-labelledby="faq-q4" hidden>
-                <p data-i18n="faq4A">Yes. Every screen, receipt, and report works in clear, natural Khmer or English, and you can switch languages anytime with one tap.</p>
+                <p data-i18n="faq4A">You can restore your loan records from your latest backup file, and we can remove the lost device from your license so you can activate your key on a new phone.</p>
               </div>
             </div>
 
             <div class="faq-item">
               <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-a5" id="faq-q5">
-                <span data-i18n="faq5Q">Can my staff or collectors use it too?</span>
+                <span data-i18n="faq5Q">Does it work offline without internet?</span>
                 <svg class="faq-chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>
               </button>
               <div class="faq-answer" id="faq-a5" role="region" aria-labelledby="faq-q5" hidden>
-                <p data-i18n="faq5A">Multi-staff accounts with collector permissions are part of the Business plan in Phase 3, letting team members log daily collections while you keep full control over settings and reports.</p>
+                <p data-i18n="faq5A">Yes. Your license activates once online and then works completely offline. KamChi only checks your license status online about every 7 to 14 days.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-a6" id="faq-q6">
+                <span data-i18n="faq6Q">Can I use the app completely in Khmer?</span>
+                <svg class="faq-chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="faq-answer" id="faq-a6" role="region" aria-labelledby="faq-q6" hidden>
+                <p data-i18n="faq6A">Yes. Every screen, receipt, and report works in clear, natural Khmer or English, and you can switch languages anytime with one tap.</p>
               </div>
             </div>
           </div>
@@ -1050,7 +1708,7 @@
       </section>
 
       <!-- =====================================================================
-           11. EARLY ACCESS FORM
+           === CHANGED: 11. EARLY ACCESS FORM (DISCOUNTED LICENSE COPY) ===
            GITHUB PAGES BACKEND NOTE:
            Because GitHub Pages hosts static files only, connect this form using:
            Option A (Formspree): Set action="https://formspree.io/f/YOUR_FORM_ID"
@@ -1062,15 +1720,15 @@
         <div class="container">
           <div class="early-grid">
             <div class="early-copy">
-              <p class="section-kicker" data-i18n="formKicker">Early access</p>
-              <h2 class="section-title" data-i18n="formTitle">Get invited to the KamChi beta</h2>
+              <p class="section-kicker" data-i18n="formKicker">Early supporters</p>
+              <h2 class="section-title" data-i18n="formTitle">Get early access &amp; a discounted license</h2>
               <p class="section-lead" data-i18n="formLead">
-                Join Cambodian personal lenders testing KamChi ahead of public launch. Early members get priority onboarding and founding pricing.
+                Join Cambodian lenders testing KamChi ahead of public launch. Early supporters qualify for a discounted Pro or Business license key (placeholder offer).
               </p>
               <ul class="early-perks">
-                <li data-i18n="formPerk1">Direct setup help via Telegram</li>
-                <li data-i18n="formPerk2">Shape Phase 2 &amp; Phase 3 features</li>
-                <li data-i18n="formPerk3">No spam—only your invite link</li>
+                <li data-i18n="formPerk1">Discounted founding license key delivered via Telegram</li>
+                <li data-i18n="formPerk2">Direct onboarding &amp; backup setup help</li>
+                <li data-i18n="formPerk3">No spam—only your invite and license offer</li>
               </ul>
             </div>
 
@@ -1165,9 +1823,12 @@
 
           <nav class="footer-links" aria-label="Footer navigation">
             <a href="#features" data-i18n="navFeatures">Features</a>
+            <!-- === CHANGED: Added Privacy & Privacy Policy links to footer === -->
+            <a href="#privacy" data-i18n="navPrivacy">Privacy</a>
             <a href="#how-it-works" data-i18n="navHowItWorks">How it works</a>
             <a href="#pricing" data-i18n="navPricing">Pricing</a>
             <a href="#faq" data-i18n="navFaq">FAQ</a>
+            <a href="privacy.html" data-i18n="navPrivacyPolicy">Privacy Policy</a>
             <a href="#early-access" data-i18n="navCta">Get early access</a>
           </nav>
 
@@ -1199,5 +1860,82 @@
         </div>
       </div>
     </footer>
+    <!-- Enlarged QR Scan Modal -->
+    <div
+      class="qr-modal"
+      id="qrModal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="qrModalTitle"
+      hidden
+    >
+      <div class="qr-modal-backdrop" data-qr-close></div>
+      <div class="qr-modal-panel">
+        <div class="qr-modal-head">
+          <h2 class="qr-modal-title" id="qrModalTitle" data-i18n="qrModalTitle">Scan to download KamChi</h2>
+          <button
+            type="button"
+            class="qr-modal-close"
+            id="qrModalClose"
+            data-qr-close
+            aria-label="Close QR code dialog"
+          >
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="qr-modal-tabs" role="tablist" aria-label="Select mobile platform">
+          <button
+            type="button"
+            class="qr-modal-tab is-active"
+            role="tab"
+            id="qrTabIos"
+            aria-selected="true"
+            data-qr-platform="ios"
+            data-i18n="qrModalTabIos"
+          >
+            iOS · App Store
+          </button>
+          <button
+            type="button"
+            class="qr-modal-tab"
+            role="tab"
+            id="qrTabAndroid"
+            aria-selected="false"
+            data-qr-platform="android"
+            data-i18n="qrModalTabAndroid"
+          >
+            Android · Google Play
+          </button>
+        </div>
+
+        <div class="qr-modal-stage">
+          <div class="qr-modal-standee">
+            <span class="qr-viewfinder is-large" aria-hidden="true">
+              <span class="qr-corner qr-tl"></span>
+              <span class="qr-corner qr-tr"></span>
+              <span class="qr-corner qr-bl"></span>
+              <span class="qr-corner qr-br"></span>
+              <div id="qrModalCanvas" class="qr-modal-canvas"></div>
+            </span>
+          </div>
+          <p class="qr-modal-hint" id="qrModalHint" data-i18n="qrModalHintIos">
+            Point your iPhone or iPad camera at the QR code to open the App Store.
+          </p>
+          <div class="qr-modal-cta">
+            <a href="#early-access" class="store-badge is-modal" id="qrModalStoreLink" data-qr-close>
+              <span id="qrModalStoreIcon" aria-hidden="true"></span>
+              <span class="store-badge-text">
+                <span class="store-badge-sub" id="qrModalStoreSub" data-i18n="heroQrIosSub">Download on the</span>
+                <span class="store-badge-name" id="qrModalStoreName" data-i18n="heroQrIos">App Store</span>
+              </span>
+            </a>
+          </div>
+          <p class="qr-modal-note" data-i18n="qrModalNote">Beta testing open · Free starter plan included</p>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

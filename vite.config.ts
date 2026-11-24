@@ -29,7 +29,7 @@ export default defineConfig(() => {
           if (fs.existsSync(distDir) && fs.existsSync(rootAssets)) {
             fs.cpSync(rootAssets, distRootAssets, {recursive: true, force: true});
           }
-          for (const staticFile of ['script.js', '404.html']) {
+          for (const staticFile of ['script.js', '404.html', 'privacy.html']) {
             const srcFile = path.resolve(__dirname, staticFile);
             const destFile = path.resolve(distDir, staticFile);
             if (fs.existsSync(distDir) && fs.existsSync(srcFile)) {
