@@ -1,0 +1,987 @@
+<!doctype html>
+<html lang="km">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KamChi (កម្ចី) — Lend with confidence. Track every riel.</title>
+    <meta
+      name="description"
+      content="KamChi is a simple, offline-ready loan management app for personal lenders in Cambodia. Track borrowers, USD &amp; KHR loans, repayment schedules, and ABA/KHQR receipts."
+    />
+    <meta name="theme-color" content="#0F5132" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="KamChi (កម្ចី)" />
+    <meta property="og:title" content="KamChi (កម្ចី) — Lend with confidence. Track every riel." />
+    <meta
+      property="og:description"
+      content="Replace paper notebooks and spreadsheets with one clear app. Built for Cambodian personal lenders with USD &amp; KHR support, Khmer &amp; English UI, and offline sync."
+    />
+    <meta property="og:image" content="assets/og-image.svg" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="KamChi (កម្ចី) — Lend with confidence. Track every riel." />
+    <meta
+      name="twitter:description"
+      content="Offline-ready loan management app for personal lenders in Cambodia. Track borrowers, auto-schedules, and USD/KHR repayments."
+    />
+    <meta name="twitter:image" content="assets/og-image.svg" />
+
+    <!-- Favicon (Replace assets/favicon.svg with your custom icon) -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
+    <!-- Google Fonts: Inter (English) & Kantumruy Pro (Khmer) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Kantumruy+Pro:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Structured Data: SoftwareApplication -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "KamChi (កម្ចី)",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Android, iOS",
+        "inLanguage": ["en", "km"],
+        "description": "Loan management mobile app for personal lenders in Cambodia with borrower profiles, repayment schedules, USD and KHR tracking, and offline support.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
+
+    <!-- Prevent flash of incorrect theme or language on initial paint -->
+    <script>
+      (function () {
+        try {
+          var savedTheme = localStorage.getItem('kamchi_theme');
+          var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            document.documentElement.classList.add('dark');
+          }
+          var savedLang = localStorage.getItem('kamchi_lang');
+          if (savedLang === 'en' || savedLang === 'km') {
+            document.documentElement.setAttribute('lang', savedLang);
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content" data-i18n="skipToContent">Skip to main content</a>
+
+    <!-- =====================================================================
+         1. STICKY NAVBAR
+         ===================================================================== -->
+    <header class="site-header" id="top">
+      <div class="container header-inner">
+        <a href="#top" class="brand-link" aria-label="KamChi Home">
+          <img src="assets/logo.png" alt="KamChi — Fast. Fair. Clear." width="126" height="42" class="brand-logo-img" />
+        </a>
+
+        <nav class="desktop-nav" aria-label="Primary navigation">
+          <a href="#features" class="nav-link" data-i18n="navFeatures">Features</a>
+          <a href="#how-it-works" class="nav-link" data-i18n="navHowItWorks">How it works</a>
+          <a href="#pricing" class="nav-link" data-i18n="navPricing">Pricing</a>
+          <a href="#faq" class="nav-link" data-i18n="navFaq">FAQ</a>
+        </nav>
+
+        <div class="header-actions">
+          <div class="lang-switch" role="group" aria-label="Language switch">
+            <button type="button" class="lang-btn" data-lang-btn="en" aria-pressed="false">EN</button>
+            <span class="lang-sep" aria-hidden="true">|</span>
+            <button type="button" class="lang-btn is-active" data-lang-btn="km" aria-pressed="true">ភាសាខ្មែរ</button>
+          </div>
+
+          <button
+            type="button"
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Toggle dark mode"
+            aria-pressed="false"
+          >
+            <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+            </svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+
+          <a href="#early-access" class="btn btn-primary btn-sm header-cta" data-i18n="navCta">Get early access</a>
+
+          <button
+            type="button"
+            class="mobile-menu-btn"
+            id="mobileMenuBtn"
+            aria-expanded="false"
+            aria-controls="mobileDrawer"
+            aria-label="Open menu"
+          >
+            <svg class="icon-menu" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+            <svg class="icon-close" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation Drawer -->
+      <div class="mobile-drawer" id="mobileDrawer" hidden>
+        <nav class="mobile-nav-list" aria-label="Mobile navigation">
+          <a href="#features" class="mobile-nav-link" data-i18n="navFeatures">Features</a>
+          <a href="#how-it-works" class="mobile-nav-link" data-i18n="navHowItWorks">How it works</a>
+          <a href="#pricing" class="mobile-nav-link" data-i18n="navPricing">Pricing</a>
+          <a href="#faq" class="mobile-nav-link" data-i18n="navFaq">FAQ</a>
+          <a href="#early-access" class="btn btn-primary mobile-drawer-cta" data-i18n="navCta">Get early access</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <!-- =====================================================================
+           2. HERO SECTION
+           Replace hero copy in script.js under translations.en / translations.km
+           ===================================================================== -->
+      <section class="hero-section">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="hero-kicker" data-i18n="heroKicker">KamChi (កម្ចី) · Personal Loan Ledger</p>
+            <h1 class="hero-title" data-i18n="heroTitle">Lend with confidence. Track every riel.</h1>
+            <p class="hero-subtitle" data-i18n="heroSubtitle">
+              A clear, reliable mobile app for personal lenders in Cambodia. Keep borrower IDs, repayment schedules, and USD or KHR collections organized—even without internet.
+            </p>
+            <div class="hero-actions">
+              <a href="#early-access" class="btn btn-primary btn-lg" data-i18n="heroPrimaryCta">Get early access</a>
+              <a href="#features" class="btn btn-outline btn-lg" data-i18n="heroSecondaryCta">See features</a>
+            </div>
+            <p class="hero-note" data-i18n="heroNote">Free starter plan · Android &amp; iOS · Built for Cambodia</p>
+          </div>
+
+          <!-- Phone Mockup built with CSS & SVG -->
+          <div class="hero-visual">
+            <div class="phone-frame" aria-label="KamChi mobile app dashboard preview">
+              <div class="phone-notch" aria-hidden="true"></div>
+              <div class="phone-screen">
+                <div class="app-topbar">
+                  <div class="app-brand-mini">
+                    <img src="assets/logo.png" alt="KamChi" width="72" height="24" class="app-brand-logo" />
+                  </div>
+                  <span class="app-month" data-i18n="mockupMonth">Nov 2026</span>
+                </div>
+
+                <div class="app-balance-card">
+                  <div class="app-balance-label" data-i18n="mockupTotalLent">Total Principal Lent</div>
+                  <div class="app-balance-main tabular-nums">$14,850</div>
+                  <div class="app-balance-khr tabular-nums">៛ 60,885,000 KHR</div>
+                  <div class="app-kpi-row">
+                    <div class="app-kpi-item">
+                      <span class="app-kpi-label" data-i18n="mockupCollected">Collected</span>
+                      <span class="app-kpi-val tabular-nums">$9,420</span>
+                    </div>
+                    <div class="app-kpi-divider" aria-hidden="true"></div>
+                    <div class="app-kpi-item">
+                      <span class="app-kpi-label" data-i18n="mockupOverdue">Overdue</span>
+                      <span class="app-kpi-val is-warn tabular-nums">$640 · 2</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="app-list-header">
+                  <span data-i18n="mockupActiveLoans">Due This Week</span>
+                  <span class="app-list-count tabular-nums" data-i18n="mockupLoanCount">3 active</span>
+                </div>
+
+                <div class="app-loan-list">
+                  <div class="app-loan-row">
+                    <div class="app-avatar">SC</div>
+                    <div class="app-loan-info">
+                      <div class="app-loan-name" data-i18n="mockupBorrower1">Sokha Chan</div>
+                      <div class="app-loan-meta" data-i18n="mockupMeta1">Monthly · ABA · 8/12 paid</div>
+                      <div class="app-progress-track" aria-hidden="true">
+                        <div class="app-progress-bar" style="width: 67%"></div>
+                      </div>
+                    </div>
+                    <div class="app-loan-amt tabular-nums">$280</div>
+                  </div>
+
+                  <div class="app-loan-row">
+                    <div class="app-avatar is-gold">DK</div>
+                    <div class="app-loan-info">
+                      <div class="app-loan-name" data-i18n="mockupBorrower2">Dara Kim</div>
+                      <div class="app-loan-meta" data-i18n="mockupMeta2">Weekly · KHQR · On time</div>
+                      <div class="app-progress-track" aria-hidden="true">
+                        <div class="app-progress-bar" style="width: 45%"></div>
+                      </div>
+                    </div>
+                    <div class="app-loan-amt tabular-nums">៛420,000</div>
+                  </div>
+
+                  <div class="app-loan-row">
+                    <div class="app-avatar is-alert">VM</div>
+                    <div class="app-loan-info">
+                      <div class="app-loan-name" data-i18n="mockupBorrower3">Vanna Meas</div>
+                      <div class="app-loan-meta is-overdue" data-i18n="mockupMeta3">2 days overdue · Cash</div>
+                      <div class="app-progress-track" aria-hidden="true">
+                        <div class="app-progress-bar is-warn" style="width: 30%"></div>
+                      </div>
+                    </div>
+                    <div class="app-loan-amt is-overdue tabular-nums">$320</div>
+                  </div>
+                </div>
+
+                <!-- Mini SVG Sparkline -->
+                <div class="app-chart-strip" aria-hidden="true">
+                  <span class="app-chart-label" data-i18n="mockupChartLabel">Collection rate · 94%</span>
+                  <svg viewBox="0 0 120 26" width="120" height="26" fill="none">
+                    <path d="M2 22 L22 17 L42 19 L62 11 L82 13 L102 6 L118 4" stroke="#0F5132" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+                    <circle cx="118" cy="4" r="3" fill="#F2B544" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           3. TRUST STRIP
+           ===================================================================== -->
+      <section class="trust-strip" aria-label="Core promises">
+        <div class="container trust-grid">
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              <path d="m9 12 2 2 4-4"></path>
+            </svg>
+            <span data-i18n="trust1">Made for Cambodian lenders</span>
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12.55a11 11 0 0 1 14.08 0"></path>
+              <path d="M1.42 9a16 16 0 0 1 21.16 0"></path>
+              <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+              <line x1="12" y1="20" x2="12.01" y2="20"></line>
+            </svg>
+            <span data-i18n="trust2">Works offline</span>
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="9"></circle>
+              <path d="M14.8 9A2 2 0 0 0 13 8h-2a2 2 0 0 0 0 4h2a2 2 0 0 1 0 4h-2a2 2 0 0 1-1.8-1"></path>
+              <path d="M12 6v2m0 8v2"></path>
+            </svg>
+            <span data-i18n="trust3">USD and KHR</span>
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+            <span data-i18n="trust4">Khmer and English</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           4. PROBLEM & SOLUTION
+           ===================================================================== -->
+      <section class="section reveal" id="problem-solution">
+        <div class="container">
+          <div class="section-head">
+            <p class="section-kicker" data-i18n="psKicker">Why switch from paper</p>
+            <h2 class="section-title" data-i18n="psTitle">Stop losing track of payments in notebooks and spreadsheets</h2>
+            <p class="section-lead" data-i18n="psLead">
+              Personal lending runs on trust and accuracy. One missed note or spreadsheet formula error can cost you money and strain relationships.
+            </p>
+          </div>
+
+          <div class="compare-grid">
+            <article class="compare-card is-before">
+              <div class="compare-header">
+                <span class="compare-label" data-i18n="psBeforeLabel">Before</span>
+                <h3 class="compare-title" data-i18n="psBeforeTitle">Paper notebooks &amp; Excel sheets</h3>
+              </div>
+              <ul class="compare-list">
+                <li data-i18n="psBefore1">Hard to tell who is overdue without flipping through pages</li>
+                <li data-i18n="psBefore2">Manual interest calculations take time and cause mistakes</li>
+                <li data-i18n="psBefore3">USD and KHR balances mixed together in separate columns</li>
+                <li data-i18n="psBefore4">Borrower ID photos lost in chat threads with no backup</li>
+              </ul>
+            </article>
+
+            <article class="compare-card is-after">
+              <div class="compare-header">
+                <span class="compare-label is-accent" data-i18n="psAfterLabel">With KamChi</span>
+                <h3 class="compare-title" data-i18n="psAfterTitle">One calm, organized app</h3>
+              </div>
+              <ul class="compare-list">
+                <li data-i18n="psAfter1">See today’s collections and overdue borrowers on one screen</li>
+                <li data-i18n="psAfter2">Automatic schedules for flat, reducing balance, or interest-only</li>
+                <li data-i18n="psAfter3">Clear separate totals for USD and KHR with KHQR receipt logs</li>
+                <li data-i18n="psAfter4">ID photos, guarantors, and encrypted backups safely in your pocket</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           5. FEATURES GRID (9 FEATURES)
+           ===================================================================== -->
+      <section class="section section-alt reveal" id="features">
+        <div class="container">
+          <div class="section-head">
+            <p class="section-kicker" data-i18n="featKicker">Built for real lending workflows</p>
+            <h2 class="section-title" data-i18n="featTitle">Everything you need to lend clearly</h2>
+            <p class="section-lead" data-i18n="featLead">
+              Designed around how individual lenders and small family lending businesses actually work in Cambodia.
+            </p>
+          </div>
+
+          <div class="features-grid">
+            <article class="feature-card">
+              <div class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
+              <h3 class="feature-title" data-i18n="f1Title">Borrower profiles &amp; guarantor</h3>
+              <p class="feature-desc" data-i18n="f1Desc">Store borrower contact details, national ID photos, address notes, and guarantor records together.</p>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="1" x2="12" y2="23"></line>
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+              </div>
+              <h3 class="feature-title" data-i18n="f2Title">Flexible loan structures</h3>
+              <p class="feature-desc" data-i18n="f2Desc">Choose flat rate, reducing balance, or interest-only loans with daily, weekly, or monthly terms.</p>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+              </div>
+              <h3 class="feature-title" data-i18n="f3Title">Auto repayment schedule</h3>
+              <p class="feature-desc" data-i18n="f3Desc">Generate exact principal, interest, and due dates automatically the moment you create a loan.</p>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <path d="m9 15 2 2 4-4"></path>
+                </svg>
+              </div>
+              <h3 class="feature-title" data-i18n="f4Title">Payment tracking &amp; receipts</h3>
+              <p class="feature-desc" data-i18n="f4Desc">Record cash, ABA, or KHQR payments in one tap and send clean digital receipts to borrowers.</p>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                  <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                </svg>
+              </div>
+              <h3 class="feature-title" data-i18n="f5Title">Overdue alerts &amp; late fees</h3>
+              <p class="feature-desc" data-i18n="f5Desc">Spot missed due dates early and optionally calculate simple late fees without awkward guesswork.</p>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="18" y1="20" x2="18" y2="10"></line>
+                  <line x1="12" y1="20" x2="12" y2="4"></line>
+                  <line x1="6" y1="20" x2="6" y2="14"></line>
+                </svg>
+              </div>
+              <h3 class="feature-title" data-i18n="f6Title">Dashboard and reports</h3>
+              <p class="feature-desc" data-i18n="f6Desc">View total capital lent, interest earned, and monthly collection progress at a glance.</p>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="9"></circle>
+                  <path d="M9 12h6M12 9v6"></path>
+                </svg>
+              </div>
+              <h3 class="feature-title" data-i18n="f7Title">USD and KHR support</h3>
+              <p class="feature-desc" data-i18n="f7Desc">Lend in US dollars, Cambodian riels, or both—with clean currency formatting and separate totals.</p>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path>
+                </svg>
+              </div>
+              <h3 class="feature-title" data-i18n="f8Title">Works offline, syncs later</h3>
+              <p class="feature-desc" data-i18n="f8Desc">Log repayments anywhere in the province with zero signal. Your ledger syncs once you reconnect.</p>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+              </div>
+              <h3 class="feature-title" data-i18n="f9Title">PIN lock and encrypted backup</h3>
+              <p class="feature-desc" data-i18n="f9Desc">Protect private borrower records with a 6-digit PIN and restore your data safely if you switch phones.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           6. HOW IT WORKS (3 STEPS)
+           ===================================================================== -->
+      <section class="section reveal" id="how-it-works">
+        <div class="container">
+          <div class="section-head">
+            <p class="section-kicker" data-i18n="howKicker">Simple workflow</p>
+            <h2 class="section-title" data-i18n="howTitle">Start tracking in three steps</h2>
+          </div>
+
+          <div class="steps-grid">
+            <article class="step-card">
+              <div class="step-num tabular-nums">01</div>
+              <h3 class="step-title" data-i18n="step1Title">Add borrower</h3>
+              <p class="step-desc" data-i18n="step1Desc">Save name, phone number, national ID photo, and guarantor contact in under a minute.</p>
+            </article>
+
+            <article class="step-card">
+              <div class="step-num tabular-nums">02</div>
+              <h3 class="step-title" data-i18n="step2Title">Create loan</h3>
+              <p class="step-desc" data-i18n="step2Desc">Enter the amount in USD or KHR, pick the interest model and schedule, and confirm.</p>
+            </article>
+
+            <article class="step-card">
+              <div class="step-num tabular-nums">03</div>
+              <h3 class="step-title" data-i18n="step3Title">Collect and track</h3>
+              <p class="step-desc" data-i18n="step3Desc">Record cash, ABA, or KHQR payments, share instant receipts, and keep every riel accounted for.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           7. APP SCREENSHOTS (TABBED MOCKUP SHOWCASE)
+           Replace the CSS/SVG mockups inside .screen-stage with <img> tags
+           pointing to /assets/screen-*.png when you capture final screenshots.
+           ===================================================================== -->
+      <section class="section section-alt reveal" id="screenshots">
+        <div class="container">
+          <div class="section-head">
+            <p class="section-kicker" data-i18n="screenKicker">Inside the app</p>
+            <h2 class="section-title" data-i18n="screenTitle">Clean screens built for quick daily use</h2>
+          </div>
+
+          <div class="screens-layout">
+            <div class="screen-controls">
+              <div class="screen-tabs" role="tablist" aria-label="App screen previews">
+                <button type="button" class="screen-tab is-active" role="tab" aria-selected="true" data-screen-tab="dashboard" data-i18n="tabDashboard">Dashboard</button>
+                <button type="button" class="screen-tab" role="tab" aria-selected="false" data-screen-tab="schedule" data-i18n="tabSchedule">Schedule</button>
+                <button type="button" class="screen-tab" role="tab" aria-selected="false" data-screen-tab="receipt" data-i18n="tabReceipt">Receipts</button>
+                <button type="button" class="screen-tab" role="tab" aria-selected="false" data-screen-tab="profile" data-i18n="tabProfile">Borrower</button>
+              </div>
+
+              <div class="screen-details" id="screenDetails">
+                <h3 class="screen-detail-title" id="screenDetailTitle" data-i18n="scrDashTitle">Portfolio overview in USD &amp; KHR</h3>
+                <p class="screen-detail-desc" id="screenDetailDesc" data-i18n="scrDashDesc">
+                  Know exactly how much capital is out, how much interest came in this month, and which borrowers need a gentle reminder today.
+                </p>
+                <ul class="screen-detail-points" id="screenDetailPoints">
+                  <li data-i18n="scrDashP1">Separate USD and KHR balance totals</li>
+                  <li data-i18n="scrDashP2">Due today and overdue filters</li>
+                  <li data-i18n="scrDashP3">Offline status indicator when traveling</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Replace placeholder mockup below with <img src="assets/screenshot.png" ...> if preferred -->
+            <div class="screen-stage" aria-live="polite">
+              <div class="mock-device">
+                <div class="mock-device-bar" aria-hidden="true">
+                  <span></span>
+                </div>
+
+                <!-- Panel 1: Dashboard -->
+                <div class="mock-panel is-active" data-screen-panel="dashboard">
+                  <div class="mock-header" data-i18n="scrDashMockHead">Today's Summary</div>
+                  <div class="mock-stat-grid">
+                    <div class="mock-stat-box">
+                      <span data-i18n="scrDashMockOut">Active Lent</span>
+                      <strong class="tabular-nums">$14,850</strong>
+                    </div>
+                    <div class="mock-stat-box">
+                      <span data-i18n="scrDashMockKhr">KHR Lent</span>
+                      <strong class="tabular-nums">៛24.5M</strong>
+                    </div>
+                  </div>
+                  <div class="mock-row-card">
+                    <div>
+                      <strong data-i18n="scrDashMockRow1">Collected this month</strong>
+                      <small data-i18n="scrDashMockRow1Sub">18 repayments logged</small>
+                    </div>
+                    <span class="mock-green tabular-nums">+$3,140</span>
+                  </div>
+                  <div class="mock-row-card">
+                    <div>
+                      <strong data-i18n="scrDashMockRow2">Due today</strong>
+                      <small data-i18n="scrDashMockRow2Sub">2 borrowers scheduled</small>
+                    </div>
+                    <span class="mock-gold tabular-nums">$460</span>
+                  </div>
+                </div>
+
+                <!-- Panel 2: Schedule -->
+                <div class="mock-panel" data-screen-panel="schedule" hidden>
+                  <div class="mock-header" data-i18n="scrSchedMockHead">Loan #KC-108 · 6 Months</div>
+                  <div class="mock-sched-summary tabular-nums">
+                    <span>$1,200 · 2.5% / mo</span>
+                    <span data-i18n="scrSchedMethod">Reducing Balance</span>
+                  </div>
+                  <div class="mock-sched-item is-paid">
+                    <span class="tabular-nums">#1 · 15 Oct</span>
+                    <span data-i18n="scrPaid">Paid</span>
+                    <strong class="tabular-nums">$230.00</strong>
+                  </div>
+                  <div class="mock-sched-item is-paid">
+                    <span class="tabular-nums">#2 · 15 Nov</span>
+                    <span data-i18n="scrPaid">Paid</span>
+                    <strong class="tabular-nums">$225.00</strong>
+                  </div>
+                  <div class="mock-sched-item is-due">
+                    <span class="tabular-nums">#3 · 15 Dec</span>
+                    <span data-i18n="scrUpcoming">Next due</span>
+                    <strong class="tabular-nums">$220.00</strong>
+                  </div>
+                </div>
+
+                <!-- Panel 3: Receipt -->
+                <div class="mock-panel" data-screen-panel="receipt" hidden>
+                  <div class="mock-header" data-i18n="scrRecMockHead">Payment Receipt</div>
+                  <div class="mock-receipt-box">
+                    <div class="mock-rec-check" aria-hidden="true">✓</div>
+                    <div class="mock-rec-amt tabular-nums">$230.00</div>
+                    <div class="mock-rec-meta" data-i18n="scrRecMeta">Paid via ABA KHQR · 15 Nov 2026</div>
+                    <div class="mock-rec-line">
+                      <span data-i18n="scrRecBorrower">Borrower</span>
+                      <strong>Sokha Chan</strong>
+                    </div>
+                    <div class="mock-rec-line">
+                      <span data-i18n="scrRecBalance">Remaining balance</span>
+                      <strong class="tabular-nums">$800.00</strong>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Panel 4: Borrower Profile -->
+                <div class="mock-panel" data-screen-panel="profile" hidden>
+                  <div class="mock-header" data-i18n="scrProfMockHead">Borrower Profile</div>
+                  <div class="mock-profile-top">
+                    <div class="mock-profile-avatar">SC</div>
+                    <div>
+                      <strong>Sokha Chan</strong>
+                      <div class="mock-profile-phone tabular-nums">012 884 219</div>
+                    </div>
+                  </div>
+                  <div class="mock-row-card">
+                    <div>
+                      <strong data-i18n="scrProfId">National ID</strong>
+                      <small data-i18n="scrProfIdSub">Front &amp; back photo saved</small>
+                    </div>
+                    <span class="mock-green" data-i18n="scrVerified">Saved</span>
+                  </div>
+                  <div class="mock-row-card">
+                    <div>
+                      <strong data-i18n="scrProfGuar">Guarantor</strong>
+                      <small>Bopha Chan · 096 441 008</small>
+                    </div>
+                    <span data-i18n="scrLinked">Linked</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           8. ROADMAP
+           ===================================================================== -->
+      <section class="section reveal" id="roadmap">
+        <div class="container">
+          <div class="section-head">
+            <p class="section-kicker" data-i18n="roadKicker">Product roadmap</p>
+            <h2 class="section-title" data-i18n="roadTitle">Built step by step with Cambodian lenders</h2>
+          </div>
+
+          <div class="roadmap-grid">
+            <article class="roadmap-card is-current">
+              <div class="roadmap-meta" data-i18n="roadP1Meta">Phase 1 · Early Access</div>
+              <h3 class="roadmap-title" data-i18n="roadP1Title">Core Loan Ledger</h3>
+              <ul class="roadmap-list">
+                <li data-i18n="roadP1Item1">Borrower profiles with ID photo and guarantor</li>
+                <li data-i18n="roadP1Item2">Flat, reducing balance, and interest-only calculators</li>
+                <li data-i18n="roadP1Item3">Payment logging (Cash, ABA, KHQR) &amp; receipts</li>
+                <li data-i18n="roadP1Item4">Offline mode with PIN lock</li>
+              </ul>
+            </article>
+
+            <article class="roadmap-card">
+              <div class="roadmap-meta" data-i18n="roadP2Meta">Phase 2 · Next Release</div>
+              <h3 class="roadmap-title" data-i18n="roadP2Title">Reports &amp; Cloud Backup</h3>
+              <ul class="roadmap-list">
+                <li data-i18n="roadP2Item1">Monthly profit, capital, and delinquency reports</li>
+                <li data-i18n="roadP2Item2">Unified USD &amp; KHR multi-currency ledger view</li>
+                <li data-i18n="roadP2Item3">Automatic encrypted cloud backup &amp; restore</li>
+                <li data-i18n="roadP2Item4">CSV &amp; PDF export for personal records</li>
+              </ul>
+            </article>
+
+            <article class="roadmap-card">
+              <div class="roadmap-meta" data-i18n="roadP3Meta">Phase 3 · Expansion</div>
+              <h3 class="roadmap-title" data-i18n="roadP3Title">Contracts &amp; Team Tools</h3>
+              <ul class="roadmap-list">
+                <li data-i18n="roadP3Item1">Bilingual Khmer/English printable loan contracts</li>
+                <li data-i18n="roadP3Item2">Staff &amp; collector accounts with role permissions</li>
+                <li data-i18n="roadP3Item3">Smart AI assistant for payment reminder drafts</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           9. PRICING
+           ===================================================================== -->
+      <section class="section section-alt reveal" id="pricing">
+        <div class="container">
+          <div class="section-head pricing-head">
+            <div>
+              <p class="section-kicker" data-i18n="priceKicker">Transparent pricing</p>
+              <h2 class="section-title" data-i18n="priceTitle">Start free, upgrade as your book grows</h2>
+              <p class="section-lead" data-i18n="priceLead">Placeholder launch pricing. Early access members lock in founding rates.</p>
+            </div>
+
+            <div class="billing-toggle" role="group" aria-label="Billing period">
+              <button type="button" class="billing-btn is-active" data-billing="monthly" aria-pressed="true" data-i18n="billMonthly">Monthly</button>
+              <button type="button" class="billing-btn" data-billing="yearly" aria-pressed="false" data-i18n="billYearly">Yearly · Save 20%</button>
+            </div>
+          </div>
+
+          <div class="pricing-grid">
+            <article class="price-card">
+              <div class="price-tier" data-i18n="planFreeName">Free</div>
+              <div class="price-amount">
+                <span class="price-figure tabular-nums" data-price-monthly="$0" data-price-yearly="$0">$0</span>
+                <span class="price-period" data-i18n="perMonth">/ month</span>
+              </div>
+              <p class="price-summary" data-i18n="planFreeDesc">For individuals lending to a few trusted contacts.</p>
+              <ul class="price-features">
+                <li data-i18n="planFreeF1">Up to 10 active loans</li>
+                <li data-i18n="planFreeF2">Borrower ID &amp; guarantor profiles</li>
+                <li data-i18n="planFreeF3">USD &amp; KHR tracking + offline mode</li>
+                <li data-i18n="planFreeF4">PIN lock protection</li>
+              </ul>
+              <a href="#early-access" class="btn btn-outline btn-block" data-select-plan="Under $5,000" data-i18n="planFreeCta">Join free beta</a>
+            </article>
+
+            <article class="price-card is-featured">
+              <div class="price-tier-row">
+                <span class="price-tier" data-i18n="planProName">Pro</span>
+                <span class="price-note" data-i18n="planPopular">Most popular</span>
+              </div>
+              <div class="price-amount">
+                <span class="price-figure tabular-nums" data-price-monthly="$7" data-price-yearly="$5.50">$7</span>
+                <span class="price-period" data-i18n="perMonth">/ month</span>
+              </div>
+              <p class="price-summary" data-i18n="planProDesc">For active personal lenders managing regular collections.</p>
+              <ul class="price-features">
+                <li data-i18n="planProF1">Unlimited borrowers &amp; loans</li>
+                <li data-i18n="planProF2">Digital receipts &amp; overdue alerts</li>
+                <li data-i18n="planProF3">Encrypted cloud backup &amp; restore</li>
+                <li data-i18n="planProF4">Monthly profit &amp; collection reports</li>
+              </ul>
+              <a href="#early-access" class="btn btn-primary btn-block" data-select-plan="$5,000 – $25,000" data-i18n="planProCta">Reserve Pro access</a>
+            </article>
+
+            <article class="price-card">
+              <div class="price-tier" data-i18n="planBizName">Business</div>
+              <div class="price-amount">
+                <span class="price-figure tabular-nums" data-price-monthly="$19" data-price-yearly="$15">$19</span>
+                <span class="price-period" data-i18n="perMonth">/ month</span>
+              </div>
+              <p class="price-summary" data-i18n="planBizDesc">For family offices and small lending teams with collectors.</p>
+              <ul class="price-features">
+                <li data-i18n="planBizF1">Everything in Pro</li>
+                <li data-i18n="planBizF2">Up to 5 staff collector accounts</li>
+                <li data-i18n="planBizF3">Printable Khmer/English contracts</li>
+                <li data-i18n="planBizF4">Priority Telegram &amp; phone support</li>
+              </ul>
+              <a href="#early-access" class="btn btn-outline btn-block" data-select-plan="$25,000 – $100,000" data-i18n="planBizCta">Request Business beta</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           10. FAQ ACCORDION
+           ===================================================================== -->
+      <section class="section reveal" id="faq">
+        <div class="container faq-container">
+          <div class="section-head">
+            <p class="section-kicker" data-i18n="faqKicker">Questions &amp; answers</p>
+            <h2 class="section-title" data-i18n="faqTitle">Frequently asked questions</h2>
+          </div>
+
+          <div class="faq-list">
+            <div class="faq-item">
+              <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-a1" id="faq-q1">
+                <span data-i18n="faq1Q">Is KamChi free to use?</span>
+                <svg class="faq-chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="faq-answer" id="faq-a1" role="region" aria-labelledby="faq-q1" hidden>
+                <p data-i18n="faq1A">Yes. KamChi includes a Free plan for up to 10 active loans with full USD and KHR tracking, offline access, and PIN lock. Paid plans unlock unlimited loans, cloud backup, and team accounts.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-a2" id="faq-q2">
+                <span data-i18n="faq2Q">Is my borrower and loan data safe?</span>
+                <svg class="faq-chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="faq-answer" id="faq-a2" role="region" aria-labelledby="faq-q2" hidden>
+                <p data-i18n="faq2A">Your records stay private on your device behind a 6-digit PIN lock. When cloud backup is enabled, data is encrypted so only your account can read or restore it.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-a3" id="faq-q3">
+                <span data-i18n="faq3Q">Does it work offline without internet?</span>
+                <svg class="faq-chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="faq-answer" id="faq-a3" role="region" aria-labelledby="faq-q3" hidden>
+                <p data-i18n="faq3A">Yes. You can add borrowers, create loans, and record payments with zero mobile data. Everything saves locally first and syncs automatically once you are back online.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-a4" id="faq-q4">
+                <span data-i18n="faq4Q">Can I use the app completely in Khmer?</span>
+                <svg class="faq-chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="faq-answer" id="faq-a4" role="region" aria-labelledby="faq-q4" hidden>
+                <p data-i18n="faq4A">Yes. Every screen, receipt, and report works in clear, natural Khmer or English, and you can switch languages anytime with one tap.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-a5" id="faq-q5">
+                <span data-i18n="faq5Q">Can my staff or collectors use it too?</span>
+                <svg class="faq-chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="faq-answer" id="faq-a5" role="region" aria-labelledby="faq-q5" hidden>
+                <p data-i18n="faq5A">Multi-staff accounts with collector permissions are part of the Business plan in Phase 3, letting team members log daily collections while you keep full control over settings and reports.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           11. EARLY ACCESS FORM
+           GITHUB PAGES BACKEND NOTE:
+           Because GitHub Pages hosts static files only, connect this form using:
+           Option A (Formspree): Set action="https://formspree.io/f/YOUR_FORM_ID"
+                     method="POST" and submit via fetch() in script.js.
+           Option B (Google Forms): Point a fetch() POST to your Google Form's
+                     /formResponse endpoint with entry.<field_id> keys.
+           ===================================================================== -->
+      <section class="section section-alt reveal" id="early-access">
+        <div class="container">
+          <div class="early-grid">
+            <div class="early-copy">
+              <p class="section-kicker" data-i18n="formKicker">Early access</p>
+              <h2 class="section-title" data-i18n="formTitle">Get invited to the KamChi beta</h2>
+              <p class="section-lead" data-i18n="formLead">
+                Join Cambodian personal lenders testing KamChi ahead of public launch. Early members get priority onboarding and founding pricing.
+              </p>
+              <ul class="early-perks">
+                <li data-i18n="formPerk1">Direct setup help via Telegram</li>
+                <li data-i18n="formPerk2">Shape Phase 2 &amp; Phase 3 features</li>
+                <li data-i18n="formPerk3">No spam—only your invite link</li>
+              </ul>
+            </div>
+
+            <div class="early-card">
+              <form id="earlyAccessForm" novalidate>
+                <div class="form-group">
+                  <label for="leadName" data-i18n="fieldName">Full name</label>
+                  <input
+                    type="text"
+                    id="leadName"
+                    name="name"
+                    autocomplete="name"
+                    required
+                    data-i18n-placeholder="phName"
+                    placeholder="e.g. Sokha Vann"
+                  />
+                  <span class="field-error" id="errName" aria-live="polite"></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="leadContact" data-i18n="fieldContact">Phone or Telegram</label>
+                  <input
+                    type="text"
+                    id="leadContact"
+                    name="contact"
+                    required
+                    data-i18n-placeholder="phContact"
+                    placeholder="e.g. 012 345 678 or @sokhavann"
+                  />
+                  <span class="field-error" id="errContact" aria-live="polite"></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="leadEmail" data-i18n="fieldEmail">Email address</label>
+                  <input
+                    type="email"
+                    id="leadEmail"
+                    name="email"
+                    autocomplete="email"
+                    required
+                    data-i18n-placeholder="phEmail"
+                    placeholder="you@example.com"
+                  />
+                  <span class="field-error" id="errEmail" aria-live="polite"></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="leadVolume" data-i18n="fieldVolume">Monthly loan volume</label>
+                  <select id="leadVolume" name="volume" required>
+                    <option value="" data-i18n="volSelect">Select an estimated range</option>
+                    <option value="Under $5,000" data-i18n="vol1">Under $5,000</option>
+                    <option value="$5,000 – $25,000" data-i18n="vol2">$5,000 – $25,000</option>
+                    <option value="$25,000 – $100,000" data-i18n="vol3">$25,000 – $100,000</option>
+                    <option value="Over $100,000" data-i18n="vol4">Over $100,000</option>
+                  </select>
+                  <span class="field-error" id="errVolume" aria-live="polite"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-lg btn-block" data-i18n="formSubmit">
+                  Request early access
+                </button>
+              </form>
+
+              <div class="form-success" id="formSuccess" hidden aria-live="polite">
+                <div class="success-icon" aria-hidden="true">✓</div>
+                <h3 class="success-title" data-i18n="successTitle">You are on the early access list</h3>
+                <p class="success-desc" id="successSummary" data-i18n="successDesc">
+                  Thank you for signing up. We will message you with your KamChi beta invite soon.
+                </p>
+                <button type="button" class="btn btn-outline btn-sm" id="resetFormBtn" data-i18n="successAnother">
+                  Submit another request
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- =====================================================================
+         12. FOOTER
+         ===================================================================== -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <a href="#top" class="brand-link" aria-label="KamChi Home">
+              <img src="assets/logo.png" alt="KamChi — Fast. Fair. Clear." width="126" height="42" class="brand-logo-img" />
+            </a>
+            <p class="footer-tagline" data-i18n="footerTagline">Lend with confidence. Track every riel.</p>
+          </div>
+
+          <nav class="footer-links" aria-label="Footer navigation">
+            <a href="#features" data-i18n="navFeatures">Features</a>
+            <a href="#how-it-works" data-i18n="navHowItWorks">How it works</a>
+            <a href="#pricing" data-i18n="navPricing">Pricing</a>
+            <a href="#faq" data-i18n="navFaq">FAQ</a>
+            <a href="#early-access" data-i18n="navCta">Get early access</a>
+          </nav>
+
+          <div class="footer-right">
+            <div class="social-links">
+              <a href="https://t.me/" target="_blank" rel="noopener noreferrer" aria-label="KamChi on Telegram" class="social-btn">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+                  <path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"></path>
+                </svg>
+              </a>
+              <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="KamChi on Facebook" class="social-btn">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+                  <path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"></path>
+                </svg>
+              </a>
+            </div>
+
+            <div class="lang-switch" role="group" aria-label="Footer language switch">
+              <button type="button" class="lang-btn" data-lang-btn="en" aria-pressed="false">EN</button>
+              <span class="lang-sep" aria-hidden="true">|</span>
+              <button type="button" class="lang-btn is-active" data-lang-btn="km" aria-pressed="true">ភាសាខ្មែរ</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <span data-i18n="footerCopy">© 2026 KamChi. All rights reserved.</span>
+          <span data-i18n="footerMadeIn">Made in Cambodia</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

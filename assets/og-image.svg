@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" fill="none">
+  <!-- Replace with a 1200x630 PNG/JPG for broader social card compatibility if desired -->
+  <rect width="1200" height="630" fill="#F8FAF7"/>
+  <rect x="64" y="64" width="1072" height="502" rx="28" fill="#0F5132"/>
+  <circle cx="1020" cy="140" r="180" fill="#176942"/>
+  <circle cx="180" cy="520" r="150" fill="#F2B544" fill-opacity="0.14"/>
+  <rect x="120" y="130" width="64" height="64" rx="16" fill="#FFFFFF" fill-opacity="0.15"/>
+  <path d="M140 144V180M140 162L157 147M147 156L160 179" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="168" cy="150" r="6" fill="#F2B544"/>
+  <text x="120" y="275" fill="#FFFFFF" font-family="Inter, system-ui, sans-serif" font-size="68" font-weight="700">KamChi (កម្ចី)</text>
+  <text x="120" y="345" fill="#F2B544" font-family="Inter, system-ui, sans-serif" font-size="34" font-weight="600">Lend with confidence. Track every riel.</text>
+  <text x="120" y="408" fill="#D1E7DD" font-family="Kantumruy Pro, system-ui, sans-serif" font-size="28">ឱ្យខ្ចីដោយទំនុកចិត្ត តាមដានគ្រប់រៀល</text>
+  <text x="120" y="492" fill="#A7C4B5" font-family="Inter, system-ui, sans-serif" font-size="22">Loan management app for personal lenders in Cambodia · USD &amp; KHR · Offline-ready</text>
+</svg>

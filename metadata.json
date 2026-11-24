@@ -1,0 +1,6 @@
+{
+  "name": "KamChi (កម្ចី)",
+  "description": "Lend with confidence. Track every riel. A bilingual loan management mobile app for personal lenders in Cambodia.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
