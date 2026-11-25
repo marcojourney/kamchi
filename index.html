@@ -1256,59 +1256,16 @@
            ===================================================================== -->
       <section class="section section-alt reveal" id="pricing">
         <div class="container">
-          <div class="section-head pricing-head">
-            <div>
-              <p class="section-kicker" data-i18n="priceKicker">Simple license pricing</p>
-              <h2 class="section-title" data-i18n="priceTitle">Start free. Unlock full power with a license key.</h2>
-              <p class="section-lead" data-i18n="priceLead">
-                Pay via ABA, KHQR, or cash and receive your key on Telegram. Activate once online, then work offline.
-              </p>
-            </div>
-
-            <div class="billing-toggle" role="tablist" aria-label="Billing period" id="billingTablist">
-              <button
-                type="button"
-                class="billing-btn"
-                role="tab"
-                id="tab-monthly"
-                aria-selected="false"
-                tabindex="0"
-                data-billing="monthly"
-                data-i18n="billMonthly"
-                style="display: none"
-              >
-                Monthly
-              </button>
-              <button
-                type="button"
-                class="billing-btn"
-                role="tab"
-                id="tab-yearly"
-                aria-selected="false"
-                tabindex="-1"
-                data-billing="yearly"
-                style="display: none"
-              >
-                <span data-i18n="billYearlyLabel">Yearly</span>
-                <span class="save-badge" data-i18n="billSaveBadge">Save 20%</span>
-              </button>
-              <button
-                type="button"
-                class="billing-btn is-active"
-                role="tab"
-                id="tab-lifetime"
-                aria-selected="true"
-                tabindex="-1"
-                data-billing="lifetime"
-                data-i18n="billLifetime"
-              >
-                Lifetime
-              </button>
-            </div>
+          <div class="section-head">
+            <p class="section-kicker" data-i18n="priceKicker">Simple license pricing</p>
+            <h2 class="section-title" data-i18n="priceTitle">Start free. Unlock full power with a license key.</h2>
+            <p class="section-lead" data-i18n="priceLead">
+              Pay via ABA, KHQR, or cash and receive your key on Telegram. Activate once online, then work offline.
+            </p>
           </div>
 
           <!-- Plan Cards (Pro stacks first on mobile via CSS order) -->
-          <div class="pricing-grid" id="pricingGrid" role="tabpanel" aria-labelledby="tab-monthly">
+          <div class="pricing-grid" id="pricingGrid">
             <article class="price-card" data-plan-card="free">
               <div class="price-tier" data-i18n="planFreeName">Free</div>
               <div class="price-amount">
@@ -1332,10 +1289,10 @@
                 <span class="price-note" data-i18n="planPopular">Most popular</span>
               </div>
               <div class="price-amount">
-                <span class="price-figure tabular-nums" data-plan-usd="pro">$5</span>
-                <span class="price-period" data-plan-period="pro" data-i18n="perMonth">/ month</span>
+                <span class="price-figure tabular-nums" data-plan-usd="pro">$120</span>
+                <span class="price-period" data-plan-period="pro" data-i18n="oneTime">one-time</span>
               </div>
-              <div class="price-khr tabular-nums" data-plan-khr="pro">≈ 20,500 ៛</div>
+              <div class="price-khr tabular-nums" data-plan-khr="pro">≈ 492,000 ៛</div>
               <p class="price-summary" data-i18n="planProDesc">Full license for individual lenders managing active collections.</p>
               <ul class="price-features">
                 <li data-i18n="planProF1">Unlimited loans &amp; borrowers</li>
@@ -1360,10 +1317,10 @@
             <article class="price-card" data-plan-card="business">
               <div class="price-tier" data-i18n="planBizName">Business</div>
               <div class="price-amount">
-                <span class="price-figure tabular-nums" data-plan-usd="business">$15</span>
-                <span class="price-period" data-plan-period="business" data-i18n="perMonth">/ month</span>
+                <span class="price-figure tabular-nums" data-plan-usd="business">$360</span>
+                <span class="price-period" data-plan-period="business" data-i18n="oneTime">one-time</span>
               </div>
-              <div class="price-khr tabular-nums" data-plan-khr="business">≈ 61,500 ៛</div>
+              <div class="price-khr tabular-nums" data-plan-khr="business">≈ 1,476,000 ៛</div>
               <p class="price-summary" data-i18n="planBizDesc">For family lending offices and teams expanding operations.</p>
               <ul class="price-features">
                 <li data-i18n="planBizF1">Everything in Pro</li>
@@ -1558,7 +1515,7 @@
               <article class="license-step-card">
                 <div class="license-step-num tabular-nums">01</div>
                 <h4 class="license-step-title" data-i18n="licStep1Title">Choose a plan</h4>
-                <p class="license-step-desc" data-i18n="licStep1Desc">Pick Pro or Business and select Monthly, Yearly, or Lifetime.</p>
+                <p class="license-step-desc" data-i18n="licStep1Desc">Pick Pro or Business for a one-time lifetime license key.</p>
               </article>
               <article class="license-step-card">
                 <div class="license-step-num tabular-nums">02</div>
@@ -1660,13 +1617,13 @@
 
             <div class="faq-item">
               <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-a3" id="faq-q3">
-                <span data-i18n="faq3Q">What happens when my license expires?</span>
+                <span data-i18n="faq3Q">Do I have to pay monthly or renew?</span>
                 <svg class="faq-chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>
               </button>
               <div class="faq-answer" id="faq-a3" role="region" aria-labelledby="faq-q3" hidden>
-                <p data-i18n="faq3A">KamChi switches to read-only mode. Your borrower profiles, payment history, and balances remain visible and exportable—your existing data is never locked or deleted.</p>
+                <p data-i18n="faq3A">No. Pro and Business are one-time lifetime licenses with no recurring fees. Even if a license is ever deactivated or expires, KamChi switches to read-only mode so your records stay visible and exportable.</p>
               </div>
             </div>
 

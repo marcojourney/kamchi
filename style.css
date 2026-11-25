@@ -123,8 +123,6 @@ html[lang="km"] .btn,
 html[lang="km"] .nav-link,
 html[lang="km"] .lang-btn,
 html[lang="km"] .screen-tab,
-html[lang="km"] .billing-btn,
-html[lang="km"] .save-badge,
 html[lang="km"] .compare-table th,
 html[lang="km"] .compare-table td,
 html[lang="km"] .store-badge,
@@ -2294,63 +2292,6 @@ html.dark .app-brand-logo {
 /* ============================================================================
    === CHANGED: 9. Pricing (License Key Model) ===
    ============================================================================ */
-.pricing-head {
-  max-width: none;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  align-items: flex-start;
-}
-
-.billing-toggle {
-  display: inline-flex;
-  flex-wrap: wrap;
-  padding: 4px;
-  background-color: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  gap: 4px;
-  max-width: 100%;
-}
-
-.billing-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  border: none;
-  background: transparent;
-  min-height: 40px;
-  padding: 8px 14px;
-  border-radius: 7px;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background-color var(--transition), color var(--transition);
-}
-
-.billing-btn:hover {
-  color: var(--text);
-}
-
-.billing-btn.is-active {
-  background-color: var(--primary);
-  color: var(--primary-ink);
-}
-
-.save-badge {
-  display: inline-block;
-  padding: 2px 7px;
-  border-radius: 6px;
-  background-color: var(--accent);
-  color: #1F2937;
-  font-size: 0.72rem;
-  font-weight: 700;
-  line-height: 1.35;
-}
-
 .pricing-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -3091,12 +3032,6 @@ html.dark .app-brand-logo {
   .roadmap-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
-  }
-
-  .pricing-head {
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: space-between;
   }
 
   .pricing-grid {

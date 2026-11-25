@@ -265,16 +265,8 @@
       priceTitle: 'Start free. Unlock full power with a license key.',
       priceLead:
         'Pay via ABA, KHQR, or cash and receive your key on Telegram. Activate once online, then work offline.',
-      billMonthly: 'Monthly',
-      billYearlyLabel: 'Yearly',
-      billSaveBadge: 'Save 20%',
-      billLifetime: 'Lifetime',
-      billingNameMonthly: 'Monthly',
-      billingNameYearly: 'Yearly',
       billingNameLifetime: 'Lifetime',
       periodFree: 'Forever free',
-      perMonth: '/ month',
-      perYear: '/ year',
       oneTime: 'one-time',
       khrApproxPrefix: '≈ ',
       khrUnit: 'KHR',
@@ -331,7 +323,7 @@
 
       howLicTitle: 'How to get your license',
       licStep1Title: 'Choose a plan',
-      licStep1Desc: 'Pick Pro or Business and select Monthly, Yearly, or Lifetime.',
+      licStep1Desc: 'Pick Pro or Business for a one-time lifetime license key.',
       licStep2Title: 'Pay with ABA, KHQR, or cash',
       licStep2Desc: 'Complete your simple transfer via ABA, KHQR, or local cash.',
       licStep3Title: 'Receive your key on Telegram',
@@ -365,9 +357,9 @@
       faq2Q: 'How many devices can I use?',
       faq2A:
         'Free works on 1 device with no key needed. A Pro license activates on up to 2 devices, and a Business license activates on up to 5 devices.',
-      faq3Q: 'What happens when my license expires?',
+      faq3Q: 'Do I have to pay monthly or renew?',
       faq3A:
-        'KamChi switches to read-only mode. Your borrower profiles, payment history, and balances remain visible and exportable—your existing data is never locked or deleted.',
+        'No. Pro and Business are one-time lifetime licenses with no recurring fees. Even if a license is ever deactivated or expires, KamChi switches to read-only mode so your records stay visible and exportable.',
       faq4Q: 'What if I lose my phone?',
       faq4A:
         'You can restore your loan records from your latest backup file, and we can remove the lost device from your license so you can activate your key on a new phone.',
@@ -698,16 +690,8 @@
       priceTitle: 'ចាប់ផ្តើមដោយឥតគិតថ្លៃ។ ដោះសោមុខងារពេញលេញដោយប្រើកូដអាជ្ញាប័ណ្ណ។',
       priceLead:
         'ទូទាត់តាម ABA, KHQR ឬសាច់ប្រាក់ រួចទទួលកូដតាម Telegram។ បើកដំណើរការម្តងពេលមានអ៊ីនធឺណិត រួចប្រើបានពេលគ្មានអ៊ីនធឺណិត។',
-      billMonthly: 'ប្រចាំខែ',
-      billYearlyLabel: 'ប្រចាំឆ្នាំ',
-      billSaveBadge: 'សន្សំ 20%',
-      billLifetime: 'បង់ម្ដងប្រើបានរហូត',
-      billingNameMonthly: 'ប្រចាំខែ',
-      billingNameYearly: 'ប្រចាំឆ្នាំ',
       billingNameLifetime: 'ប្រើបានរហូត',
       periodFree: 'ឥតគិតថ្លៃរហូត',
-      perMonth: '/ ខែ',
-      perYear: '/ ឆ្នាំ',
       oneTime: 'បង់តែម្តង',
       khrApproxPrefix: 'ប្រហែល ',
       khrUnit: '៛',
@@ -764,7 +748,7 @@
 
       howLicTitle: 'របៀបទទួលបានកូដអាជ្ញាប័ណ្ណ',
       licStep1Title: 'ជ្រើសរើសគម្រោង',
-      licStep1Desc: 'ជ្រើស Pro ឬ Business និងរយៈពេលប្រចាំខែ ប្រចាំឆ្នាំ ឬអស់មួយជីវិត។',
+      licStep1Desc: 'ជ្រើសគម្រោង Pro ឬ Business ដើម្បីទទួលបានកូដអាជ្ញាប័ណ្ណបង់ម្ដងប្រើបានរហូត។',
       licStep2Title: 'ទូទាត់តាម ABA, KHQR ឬសាច់ប្រាក់',
       licStep2Desc: 'ផ្ទេរប្រាក់យ៉ាងងាយស្រួលតាម ABA, KHQR ឬសាច់ប្រាក់ផ្ទាល់។',
       licStep3Title: 'ទទួលកូដតាម Telegram',
@@ -798,9 +782,9 @@
       faq2Q: 'តើខ្ញុំអាចប្រើលើឧបករណ៍ប៉ុន្មានគ្រឿង?',
       faq2A:
         'គម្រោង Free ប្រើបាន ១ ឧបករណ៍ដោយមិនចាំបាច់មានកូដ។ កូដ Pro ប្រើបានរហូតដល់ ២ ឧបករណ៍ និងកូដ Business ប្រើបានរហូតដល់ ៥ ឧបករណ៍។',
-      faq3Q: 'តើមានអ្វីកើតឡើងពេលអាជ្ញាប័ណ្ណផុតកំណត់?',
+      faq3Q: 'តើខ្ញុំត្រូវបង់ប្រាក់ប្រចាំខែ ឬបន្តសុពលភាពរាល់ឆ្នាំទេ?',
       faq3A:
-        'កម្មវិធី KamChi នឹងប្តូរទៅជាមុខងារមើលបានតែប៉ុណ្ណោះ (read-only)។ ប្រវត្តិអ្នកខ្ចី ការសងប្រាក់ និងសមតុល្យរបស់អ្នកនៅតែមើលឃើញ និងនាំចេញបាន ហើយទិន្នន័យចាស់មិនត្រូវបានចាក់សោ ឬលុបចោលឡើយ។',
+        'មិនបាច់ទេ។ គម្រោង Pro និង Business គឺជាអាជ្ញាប័ណ្ណបង់ម្ដងប្រើបានរហូត ដោយគ្មានថ្លៃសេវាប្រចាំខែឡើយ។ ទោះបីជាកូដអាជ្ញាប័ណ្ណត្រូវបានបិទ ឬផុតកំណត់ក៏ដោយ KamChi នឹងប្តូរទៅជាមុខងារមើលបានតែប៉ុណ្ណោះ ដូច្នេះទិន្នន័យរបស់អ្នកនៅតែមើលឃើញ និងនាំចេញបានជានិច្ច។',
       faq4Q: 'ចុះបើខ្ញុំបាត់ទូរស័ព្ទវិញ?',
       faq4A:
         'អ្នកអាចស្តារកំណត់ត្រាកម្ចីពីឯកសារបម្រុងទុកចុងក្រោយរបស់អ្នក ហើយយើងអាចដកឧបករណ៍ដែលបាត់ចេញពីអាជ្ញាប័ណ្ណ ដើម្បីឱ្យអ្នកប្រើកូដលើទូរស័ព្ទថ្មីបាន។',
@@ -845,7 +829,7 @@
 
       footerTagline: 'ឱ្យខ្ចីដោយទំនុកចិត្ត តាមដានគ្រប់រៀល។',
       footerCopy: '© 2026 KamChi. រក្សាសិទ្ធិគ្រប់យ៉ាង។',
-      footerMadeIn: 'បង្កើតឡើងសម្រាប់អ្នកកម្ចីផ្ទាល់ខ្លួន',
+      footerMadeIn: 'បង្កើតឡើងសម្រាប់អ្នកផ្តល់កម្ចីផ្ទាល់ខ្លួន',
 
       /* === CHANGED: Privacy Policy Page (privacy.html - KM) === */
       ppPageTitle: 'KamChi (កម្ចី) — គោលការណ៍ភាពឯកជន',
@@ -894,7 +878,6 @@
      ========================================================================= */
   var currentLang = 'km';
   var currentScreen = 'dashboard';
-  var currentBilling = 'monthly';
   var currentQrPlatform = 'ios';
   var lastKeyStatus = '';
 
@@ -1092,12 +1075,12 @@
   }
 
   /* =========================================================================
-     === CHANGED: 7. LICENSE PRICING TOGGLE, KHR FORMATTER & TELEGRAM LINKS ===
+     === CHANGED: 7. LIFETIME LICENSE PRICING, KHR FORMATTER & TELEGRAM LINKS ===
      ========================================================================= */
   var PLAN_PRICES_USD = {
-    free: { monthly: 0, yearly: 0, lifetime: 0 },
-    pro: { monthly: 5, yearly: 48, lifetime: 120 },
-    business: { monthly: 15, yearly: 144, lifetime: 360 }
+    free: { lifetime: 0 },
+    pro: { lifetime: 120 },
+    business: { lifetime: 360 }
   };
 
   function formatUsd(amount) {
@@ -1118,23 +1101,11 @@
 
   function updatePricingDisplay() {
     var dict = T[currentLang];
-    var periodKey =
-      currentBilling === 'yearly'
-        ? 'perYear'
-        : currentBilling === 'lifetime'
-          ? 'oneTime'
-          : 'perMonth';
-    var billingNameKey =
-      currentBilling === 'yearly'
-        ? 'billingNameYearly'
-        : currentBilling === 'lifetime'
-          ? 'billingNameLifetime'
-          : 'billingNameMonthly';
-
     var plans = ['free', 'pro', 'business'];
+
     for (var i = 0; i < plans.length; i++) {
       var plan = plans[i];
-      var usdAmount = PLAN_PRICES_USD[plan][currentBilling];
+      var usdAmount = PLAN_PRICES_USD[plan].lifetime;
       var usdEl = document.querySelector('[data-plan-usd="' + plan + '"]');
       var periodEl = document.querySelector('[data-plan-period="' + plan + '"]');
       var khrEl = document.querySelector('[data-plan-khr="' + plan + '"]');
@@ -1144,7 +1115,7 @@
       }
 
       if (periodEl) {
-        periodEl.textContent = plan === 'free' ? dict.periodFree : dict[periodKey];
+        periodEl.textContent = plan === 'free' ? dict.periodFree : dict.oneTime;
       }
 
       if (khrEl) {
@@ -1155,7 +1126,7 @@
       }
     }
 
-    // Build prefilled Telegram purchase links with selected plan & billing cycle
+    // Build prefilled Telegram purchase links for Lifetime license plans
     var buyLinks = document.querySelectorAll('[data-buy-plan]');
     for (var j = 0; j < buyLinks.length; j++) {
       var link = buyLinks[j];
@@ -1163,8 +1134,8 @@
       if (!PLAN_PRICES_USD[buyPlan]) continue;
 
       var planLabel = buyPlan === 'business' ? dict.planBizName : dict.planProName;
-      var priceStr = formatUsd(PLAN_PRICES_USD[buyPlan][currentBilling]);
-      var billingLabel = dict[billingNameKey];
+      var priceStr = formatUsd(PLAN_PRICES_USD[buyPlan].lifetime);
+      var billingLabel = dict.billingNameLifetime;
       var message = dict.tgMsgTemplate
         .replace('{plan}', planLabel)
         .replace('{billing}', billingLabel)
@@ -1175,68 +1146,6 @@
   }
 
   function initPricing() {
-    var tablist = document.getElementById('billingTablist');
-    var billingBtns = document.querySelectorAll('[data-billing]');
-    var pricingGrid = document.getElementById('pricingGrid');
-
-    function setBilling(mode, shouldFocus) {
-      currentBilling = mode === 'yearly' || mode === 'lifetime' ? mode : 'monthly';
-      var activeId = 'tab-' + currentBilling;
-
-      for (var i = 0; i < billingBtns.length; i++) {
-        var btn = billingBtns[i];
-        var isMatch = btn.getAttribute('data-billing') === currentBilling;
-        btn.classList.toggle('is-active', isMatch);
-        btn.setAttribute('aria-selected', isMatch ? 'true' : 'false');
-        btn.setAttribute('tabindex', isMatch ? '0' : '-1');
-        if (isMatch && shouldFocus) {
-          btn.focus();
-        }
-      }
-
-      if (pricingGrid) {
-        pricingGrid.setAttribute('aria-labelledby', activeId);
-      }
-
-      updatePricingDisplay();
-    }
-
-    for (var i = 0; i < billingBtns.length; i++) {
-      billingBtns[i].addEventListener('click', function () {
-        setBilling(this.getAttribute('data-billing'), false);
-      });
-    }
-
-    // Keyboard navigation for role="tablist" (ArrowLeft, ArrowRight, Home, End)
-    if (tablist && billingBtns.length) {
-      tablist.addEventListener('keydown', function (event) {
-        var idx = -1;
-        for (var k = 0; k < billingBtns.length; k++) {
-          if (billingBtns[k] === document.activeElement) {
-            idx = k;
-            break;
-          }
-        }
-        if (idx === -1) return;
-
-        var nextIdx = idx;
-        if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
-          nextIdx = (idx + 1) % billingBtns.length;
-        } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
-          nextIdx = (idx - 1 + billingBtns.length) % billingBtns.length;
-        } else if (event.key === 'Home') {
-          nextIdx = 0;
-        } else if (event.key === 'End') {
-          nextIdx = billingBtns.length - 1;
-        } else {
-          return;
-        }
-
-        event.preventDefault();
-        setBilling(billingBtns[nextIdx].getAttribute('data-billing'), true);
-      });
-    }
-
     // Pre-select loan volume in Early Access form when clicking Free plan CTA
     var planButtons = document.querySelectorAll('[data-select-plan]');
     var volumeSelect = document.getElementById('leadVolume');
@@ -1249,7 +1158,7 @@
       });
     }
 
-    setBilling('monthly', false);
+    updatePricingDisplay();
   }
 
   /* =========================================================================
