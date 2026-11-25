@@ -1268,13 +1268,14 @@
             <div class="billing-toggle" role="tablist" aria-label="Billing period" id="billingTablist">
               <button
                 type="button"
-                class="billing-btn is-active"
+                class="billing-btn"
                 role="tab"
                 id="tab-monthly"
-                aria-selected="true"
+                aria-selected="false"
                 tabindex="0"
                 data-billing="monthly"
                 data-i18n="billMonthly"
+                style="display: none"
               >
                 Monthly
               </button>
@@ -1286,16 +1287,17 @@
                 aria-selected="false"
                 tabindex="-1"
                 data-billing="yearly"
+                style="display: none"
               >
                 <span data-i18n="billYearlyLabel">Yearly</span>
                 <span class="save-badge" data-i18n="billSaveBadge">Save 20%</span>
               </button>
               <button
                 type="button"
-                class="billing-btn"
+                class="billing-btn is-active"
                 role="tab"
                 id="tab-lifetime"
-                aria-selected="false"
+                aria-selected="true"
                 tabindex="-1"
                 data-billing="lifetime"
                 data-i18n="billLifetime"
